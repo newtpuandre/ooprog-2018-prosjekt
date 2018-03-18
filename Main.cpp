@@ -14,8 +14,13 @@
     // #include "Functions.h"
     // Uncomment this line if we decide to seperate the main functions to a different file.
 
+//Classes
 Sports sports;
 Players players;
+
+//Functions
+void writeMenu();
+char read();
 
 using namespace std;
 
@@ -50,4 +55,13 @@ int main() {
     sports.writeToFile();
     cout << "\n\n";
 	return 0;
+}
+
+void writeMenu() {
+	//This functions will print out the menu for the user
+
+}
+
+char read() {
+	//This function will take care of the user input
 }

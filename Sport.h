@@ -1,5 +1,15 @@
 #if !defined(__SPORT_H)
 #define  __SPORT_H
-//Ingenting å finne her..
+
+#include "ListTool2B.h"
+
+class Sport : public TextElement{
+private:
+	//Need to add specific variables for this class
+
+public:
+	//Function declarations need to be here
+
+};
 
 #endif
