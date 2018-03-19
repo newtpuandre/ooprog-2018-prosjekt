@@ -22,10 +22,6 @@
 Sports sports;
 Players players;
 
-//Functions
-void writeMenu();
-char read();
-
 using namespace std;
 
 int main() {
