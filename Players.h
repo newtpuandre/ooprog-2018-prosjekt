@@ -8,8 +8,8 @@ private:
 	//Need to add specific variables for this class
 
 public:
-	//Function declarations need to be here
-
+	Players(); //Paramless constructor
+	~Players(); //Destructor
 };
 
 #endif

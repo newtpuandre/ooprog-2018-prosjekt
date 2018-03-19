@@ -1,2 +1,10 @@
- 
- //Ingenting å finne her
+#include "Players.h"
+
+Players::Players() {
+	//Paramless constructor
+
+};
+
+Players::~Players() {
+	//Deconstructor
+}

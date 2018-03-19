@@ -1,2 +1,10 @@
- 
- //Ingenting å finne her
+#include "Sport.h"
+
+Sport::Sport() {
+	//Paramless constructor
+
+};
+
+Sport::~Sport() {
+	//Deconstructor
+}

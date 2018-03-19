@@ -9,7 +9,8 @@ private:
 
 public:
 	//Function declarations need to be here
-
+	Sport();
+	~Sport();
 };
 
 #endif

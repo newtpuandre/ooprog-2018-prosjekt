@@ -1,5 +1,16 @@
 #if !defined(__RESULT_H)
 #define  __RESULT_H
-//Ingenting å finne her..
+
+class Result {
+
+private:
+	//Need to add specific variables for this class
+
+public:
+	//Function declarations need to be here
+	Result(); //Paramless constructor
+	~Result(); //Destructor
+
+};
 
 #endif
