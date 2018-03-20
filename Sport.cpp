@@ -12,3 +12,7 @@ Sport::~Sport() {
 void Sport::New() {
 
 }
+
+void Sport::display() {
+
+}

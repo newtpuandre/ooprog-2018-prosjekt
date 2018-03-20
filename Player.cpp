@@ -12,3 +12,7 @@ Player::~Player() {
 void Player::New() {
 
 }
+
+void Player::display() {
+
+}

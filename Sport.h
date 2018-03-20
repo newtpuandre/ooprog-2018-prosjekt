@@ -12,6 +12,7 @@ public:
 	Sport();
 	~Sport();
     void New(); //Reads parameters for sport object.
+	void display();	//Displays data for sport object.
 };
 
 #endif

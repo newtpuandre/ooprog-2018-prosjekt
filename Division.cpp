@@ -12,3 +12,7 @@ Division::~Division() {
 void Division::New(){
 
 }
+
+void Division::display() {
+
+}

@@ -13,6 +13,7 @@ public:
 	Division(); //Paramless constructor
 	~Division(); //Destructor
     void New(); //Reads parameters for division object.
+	void display(); //Displays data for division object.
 };
 
 #endif
