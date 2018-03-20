@@ -1,5 +1,6 @@
 #if !defined(__TEAM_H)
 #define  __TEAM_H
+#include "ConstEnum.h"
 
 class Team {
 

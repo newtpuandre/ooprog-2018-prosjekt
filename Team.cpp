@@ -7,8 +7,8 @@ Team::Team() {
 
 Team::~Team() {
 	//Deconstructor
-}
+};
 
 void Team::display() {
 
-}
+};

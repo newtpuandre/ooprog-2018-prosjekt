@@ -3,7 +3,6 @@
 
 Sports::Sports() {
 	//Paramless constructor
-	List* Sport;
 	Sport = new List(Sorted);
 };
 

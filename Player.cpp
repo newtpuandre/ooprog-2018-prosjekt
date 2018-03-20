@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Functions.h"
+#include "ConstEnum.h"
 
 Player::Player() {
 	//Paramless constructor
@@ -15,8 +16,4 @@ Player::~Player() {
 
 void Player::display() {
     
-}
-
-int Player::returnId() { //Returns the internal ID derived from numElement.
-    return number;
 }

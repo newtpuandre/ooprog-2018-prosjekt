@@ -7,12 +7,12 @@ Division::Division() {
 
 Division::~Division() {
 	//Deconstructor
-}
+};
 
 void Division::New(){
 
-}
+};
 
 void Division::display() {
 
-}
+};

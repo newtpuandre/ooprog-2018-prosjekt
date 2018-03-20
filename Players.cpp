@@ -6,7 +6,6 @@ Players::Players() {
 	//Paramless constructor
 	//Create the list containing Player objects.
 	//Set it to sorted.
-	List*  playerList;
 	playerList = new List(Sorted);
 };
 
@@ -16,7 +15,8 @@ Players::~Players() {
 }
 
 void Players::New() {
-    Player tempPlayer;
-    //tempPlayer.returnId();
-    playerList->add(tempPlayer.returnId());
+    Player* tempPlayer; //
+	tempPlayer = new Player;
+
+    playerList->add(tempPlayer);
 }

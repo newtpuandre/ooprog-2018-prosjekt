@@ -1,10 +1,11 @@
 #if !defined(__SPORTS_H)
 #define  __SPORTS_H
+#include "ListTool2B.h"
 
 class Sports {
 
 private:
-	//Need to add specific variables for this class
+	List * Sport;
 
 public:
 	//Function declarations need to be here
