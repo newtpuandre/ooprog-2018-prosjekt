@@ -1,5 +1,8 @@
 #if !defined(__FUNCTIONS_H)
 #define  __FUNCTIONS_H
+#include "Players.h";
+
+extern Players players; //Is this even an valid solution?
 
 //Function declarations
 void writeMenu();

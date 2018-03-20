@@ -43,9 +43,10 @@ int read(const char t[], const int min, const int max) { //Reads an int in given
 
 void New() { //Defines what object to create a new instance of.
     char ch;
+	cin >> ch;
     switch (ch) {
-        case 'S': players.new();    break;
-        case 'I': sports.new();     break;
-        case 'D': divisions.new();  break;
+	case 'S':	players.New();    break;
+       // case 'I': sports.new();     break;
+       // case 'D': divisions.new();  break;
     }
 }
