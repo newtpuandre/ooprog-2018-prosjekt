@@ -9,6 +9,8 @@
  I commented out everything that is NYI so we can run the program compiles.
  We need to uncomment the NYI functions later.
  Should we restructure the switch and main?
+
+ Hue
  */
 
 
@@ -29,7 +31,6 @@ int main() {
     
    // players.readFromFile();
    // sports.readFromFile();
-    
     writeMenu();
     ch = read();        // Reads one character
     while (ch != 'Q') {
@@ -53,6 +54,7 @@ int main() {
     }
     // players.writeToFile();
     // sports.writeToFile();
+	
     cout << "\n\n";
 	return 0;
 }
