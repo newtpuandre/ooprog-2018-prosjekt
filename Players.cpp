@@ -1,10 +1,16 @@
 #include "Players.h"
+#include "Player.h"
+#include <iostream>
 
 Players::Players() {
 	//Paramless constructor
-
+	//Create the list containing Player objects.
+	//Set it to sorted.
+	List*  playerList;
+	playerList = new List(Sorted);
 };
 
 Players::~Players() {
-	//Deconstructor
+	//Go through the whole playerList and delete every object from the list;
+
 }

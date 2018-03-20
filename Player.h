@@ -6,8 +6,9 @@
 class Player : public NumElement{
 
 private:
-	//Need to add specific variables for this class
-
+	//ID derived from NumElement
+	char* name; //Pointer to name char array
+	char* address; //pointer to address char array
 public:
 	//Function declarations need to be here
 	Player(); //Paramless constructor
