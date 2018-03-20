@@ -40,3 +40,12 @@ int read(const char t[], const int min, const int max) { //Reads an int in given
     } while (n < min || n > max);
     return n;
 }
+
+void New() { //Defines what object to create a new instance of.
+    char ch;
+    switch (ch) {
+        case 'S': players.new();    break;
+        case 'I': sports.new();     break;
+        case 'D': divisions.new();  break;
+    }
+}

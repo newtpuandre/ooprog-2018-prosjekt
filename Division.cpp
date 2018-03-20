@@ -9,7 +9,7 @@ Division::~Division() {
 	//Deconstructor
 };
 
-void Division::New(){
+void Division::New() {
 
 };
 

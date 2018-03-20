@@ -3,7 +3,7 @@
 
 #include "ListTool2B.h"
 
-class Player : public NumElement{
+class Player : public NumElement {
 
 private:
 	//Need to add specific variables for this class
