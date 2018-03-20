@@ -17,8 +17,8 @@ public:
 	//Function declarations need to be here
 	Division(); //Paramless constructor
 	~Division(); //Destructor
-	void New();
-				 //Function for creating the matrix of results!
+    void New(); //Reads parameters for division object.
+	void display(); //Displays data for division object.
 };
 
 #endif

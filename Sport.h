@@ -13,7 +13,8 @@ public:
 	//Function declarations need to be here
 	Sport();
 	~Sport();
-	void New();
+    void New(); //Reads parameters for sport object.
+	void display();	//Displays data for sport object.
 };
 
 #endif

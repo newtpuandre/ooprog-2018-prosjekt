@@ -8,3 +8,7 @@ Result::Result() {
 Result::~Result() {
 	//Deconstructor
 }
+
+void Result::display() {
+
+}

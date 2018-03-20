@@ -13,6 +13,7 @@ public:
 	Player(); //Paramless constructor
 	~Player(); //Destructor
     void New(); //Reads parameters for player object.
+	void display();	//Displays data for player object.
 };
 
 #endif

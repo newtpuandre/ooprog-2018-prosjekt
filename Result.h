@@ -16,6 +16,7 @@ public:
 	//Function declarations need to be here
 	Result(); //Paramless constructor
 	~Result(); //Destructor
+	void display();	//Displays data for result object.
 
 };
 
