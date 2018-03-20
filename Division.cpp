@@ -8,5 +8,3 @@ Division::Division() {
 Division::~Division() {
 	//Deconstructor
 }
-
-//Function for creating the matrix of results!

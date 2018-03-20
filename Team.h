@@ -4,10 +4,7 @@
 class Team {
 
 private:
-	char* name;					//Team name
-	char* address;				//Team Address
-	int numberOfPlayers = 0;	//Amount of players on the team
-	int playerNo[MAXPLAYERS];	//Array with player numbers
+	//Need to add specific variables for this class
 
 public:
 	//Function declarations need to be here

@@ -2,17 +2,16 @@
 #define  __SPORT_H
 
 #include "ListTool2B.h"
-#include "ConstEnum.h"
 
 class Sport : public TextElement{
 private:
-	char* sportName; //Name of the sport
-	tableType table; //TableType
+	//Need to add specific variables for this class
 
 public:
 	//Function declarations need to be here
 	Sport();
 	~Sport();
+    new(); //Reads parameters for sport object.
 };
 
 #endif

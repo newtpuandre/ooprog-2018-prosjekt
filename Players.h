@@ -5,9 +5,8 @@
 class Players {
 
 private:
-	int lastPlayer = 0;
+	//Need to add specific variables for this class
 
-	//Sorted list with player objects
 public:
 	Players(); //Paramless constructor
 	~Players(); //Destructor
