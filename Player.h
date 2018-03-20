@@ -12,7 +12,7 @@ public:
 	//Function declarations need to be here
 	Player(); //Paramless constructor
 	~Player(); //Destructor
-    new(); //Reads parameters for player object.
+    void New(); //Reads parameters for player object.
 };
 
 #endif

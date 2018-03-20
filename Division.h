@@ -12,7 +12,7 @@ public:
 	//Function declarations need to be here
 	Division(); //Paramless constructor
 	~Division(); //Destructor
-    new(); //Reads parameters for division object.
+    void New(); //Reads parameters for division object.
 };
 
 #endif

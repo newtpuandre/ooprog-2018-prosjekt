@@ -8,3 +8,7 @@ Sport::Sport() {
 Sport::~Sport() {
 	//Deconstructor
 }
+
+void Sport::New() {
+
+}

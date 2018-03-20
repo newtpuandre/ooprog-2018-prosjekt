@@ -8,3 +8,7 @@ Player::Player() {
 Player::~Player() {
 	//Deconstructor
 }
+
+void Player::New() {
+
+}

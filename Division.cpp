@@ -8,3 +8,7 @@ Division::Division() {
 Division::~Division() {
 	//Deconstructor
 }
+
+void Division::New(){
+
+}
