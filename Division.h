@@ -15,9 +15,9 @@ private:
 	Result** results;		//Matrix with results
 public:
 	//Function declarations need to be here
-	Division(); //Paramless constructor
-	~Division(); //Destructor
-    void New(); //Reads parameters for division object.
+	Division();     //Paramless constructor
+	~Division();    //Destructor
+    void New();     //Reads parameters for division object.
 	void display(); //Displays data for division object.
 };
 
