@@ -1,6 +1,9 @@
 #include "Player.h"
 #include "Functions.h"
 #include "ConstEnum.h"
+#include <iostream>
+
+using namespace std;
 
 Player::Player() {
 	//Paramless constructor
@@ -15,5 +18,6 @@ Player::~Player() {
 }
 
 void Player::display() {
-    
+	cout << "Players name    : " << name << '\n'
+		 << "Players address : " << address << '\n';
 }
