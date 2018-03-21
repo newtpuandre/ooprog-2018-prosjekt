@@ -50,3 +50,14 @@ void New() { //Defines what object to create a new instance of.
        // case 'D': divisions.new();  break;
     }
 }
+
+void remove() {
+	char ch;
+	cin >> ch;
+	switch (ch) {
+	case 'S': players.remove(); break;
+	//case 'I': sports.remove(); break;
+	//case 'D': divisions.remove(); break;
+	}
+
+}

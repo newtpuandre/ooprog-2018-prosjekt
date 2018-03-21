@@ -7,10 +7,12 @@ class Players {
 private:
 	//Need to add specific variables for this class
 	List * playerList;
+	//LastUsedNo variable is this needed?
 public:
 	Players(); //Paramless constructor
 	~Players(); //Destructor
     void New(); //Reads parameters for player object.
+	void remove(); //Removes a user by id
 };
 
 #endif

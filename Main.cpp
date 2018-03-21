@@ -38,7 +38,7 @@ int main() {
             case 'S': /*players.display();  */      break;
             case 'I': /*sports.display();   */      break;
             case 'N': New();						break;
-            case 'F': /*remove(); */                break;
+            case 'F': remove();                break;
             case 'L':
             case 'K':
             case 'C':
