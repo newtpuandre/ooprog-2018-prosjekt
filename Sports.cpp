@@ -1,4 +1,5 @@
 #include "Sports.h"
+#include "Sport.h"
 #include "ListTool2B.h"
 
 Sports::Sports() {
@@ -10,11 +11,11 @@ Sports::Sports() {
 
 Sports::~Sports() {
 	//Deconstructor
-}
+};
 
-void Sports:New() {
+void Sports::New() {
     Sport* tempSport;
     tempSport = new Sport;
     
     sportList->add(tempSport);
-}
+};

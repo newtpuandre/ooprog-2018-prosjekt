@@ -1,8 +1,10 @@
 #if !defined(__FUNCTIONS_H)
 #define  __FUNCTIONS_H
 #include "Players.h";
+#include "Sports.h"
 
 extern Players players; //Is this even an valid solution?
+extern Sports sports;
 
 //Function declarations
 void writeMenu();

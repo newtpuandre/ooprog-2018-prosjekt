@@ -50,6 +50,7 @@ int main() {
             case 'B':								break; //Isn't this an optional task?
             default: writeMenu();
         }
+		cout << "\nCommand:  ";
         ch = read();
     }
     // players.writeToFile();

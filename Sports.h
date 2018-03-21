@@ -5,7 +5,7 @@
 class Sports {
 
 private:
-	List* Sport;
+	List* sportList;
 
 public:
 	//Function declarations need to be here

@@ -6,9 +6,9 @@
 
 class Sport : public TextElement {
 private:
-	char* sportName; //Name of the sport
+	//char* sportName; //Name of the sport
 	tableType table; //TableType
-	List* Divisions;
+	List* divisionList;
 
 public:
 	//Function declarations need to be here
