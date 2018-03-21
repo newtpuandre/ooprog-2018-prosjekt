@@ -14,7 +14,7 @@ Player::Player() {
 
     read("What's the players name?", temp, STRLEN);
 	name = new char[strlen(temp) + 1];
-	strcpy(name,temp);
+	strcpy(name, temp);
 
     read("What's the players address?", temp, STRLEN);
 	address = new char[strlen(temp) + 1];

@@ -5,13 +5,13 @@
 class Sports {
 
 private:
-	List * Sport;
+	List* Sport;
 
 public:
 	//Function declarations need to be here
 	Sports(); //Paramless constructor
 	~Sports(); //Destructor
-
+    void New(); //Reads parameters for new sport object.
 };
 
 #endif

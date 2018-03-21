@@ -46,7 +46,7 @@ void New() { //Defines what object to create a new instance of.
 	cin >> ch;
     switch (ch) {
 	case 'S':	players.New();    break;
-       // case 'I': sports.new();     break;
+    case 'I':   sports.New();     break;
        // case 'D': divisions.new();  break;
     }
 }
