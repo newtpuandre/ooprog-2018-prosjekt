@@ -3,9 +3,18 @@
 
 Sports::Sports() {
 	//Paramless constructor
-	Sport = new List(Sorted);
+    //Create the list containing Sport objects.
+    //Set it to sorted.
+	sportList = new List(Sorted);
 };
 
 Sports::~Sports() {
 	//Deconstructor
+}
+
+void Sports:New() {
+    Sport* tempSport;
+    tempSport = new Sport;
+    
+    sportList->add(tempSport);
 }
