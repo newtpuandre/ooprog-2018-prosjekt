@@ -1,51 +1,33 @@
-#include "Players.h"
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif 
 #include "Player.h"
+#include "Functions.h"
 #include "ConstEnum.h"
 #include <iostream>
 
 using namespace std;
 
-Players::Players() {
+Player::Player() {
 	//Paramless constructor
-	//Create the list containing Player objects.
-	//Set it to sorted.
-	playerList = new List(Sorted);
+	char temp[STRLEN];
+
+	read("What's the players name?", temp, STRLEN);
+	name = new char[strlen(temp) + 1];
+	strcpy(name, temp);
+
+	read("What's the players address?", temp, STRLEN);
+	address = new char[strlen(temp) + 1];
+	strcpy(address, temp);
 };
 
-Players::~Players() {
-	//Go through the whole playerList and delete every object from the list;
-
+Player::~Player() {
+	//Deconstructor
+	delete[] name;
+	delete[] address;
 }
 
-void Players::New() {
-	//TODO: Read in player number and send up to numElement constructor
-
-    Player* tempPlayer; //
-	tempPlayer = new Player;
-
-    playerList->add(tempPlayer);
-}
-
-void Players::remove() {
-	char playerId[STRLEN];
-	cout << "\nWhich player would you like to remove by player id? : ";
-	cin >> playerId;
-
-	if (atoi(playerId)) { //Check if it is a number that is typed in.
-		if (playerList->inList(atoi(playerId))) {	//Does the player exist in the list?
-			
-			//Display the player
-			//if user want to remove it
-			//Delete()
-			//Else
-			//Dont()
-		}
-		else { //Give feedback to the user
-			cout << "\n" << playerId << " does not exist in the list.";
-		}
-	}
-	else { //Give feedback to the user
-		cout << "\n" << playerId << " is not a number id!";
-	}
-	
+void Player::display() {
+	cout << "Players name    : " << name << '\n'
+		<< "Players address : " << address << '\n';
 }
