@@ -1,6 +1,7 @@
 #include "Players.h"
 #include "Player.h"
 #include "ConstEnum.h"
+#include "Functions.h"
 #include <iostream>
 
 using namespace std;
@@ -18,10 +19,11 @@ Players::~Players() {
 }
 
 void Players::New() {
-	//TODO: Read in player number and send up to numElement constructor
+	int playerId;
+	playerId = read("Player id", MINID, MAXID);
 
 	Player* tempPlayer; //
-	tempPlayer = new Player;
+	tempPlayer = new Player(playerId);
 
 	playerList->add(tempPlayer);
 }

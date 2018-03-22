@@ -1,6 +1,7 @@
 #include "Sports.h"
 #include "Sport.h"
 #include "ListTool2B.h"
+#include "Functions.h"
 
 Sports::Sports() {
 	//Paramless constructor
@@ -14,10 +15,12 @@ Sports::~Sports() {
 };
 
 void Sports::New() {
-	//TODO: Read in name and send up to textElement constructor
+
+	char newName[STRLEN];
+	read("Name of the player", newName, STRLEN);
 
     Sport* tempSport;
-    tempSport = new Sport;
+    tempSport = new Sport(newName);
     
     sportList->add(tempSport);
 };

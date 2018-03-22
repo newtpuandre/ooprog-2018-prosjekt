@@ -11,18 +11,9 @@ using namespace std;
 Player::Player() {
 	//Paramless constructor
 	cout << "\nWHEN CREATING A NEW PLAYER IT REQUIRES A ID!!";
-	char temp[STRLEN];
-
-	read("What's the players name?", temp, STRLEN);
-	name = new char[strlen(temp) + 1];
-	strcpy(name, temp);
-
-	read("What's the players address?", temp, STRLEN);
-	address = new char[strlen(temp) + 1];
-	strcpy(address, temp);
 };
 
-/*Player::Player(int id) {
+Player::Player(int id):NumElement(id) {
 
 	number = id;
 
@@ -36,7 +27,7 @@ Player::Player() {
 	address = new char[strlen(temp) + 1];
 	strcpy(address, temp);
 };
-*/
+
 Player::~Player() {
 	//Deconstructor
     delete[] name;

@@ -10,9 +10,13 @@ using namespace std;
 
 Sport::Sport() {
 	//Paramless constructor
-    divisionList = new List(Sorted); //Is this the right way to make a divisionlist?
+	cout << "\nWHEN CREATING A NEW SPORT IS REQUIRES A NAME!!";
+};
 
-    char temp[STRLEN];
+Sport::Sport(char* name):TextElement(name) {
+	divisionList = new List(Sorted); //Is this the right way to make a divisionlist?
+	
+	char temp[STRLEN];
 
 	do {
 		read("What table type does this sport use? 1 (2-1-0), 2 (3-1-0), 3 (3-2-1-0)", temp, STRLEN); //Reads tabletype as a single letter.
@@ -23,10 +27,6 @@ Sport::Sport() {
 		default: cout << "\nInvalid table type. Try again.."; break;
 		}
 	} while (atoi(temp) != 1 && atoi(temp) != 2 && atoi(temp) != 3);
-
-};
-
-Sport::Sport(char* name) {
 
 };
 

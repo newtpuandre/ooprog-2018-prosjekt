@@ -13,7 +13,7 @@ private:
 public:
 	//Function declarations need to be here
 	Player(); //Paramless constructor
-	//Player(int id); //Takes an int and sets ID in NumElement
+	Player(int id); //Takes an int and sets ID in NumElement
 	~Player(); //Destructor
 	void display();	//Displays data for player object.
 };
