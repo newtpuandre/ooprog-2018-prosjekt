@@ -40,14 +40,6 @@ void Sport::newDiv() {
 	Division* division;
 	division = new Division(divName);
 	divisionList->add(division);
-    char divName[STRLEN];
-    read("Division name", divName, STRLEN);
-    
-    //TODO: If fila faktisk finnes -> de neste linjene..
-    //KRAV: brukeren taster .dta (ellers må det stringcattes, før det sendes videre)
-    Division* division;
-    division = new Division(divName);
-    divisionList->add(division);
 }
 
 Sport::~Sport() {
