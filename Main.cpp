@@ -36,10 +36,10 @@ int main() {
     toupper(ch);
     while (ch != 'Q') {
         switch (ch) {   // Should we rename the switch cases as we are coding in english? Maybe we should ask the student assistants..?
-            case 'S': /*players.display();  */      break;
-            case 'I': sports.display();      break;
-            case 'N': New();						break;
-            case 'F': remove();                break;
+            case 'S': players.display();    break;
+            case 'I': sports.display();     break;
+            case 'N': New();				break;
+            case 'F': remove();             break;
             case 'L':
             case 'K':
             case 'C':
@@ -47,8 +47,8 @@ int main() {
             case 'R':/* if (sports.results(false))
                           sports.results(true);*/   break;
             case 'D':
-            case 'E': sports.modify(ch);        break;
-            case 'B':								break; //Isn't this an optional task?
+            case 'E': sports.modify(ch);    break;
+            case 'B':						break; //Isn't this an optional task?
             default: writeMenu();
         }
 		cout << "\nCommand:  ";
