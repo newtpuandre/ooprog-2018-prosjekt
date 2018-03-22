@@ -12,3 +12,7 @@ Team::~Team() {
 void Team::display() {
 
 };
+
+void readFromFile() {
+    
+}

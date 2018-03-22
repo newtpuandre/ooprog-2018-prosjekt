@@ -2,6 +2,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #endif 
 #include <iostream>
+#include <fstream>
 #include "ConstEnum.h"
 #include "Sport.h"
 #include "Functions.h"
@@ -33,14 +34,18 @@ Sport::Sport(char* name):TextElement(name) {
 
 void Sport::newDiv() {
 	char divName[STRLEN];
-	read("Division name", divName, STRLEN);
-
-	//TODO: If fila faktisk finnes -> de neste linjene..
-	//KRAV: brukeren taster .dta (ellers må det stringcattes, før det sendes videre)
+    char fileName[STRLEN];
+    ifstream inn(fileName);
+    
+    read("Division name", divName, STRLEN);
+    read("File name", fileName, STRLEN);
+    
+    if (inn) { //KRAV: brukeren taster .dta (ellers må det stringcattes, før det sendes videre)
 	Division* division;
 	division = new Division(divName);
+    division->readFromFile(inn);
 	divisionList->add(division);
-
+    }
 }
 
 Sport::~Sport() {

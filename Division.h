@@ -1,10 +1,12 @@
 #if !defined(__DIVISION_H)
 #define  __DIVISION_H
 
+#include <fstream>
 #include "ListTool2B.h"
 #include "ConstEnum.h"
 #include "Team.h"
 #include "Result.h"
+
 
 class Division : public TextElement {
 
@@ -20,7 +22,7 @@ public:
 	~Division();    //Destructor
     void New();     //Reads parameters for division object.
 	void display(); //Displays data for division object.
-    void readFromFile(char divName[]); //Make and read from desired file.
+    void readFromFile(ifstream &inn); //Make and read from desired file.
 };
 
 #endif

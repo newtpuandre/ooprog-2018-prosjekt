@@ -17,6 +17,7 @@ public:
 	Result(); //Paramless constructor
 	~Result(); //Destructor
 	void display();	//Displays data for result object.
+    void readFromFile(); //Reads schedule from list.
 
 };
 

@@ -12,3 +12,7 @@ Result::~Result() {
 void Result::display() {
 
 }
+
+void Result::readFromFile() {
+    
+}

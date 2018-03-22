@@ -15,6 +15,7 @@ public:
 	Team(); //Paramless constructor
 	~Team(); //Destructor
 	void display();	//Displays data for team object.
+    void readFromFile();
 };
 
 #endif
