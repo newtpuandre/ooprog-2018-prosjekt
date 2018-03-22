@@ -17,6 +17,7 @@ public:
     void newDiv(); //Creates new division within the sport.
 	~Sport();
 	void display();	//Displays data for sport object.
+	void displayTeam(); //Displays team in a specific sport and division
 };
 
 #endif

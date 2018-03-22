@@ -21,6 +21,7 @@ public:
     void New();     //Reads parameters for division object.
 	void display(); //Displays data for division object.
     void readFromFile(char divName[]); //Make and read from desired file.
+	void displayTeam(); //Display a team
 };
 
 #endif

@@ -48,5 +48,27 @@ Sport::~Sport() {
 };
 
 void Sport::display() {
-
+	cout << "\nName of the sport: " << text;
+	switch (table) {
+	case a: cout << "\nTable type: 2-1-0"; break;
+	case b: cout << "\nTable type: 3-1-0"; break;
+	case c: cout << "\nTable type: 3-2-1-0"; break;
+	}
 };
+
+void Sport::displayTeam() {
+	char divName[STRLEN];
+	Division* tempDiv;
+	read("What division", divName, STRLEN);
+	if (divisionList->inList(divName)) {
+		tempDiv = (Division*)divisionList->remove(divName);
+		tempDiv->displayTeam();
+
+	}
+	else {
+		cout << "\nThe division with name " << divName << " does not exist";
+	}
+
+	divisionList->add(tempDiv);
+
+}

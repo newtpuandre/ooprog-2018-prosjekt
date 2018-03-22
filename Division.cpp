@@ -19,9 +19,22 @@ void Division::New() {
 };
 
 void Division::display() {
-
+	
 };
 
 void Division::readFromFile(char divName[]) {
     
 };
+
+void Division::displayTeam() {
+	char teamName[STRLEN];
+	read("What is the team name: ", teamName, STRLEN);
+	for (int i = 0; i < numberOfTeams; i++) {
+
+		if (*team[i] == teamName) {
+			team[i]->display();
+		}
+
+	}
+
+}

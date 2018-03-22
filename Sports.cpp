@@ -20,7 +20,7 @@ Sports::~Sports() {
 void Sports::New() {
 
 	char newName[STRLEN];
-	read("Name of the team", newName, STRLEN);
+	read("Name of the sport", newName, STRLEN);
 
     Sport* tempSport;
     tempSport = new Sport(newName);
@@ -42,7 +42,26 @@ void Sports::newDiv() {
 }
 
 void Sports::modify(char ch) {
+	char sport[STRLEN];
 
+	Sport* tempSport;
+
+	switch (ch) {
+
+	case 'D': 
+		read("What is the name of the sport", sport, STRLEN);
+		if (sportList->inList(sport)) {
+			tempSport = (Sport*)sportList->remove(sport);
+			tempSport->displayTeam();
+		}
+		else {
+			cout << "\nThe sport with name " << sport << " does not exist!";
+		}
+
+		sportList->add(tempSport);
+
+		break;
+	}
 
 };
 
