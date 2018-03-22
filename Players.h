@@ -9,8 +9,10 @@ private:
 public:
 	Players(); //Paramless constructor
 	~Players(); //Destructor
-    void New(); //Reads parameters for new player object.
-	void remove(); //Removes a user by id
+
+    void New(); //Reads parameters for player object.
+	void display(); //Displays players.
+	void remove();
 };
 
 #endif

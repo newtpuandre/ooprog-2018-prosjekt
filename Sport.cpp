@@ -26,6 +26,10 @@ Sport::Sport() {
 
 };
 
+Sport::Sport(char* name) {
+
+};
+
 Sport::~Sport() {
     delete[] text;
 };

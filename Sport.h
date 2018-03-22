@@ -13,6 +13,7 @@ private:
 public:
 	//Function declarations need to be here
 	Sport();
+	Sport(char* name);
 	~Sport();
 	void display();	//Displays data for sport object.
 };
