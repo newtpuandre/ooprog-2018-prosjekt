@@ -16,6 +16,7 @@ public:
 	~Team(); //Destructor
 	void display();	//Displays data for team object.
 	bool operator== (char* name);
+    void readFromFile();
 };
 
 #endif

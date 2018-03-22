@@ -29,3 +29,7 @@ bool Team::operator== (char* name) {
 	}
 
 };
+
+void readFromFile() {
+    
+}
