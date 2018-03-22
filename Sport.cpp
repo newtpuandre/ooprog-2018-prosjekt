@@ -75,3 +75,18 @@ void Sport::displayTeam() {
 	}
 
 }
+
+void Sport::editPlayer() {
+	char divName[STRLEN];
+	Division* tempDiv;
+	read("What division", divName, STRLEN);
+	if (divisionList->inList(divName)) {
+		tempDiv = (Division*)divisionList->remove(divName);
+		
+		divisionList->add(tempDiv);
+	}
+	else {
+		cout << "\nThe division with name " << divName << " does not exist";
+	}
+
+}

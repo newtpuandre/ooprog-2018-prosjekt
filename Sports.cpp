@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Sports.h"
 #include "Sport.h"
+#include "Player.h"
 #include "ListTool2B.h"
 #include "Functions.h"
 
@@ -42,25 +43,14 @@ void Sports::newDiv() {
 }
 
 void Sports::modify(char ch) {
-	char sport[STRLEN];
-
-	Sport* tempSport;
 
 	switch (ch) {
 
-	case 'D': 
-		read("What is the name of the sport", sport, STRLEN);
-		if (sportList->inList(sport)) {
-			tempSport = (Sport*)sportList->remove(sport);
-			tempSport->displayTeam();
-			sportList->add(tempSport);
-		}
-		else {
-			cout << "\nThe sport with name " << sport << " does not exist!";
-		}
-
+	case 'D': displayTeam();	break;
+	case 'E': editPlayer();
 
 		break;
+
 	}
 
 };
@@ -78,3 +68,33 @@ void Sports::display() {
         sportList->displayElement(temp); //Display the element with the name sent in the parameter
     }
 };
+
+void Sports::displayTeam() {
+	char sport[STRLEN];
+
+	Sport* tempSport;
+	read("What is the name of the sport", sport, STRLEN);
+	if (sportList->inList(sport)) {
+		tempSport = (Sport*)sportList->remove(sport);
+		tempSport->displayTeam();
+		sportList->add(tempSport);
+	}
+	else {
+		cout << "\nThe sport with name " << sport << " does not exist!";
+	}
+}
+
+void Sports::editPlayer() {
+	char sport[STRLEN];
+
+	Sport* tempSport;
+	read("What is the name of the sport", sport, STRLEN);
+	if (sportList->inList(sport)) {
+		tempSport = (Sport*)sportList->remove(sport);
+		tempSport->editPlayer();
+		sportList->add(tempSport);
+	}
+	else {
+		cout << "\nThe sport with name " << sport << " does not exist!";
+	}
+}

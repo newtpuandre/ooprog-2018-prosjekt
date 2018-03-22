@@ -4,6 +4,7 @@
 #include "Division.h"
 #include "Functions.h"
 #include "ListTool2B.h"
+#include <fstream>
 #include "Team.h"
 
 Division::Division() {
@@ -45,6 +46,19 @@ void Division::displayTeam() {
 
 		if (*team[i] == teamName) {
 			team[i]->display();
+		}
+
+	}
+
+}
+
+void Division::editPlayer() {
+	char teamName[STRLEN];
+	read("What is the team name: ", teamName, STRLEN);
+	for (int i = 0; i < numberOfTeams; i++) {
+
+		if (*team[i] == teamName) {
+			team[i]->edit();
 		}
 
 	}
