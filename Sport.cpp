@@ -68,12 +68,10 @@ void Sport::displayTeam() {
 	if (divisionList->inList(divName)) {
 		tempDiv = (Division*)divisionList->remove(divName);
 		tempDiv->displayTeam();
-
+		divisionList->add(tempDiv);
 	}
 	else {
 		cout << "\nThe division with name " << divName << " does not exist";
 	}
-
-	divisionList->add(tempDiv);
 
 }

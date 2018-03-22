@@ -53,12 +53,12 @@ void Sports::modify(char ch) {
 		if (sportList->inList(sport)) {
 			tempSport = (Sport*)sportList->remove(sport);
 			tempSport->displayTeam();
+			sportList->add(tempSport);
 		}
 		else {
 			cout << "\nThe sport with name " << sport << " does not exist!";
 		}
 
-		sportList->add(tempSport);
 
 		break;
 	}
