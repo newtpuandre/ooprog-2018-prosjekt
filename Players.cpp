@@ -19,6 +19,7 @@ Players::~Players() {
 }
 
 void Players::New() {
+	//TODO: CHECK IF THE INPUT ALREADY EXIST
 	int playerId;
 	playerId = read("Player id", MINID, MAXID);
 
