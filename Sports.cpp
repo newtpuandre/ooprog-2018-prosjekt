@@ -14,8 +14,19 @@ Sports::~Sports() {
 };
 
 void Sports::New() {
+	//TODO: Read in name and send up to textElement constructor
+
     Sport* tempSport;
     tempSport = new Sport;
     
     sportList->add(tempSport);
+};
+
+void Sports::modify(char ch) {
+
+
+};
+
+void Sports::display() {
+
 };

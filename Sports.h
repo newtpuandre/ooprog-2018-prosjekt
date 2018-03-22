@@ -12,6 +12,8 @@ public:
 	Sports(); //Paramless constructor
 	~Sports(); //Destructor
     void New(); //Reads parameters for new sport object.
+	void modify(char ch);
+	void display();
 };
 
 #endif

@@ -18,6 +18,8 @@ Players::~Players() {
 }
 
 void Players::New() {
+	//TODO: Read in player number and send up to numElement constructor
+
     Player* tempPlayer; //
 	tempPlayer = new Player;
 
