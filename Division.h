@@ -16,9 +16,11 @@ private:
 public:
 	//Function declarations need to be here
 	Division();     //Paramless constructor
+    Division(char divName[]);
 	~Division();    //Destructor
     void New();     //Reads parameters for division object.
 	void display(); //Displays data for division object.
+    void readFromFile(char divName[]); //Make and read from desired file.
 };
 
 #endif

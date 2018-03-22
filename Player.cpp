@@ -40,10 +40,10 @@ void Player::display() {
 }
 
 bool Player::operator== (char* objName) {
-	if (strcmp(name, objName) == 0) {
-		return true;
-	}
-	else {
-		return false;
-	}
+    if (strcmp(name, objName) == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }

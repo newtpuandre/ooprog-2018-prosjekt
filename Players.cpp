@@ -20,7 +20,7 @@ Players::~Players() {
 
 void Players::New() {
 	//TODO: CHECK IF THE INPUT ALREADY EXIST
-	int playerId;
+    int playerId;
 	playerId = read("Player id", MINID, MAXID);
 
 	Player* tempPlayer; //
@@ -54,44 +54,41 @@ void Players::remove() {
 }
 
 void Players::display() {
-	char temp[STRLEN];
-	bool found = false;
-
-	cin.getline(temp, STRLEN); 
-
-	if (temp[0] == 'A' && strlen(temp) == 1) {	//Check if the first element in the array are an A
-												//   and the strlen is 2 A + \0
-		playerList->displayList();
-	}
-
-	else if (!atoi(temp)) {		//Must be a array with letters
-
-		int listLength = playerList->noOfElements();
-
-		for (int i = 1; i <= listLength; i++) {
-
-			Player* tmpPlayer;
-			tmpPlayer = (Player*)playerList->removeNo(i);	//Remove name 'i' from list. 
-
-			if (*tmpPlayer == temp) {		//checks if temp name is equal to players name.
-				tmpPlayer->display();		//displays players data name by given name.
-				found = true;
-			}
-			
-
-			playerList->add(tmpPlayer);		//Add player back to list. 
-			}
-		if (found == false) {
-			cout << "The name " << temp << " does not exist";
-		}
-	}
-	
-	else { //Must be a array with numbers
-
-		playerList->displayElement(atoi(temp));		//Displays players data by given number. 
-	}
-
+    char temp[STRLEN];
+    bool found = false;
+    
+    cin.getline(temp, STRLEN);
+    
+    if (temp[0] == 'A' && strlen(temp) == 1) {    //Check if the first element in the array are an A
+        //   and the strlen is 2 A + \0
+        playerList->displayList();
+    }
+    
+    else if (!atoi(temp)) {        //Must be a array with letters
+        
+        int listLength = playerList->noOfElements();
+        
+        for (int i = 1; i <= listLength; i++) {
+            
+            Player* tmpPlayer;
+            tmpPlayer = (Player*)playerList->removeNo(i);    //Remove name 'i' from list.
+            
+            if (*tmpPlayer == temp) {        //checks if temp name is equal to players name.
+                tmpPlayer->display();        //displays players data name by given name.
+                found = true;
+            }
+            
+            
+            playerList->add(tmpPlayer);        //Add player back to list.
+        }
+        if (found == false) {
+            cout << "The name " << temp << " does not exist";
+        }
+    }
+    
+    else { //Must be a array with numbers
+        
+        playerList->displayElement(atoi(temp));        //Displays players data by given number.
+    }
+    
 }
-
-
-

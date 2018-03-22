@@ -12,6 +12,7 @@ public:
 	Sports(); //Paramless constructor
 	~Sports(); //Destructor
     void New(); //Reads parameters for new sport object.
+    void newDiv(); //Asks what sport the new div will be created under.
 	void modify(char ch);
 	void display();
 };

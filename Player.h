@@ -16,7 +16,7 @@ public:
 	Player(int id); //Takes an int and sets ID in NumElement
 	~Player(); //Destructor
 	void display();	//Displays data for player object.
-	bool operator== (char* objName);
+    bool operator == (char* objName);
 };
 
 #endif

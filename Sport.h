@@ -14,6 +14,7 @@ public:
 	//Function declarations need to be here
 	Sport();
 	Sport(char* name);
+    void newDiv(); //Creates new division within the sport.
 	~Sport();
 	void display();	//Displays data for sport object.
 };
