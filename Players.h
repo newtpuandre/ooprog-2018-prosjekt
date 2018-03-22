@@ -5,7 +5,6 @@
 class Players {
 
 private:
-	//Need to add specific variables for this class
 	List* playerList;
 public:
 	Players(); //Paramless constructor
