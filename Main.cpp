@@ -33,9 +33,10 @@ int main() {
    // sports.readFromFile();
     writeMenu();
     ch = read();        // Reads one character
+    toupper(ch);
     while (ch != 'Q') {
         switch (ch) {   // Should we rename the switch cases as we are coding in english? Maybe we should ask the student assistants..?
-            case 'S': players.display();       break;
+            case 'S': /*players.display();  */      break;
             case 'I': sports.display();      break;
             case 'N': New();						break;
             case 'F': remove();                break;

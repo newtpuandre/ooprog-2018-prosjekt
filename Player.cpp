@@ -38,12 +38,3 @@ void Player::display() {
 	cout << "Players name    : " << name << '\n'
 		 << "Players address : " << address << '\n';
 }
-
-bool Player::operator== (char* objName) {
-	if (strcmp(name, objName) == 0) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}

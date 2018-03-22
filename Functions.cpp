@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Functions.h"
 #include "Player.h"
+#include "Division.h"
+#include "Sports.h"
 
 using namespace std;
 
@@ -46,16 +48,18 @@ int read(const char t[], const int min, const int max) { //Reads an int in given
 void New() { //Defines what object to create a new instance of.
     char ch;
 	cin >> ch; cin.ignore();
+    toupper(ch);
     switch (ch) {
 	case 'S':	players.New();    break;
     case 'I':   sports.New();     break;
-       // case 'D': divisions.new();  break;
+    case 'D':   sports.newDiv();  break;
     }
 }
 
 void remove() {
 	char ch;
-	cin >> ch;
+    cin >> ch; cin.ignore();
+    toupper(ch);
 	switch (ch) {
 	case 'S': players.remove(); break;
 	//case 'I': sports.remove(); break;

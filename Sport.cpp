@@ -5,6 +5,7 @@
 #include "ConstEnum.h"
 #include "Sport.h"
 #include "Functions.h"
+#include "Division.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ Sport::Sport() {
 };
 
 Sport::Sport(char* name):TextElement(name) {
-	divisionList = new List(Sorted); //Is this the right way to make a divisionlist?
+	divisionList = new List(Sorted);
 	
 	char temp[STRLEN];
 
@@ -29,6 +30,17 @@ Sport::Sport(char* name):TextElement(name) {
 	} while (atoi(temp) != 1 && atoi(temp) != 2 && atoi(temp) != 3);
 
 };
+
+void Sport::newDiv() {
+    char divName[STRLEN];
+    read("Division name", divName, STRLEN);
+    
+    //TODO: If fila faktisk finnes -> de neste linjene..
+    //KRAV: brukeren taster .dta (ellers må det stringcattes, før det sendes videre)
+    Division* division;
+    division = new Division(divName);
+    divisionList->add(division);
+}
 
 Sport::~Sport() {
     delete[] text;
