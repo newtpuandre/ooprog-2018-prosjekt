@@ -1,5 +1,6 @@
 #include "Players.h"
 #include "Player.h"
+#include "ConstEnum.h"
 #include <iostream>
 
 using namespace std;
@@ -17,25 +18,35 @@ Players::~Players() {
 }
 
 void Players::New() {
+	//TODO: Read in player number and send up to numElement constructor
+
     Player* tempPlayer; //
 	tempPlayer = new Player;
 
     playerList->add(tempPlayer);
 }
 
-void Players::display() {
-	
-	Player* tempPlayer;
-	char ch;
+void Players::remove() {
+	char playerId[STRLEN];
+	cout << "\nWhich player would you like to remove by player id? : ";
+	cin >> playerId;
 
-	cout << "What players do you want to display? (A | T(EXT) | N(UMBER)) ";
-	cin >> ch;
-
-	switch (toupper(ch)) {
-		case 'A':   playerList->displayList();
-		case 'T':	tempPlayer->display();
-		case 'N':	tempPlayer->display();
-
+	if (atoi(playerId)) { //Check if it is a number that is typed in.
+		if (playerList->inList(atoi(playerId))) {	//Does the player exist in the list?
+			
+			//Display the player
+			//if user want to remove it
+			//Delete()
+			//Else
+			//Dont()
+		}
+		else { //Give feedback to the user
+			cout << "\n" << playerId << " does not exist in the list.";
+		}
 	}
-
+	else { //Give feedback to the user
+		cout << "\n" << playerId << " is not a number id!";
+	}
+	
 }
+

@@ -6,15 +6,14 @@
 
 class Sport : public TextElement {
 private:
-	char* sportName; //Name of the sport
+	//char* sportName; //Name of the sport
 	tableType table; //TableType
-	List* Divisions;
+	List* divisionList;
 
 public:
 	//Function declarations need to be here
 	Sport();
 	~Sport();
-    void New(); //Reads parameters for sport object.
 	void display();	//Displays data for sport object.
 };
 

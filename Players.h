@@ -6,10 +6,11 @@ class Players {
 
 private:
 	//Need to add specific variables for this class
-	List * playerList;
+	List* playerList;
 public:
 	Players(); //Paramless constructor
 	~Players(); //Destructor
+
     void New(); //Reads parameters for player object.
 	void display(); //Displays players.
 };
