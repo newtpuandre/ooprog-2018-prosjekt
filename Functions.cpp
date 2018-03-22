@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Functions.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -50,3 +51,5 @@ void New() { //Defines what object to create a new instance of.
        // case 'D': divisions.new();  break;
     }
 }
+
+
