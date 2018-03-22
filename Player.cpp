@@ -39,7 +39,7 @@ void Player::display() {
 		 << "Players address : " << address << '\n';
 }
 
-bool Player::operator== (char* objName) {
+bool Player::operator == (char* objName) {
     if (strcmp(name, objName) == 0) {
         return true;
     }
