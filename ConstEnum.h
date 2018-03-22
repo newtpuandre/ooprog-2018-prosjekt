@@ -12,6 +12,8 @@ const int DATELEN = 9;
 const int MAXTEAM = 20;
 const int MAXPLAYERS = 50;
 const int MAXGOALS = 50;
+const int MINID = 1;
+const int MAXID = 1000;
 
 const char PLAYERSDTA[] = "PLAYERS.DTA";
 const char SPORTSDTA[] = "SPORTS.DTA";
