@@ -43,6 +43,7 @@ void Sports::newDiv() {
 }
 
 void Sports::modify(char ch) {
+<<<<<<< HEAD
     
     switch (ch) {
             
@@ -53,6 +54,18 @@ void Sports::modify(char ch) {
             
     }
     
+=======
+
+	switch (ch) {
+
+	case 'D': displayTeam();	break;
+	case 'E': editPlayer();
+
+		break;
+
+	}
+
+>>>>>>> 81c9bdcba21018d908efecf4bdaa3595402660b8
 };
 
 void Sports::display() {

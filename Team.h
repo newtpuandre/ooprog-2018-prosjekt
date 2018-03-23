@@ -19,7 +19,7 @@ public:
 	void display();	//Displays data for team object.
 	bool operator== (char* name);
     void readFromFile();
-    void edit();
+	void edit();
 };
 
 #endif

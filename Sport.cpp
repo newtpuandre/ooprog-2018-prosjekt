@@ -75,7 +75,6 @@ void Sport::displayTeam() {
 	}
 }
 
-
 void Sport::editPlayer() {
     char divName[STRLEN];
     Division* tempDiv;

@@ -72,5 +72,4 @@ void Team::edit() {
         default: cout << "\nInvalid command."; break;
             
     }
-    
 }
