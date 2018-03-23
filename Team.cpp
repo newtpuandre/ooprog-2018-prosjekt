@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Team.h"
+#include "Functions.h"
+#include "Player.h"
 
 
 Team::Team() {
@@ -30,6 +32,45 @@ bool Team::operator== (char* name) {
 
 };
 
-void readFromFile() {
+void Team::readFromFile() {
+    
+}
+
+void Team::edit() {
+    char answ;
+    cout << "Would you like to add or remove a player (a)dd / (d)elete / (Q)uit";
+    answ = read();
+    int id;
+    
+    switch (answ) {
+        case 'a':
+            
+            //TODO: CHECK IF THERE IS DUPLICATE NUMBERS
+            
+            id = read("Player ID", MINID, MAXID);
+            
+            numberOfPlayers++;
+            playerNo.push_back(id);
+            
+            
+            
+            break;
+            
+        case 'd':
+            id = read("Player ID", MINID, MAXID);
+            
+            for (int i = 0; i < numberOfPlayers; i++) {
+                if (playerNo[i] == id) {
+                    playerNo.erase(playerNo.begin(),playerNo.begin() + i);
+                    numberOfPlayers--;
+                }
+            }
+            
+            break;
+            
+        case 'Q': break;
+        default: cout << "\nInvalid command."; break;
+            
+    }
     
 }

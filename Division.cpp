@@ -1,9 +1,10 @@
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
-#endif 
+#endif
 #include "Division.h"
 #include "Functions.h"
 #include "ListTool2B.h"
+#include <fstream>
 #include "Team.h"
 
 Division::Division() {
@@ -16,15 +17,15 @@ Division::Division(char* divName) {
 }
 
 Division::~Division() {
-	//Deconstructor
+    //Deconstructor
 };
 
 void Division::New() {
-
+    
 };
 
 void Division::display() {
-	
+    
 };
 
 void Division::readFromFile(ifstream &inn) {
@@ -39,14 +40,23 @@ void Division::readFromFile(ifstream &inn) {
 };
 
 void Division::displayTeam() {
-	char teamName[STRLEN];
-	read("What is the team name: ", teamName, STRLEN);
-	for (int i = 0; i < numberOfTeams; i++) {
+    char teamName[STRLEN];
+    read("What is the team name: ", teamName, STRLEN);
+    for (int i = 0; i < numberOfTeams; i++) {
+        
+        if (*team[i] == teamName) {
+            team[i]->display();
+        }
+    }
+}
 
-		if (*team[i] == teamName) {
-			team[i]->display();
-		}
-
-	}
-
+void Division::editPlayer() {
+    char teamName[STRLEN];
+    read("What is the team name: ", teamName, STRLEN);
+    for (int i = 0; i < numberOfTeams; i++) {
+        
+        if (*team[i] == teamName) {
+            team[i]->edit();
+        }
+    }
 }
