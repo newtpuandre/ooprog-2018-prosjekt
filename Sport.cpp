@@ -43,10 +43,10 @@ void Sport::newDiv() {
     
     if (inn) { //KRAV: brukeren taster .dta (ellers må det stringcattes, før det sendes videre)
 	
-	Division* division;
-	division = new Division(divName);
-    division->readFromFile(inn);
-	divisionList->add(division);
+	Division* tempDivision;
+	tempDivision = new Division(divName);
+    tempDivision->readFromFile(inn);
+	divisionList->add(tempDivision);
 	}
 	else {
 		cout << "\nCan't find the file with name: " << fileName;

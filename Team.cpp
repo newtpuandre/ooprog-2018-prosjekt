@@ -1,4 +1,8 @@
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
 #include <iostream>
+#include <fstream>
 #include "Team.h"
 #include "Functions.h"
 #include "Player.h"
@@ -10,7 +14,8 @@ Team::Team() {
 };
 
 Team::~Team() {
-	//Deconstructor
+	delete name;
+	delete address;
 };
 
 void Team::display() {
@@ -32,8 +37,41 @@ bool Team::operator== (char* name1) {
 
 };
 
-void Team::readFromFile() {
+void Team::readFromFile(ifstream &inn) {
+	char buffer[STRLEN];
     
+	inn.getline(buffer,STRLEN); //Read team name from file
+	name = new char[strlen(buffer) + 1]; //Create a new char array
+	strcpy(name, buffer); //Copy over from buffer
+
+	inn.getline(buffer, STRLEN); //Read team address from file
+	address = new char[strlen(buffer) + 1]; //Create a new char array
+	strcpy(address, buffer); //Copy over from buffer
+
+	inn.getline(buffer, STRLEN); //Read number of players
+	numberOfPlayers = atoi(buffer);
+
+	for (int i = 0; i < numberOfPlayers; i++) {
+		inn >> buffer;
+
+		if (atoi(buffer)) { //Must be a number
+			playerNo.push_back(atoi(buffer));
+		}
+		else { //Must be a text
+			char tempName[STRLEN];
+			char tempAddress[STRLEN];
+
+			strcpy(tempName, buffer);
+
+			inn.getline(buffer, STRLEN);
+
+			strcpy(tempAddress, buffer);
+
+			Players* tempPlayers;
+			tempPlayers = new Players(players.returnLastId() + 1 , name , address);
+			delete tempPlayers;
+		}
+	}
 }
 
 void Team::edit() {

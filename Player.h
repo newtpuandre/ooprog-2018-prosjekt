@@ -14,6 +14,7 @@ public:
 	//Function declarations need to be here
 	Player(); //Paramless constructor
 	Player(int id); //Takes an int and sets ID in NumElement
+	Player(int id, char* name, char* address); 	//Constructor used when reading from file
 	~Player(); //Destructor
 	void display();	//Displays data for player object.
     bool operator == (char* objName);

@@ -34,11 +34,23 @@ void Division::display() {
 void Division::readFromFile(ifstream &inn) {
     int lastUsed = 1;
     
-    inn >> numberOfTeams;
-    while (lastUsed <= numberOfTeams) {
-        team[lastUsed++]->readFromFile();
-        //result[lastUsed++]->readFromFile();     //READ SCHEDULE (terminliste)
-    }
+	Team* temp; //Temporary team
+
+    inn >> numberOfTeams; //Read number of teams from file.
+    
+	//TODO: CHECK IF FILE IS EMPTY?
+
+
+	for (int i = 0; i < numberOfTeams; i++) {
+
+		temp = new Team(); //Create a new temp team
+		temp->readFromFile(inn); //Read team info from file
+		team[lastUsed++] = temp; //Move temp team to array
+		delete temp; //Delete temp team
+
+		//TODO: READ SCHEDULE (terminliste)
+	}
+
 };
 
 void Division::displayTeam() {

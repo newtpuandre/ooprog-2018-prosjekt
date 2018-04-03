@@ -28,6 +28,17 @@ Player::Player(int id):NumElement(id) {
 	strcpy(address, temp);
 };
 
+Player::Player(int id, char* name1, char* address1) {
+	//Constructor used when reading from file
+	number = id;
+
+	name = new char[strlen(name1) + 1];
+	strcpy(name, name1);
+
+	address = new char[strlen(address1) + 1];
+	strcpy(address, address1);
+}
+
 Player::~Player() {
 	//Deconstructor
     delete[] name;

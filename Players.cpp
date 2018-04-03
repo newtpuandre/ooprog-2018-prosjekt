@@ -13,6 +13,18 @@ Players::Players() {
 	playerList = new List(Sorted);
 };
 
+Players::Players(int id, char* name, char* address) {
+	Player* tempPlayer;
+	tempPlayer = new Player(id,name,address);
+
+	playerList->add(tempPlayer); //Add new user to list
+
+	lastPlayerId = id;
+
+	delete tempPlayer;
+
+}
+
 Players::~Players() {
 	//Go through the whole playerList and delete every object from the list;
 
@@ -23,10 +35,19 @@ void Players::New() {
     int playerId;
 	playerId = read("Player id", MINID, MAXID);
 
-	Player* tempPlayer; //
-	tempPlayer = new Player(playerId);
 
-	playerList->add(tempPlayer);
+	if (playerId > lastPlayerId && lastPlayerId < 1000) {
+		lastPlayerId = playerId;
+
+		Player* tempPlayer; //
+		tempPlayer = new Player(playerId);
+
+		playerList->add(tempPlayer);
+	}
+	else {
+		//TODO: GIVE SOMETHING USEFUL FEEDBACK
+	}
+
 }
 
 void Players::remove() {
@@ -91,4 +112,8 @@ void Players::display() {
         playerList->displayElement(atoi(temp));        //Displays players data by given number.
     }
     
+}
+
+int Players::returnLastId() {
+	return lastPlayerId;
 }
