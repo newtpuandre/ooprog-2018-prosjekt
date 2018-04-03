@@ -45,7 +45,7 @@ void Sport::newDiv() {
 	
 	Division* tempDivision;
 	tempDivision = new Division(divName);
-    tempDivision->readFromFile(inn);
+	tempDivision->readFromFile(inn);
 	divisionList->add(tempDivision);
 	}
 	else {

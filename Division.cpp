@@ -14,7 +14,7 @@ Division::Division() {
     //Must be made by reading from file!!
 }
 
-Division::Division(char* divName) {
+Division::Division(char* divName) :TextElement(divName) {
     text = new char [strlen(divName) + 1];
     strcpy(text, divName);
 }

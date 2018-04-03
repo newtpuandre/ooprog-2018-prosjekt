@@ -28,7 +28,7 @@ Player::Player(int id):NumElement(id) {
 	strcpy(address, temp);
 };
 
-Player::Player(int id, char* name1, char* address1) {
+Player::Player(int id, char* name1, char* address1):NumElement(id) {
 	//Constructor used when reading from file
 	number = id;
 
