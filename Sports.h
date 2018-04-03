@@ -15,8 +15,8 @@ public:
     void newDiv(); //Asks what sport the new div will be created under.
 	void modify(char ch);
 	void display();
-	void displayTeam();
-	void editPlayer();
+    void displayTeam();
+    void editPlayer();
 };
 
 #endif

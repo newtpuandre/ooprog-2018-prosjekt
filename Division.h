@@ -24,7 +24,7 @@ public:
 	void display(); //Displays data for division object.
 	void displayTeam(); //Display a team
     void readFromFile(ifstream &inn); //Make and read from desired file.
-	void editPlayer();
+    void editPlayer();
 };
 
 #endif

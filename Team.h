@@ -10,7 +10,7 @@ private:
 	char* address;				//Team Address
 	int numberOfPlayers = 0;	//Amount of players on the team
 	//int playerNo[MAXPLAYERS];	//Array with player numbers
-	vector<int> playerNo;
+    vector<int> playerNo;
 
 public:
 	//Function declarations need to be here
