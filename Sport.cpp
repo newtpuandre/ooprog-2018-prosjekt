@@ -41,13 +41,17 @@ void Sport::newDiv() {
     read("File name", fileName, STRLEN);
     
     if (inn) { //KRAV: brukeren taster .dta (ellers må det stringcattes, før det sendes videre)
+	
 	Division* division;
 	division = new Division(divName);
     division->readFromFile(inn);
 	divisionList->add(division);
-    }
+	}
+	else {
+		cout << "\nCan't find the file with name: " << fileName;
+	}
 }
-
+ 
 Sport::~Sport() {
 	delete[] text;
 };

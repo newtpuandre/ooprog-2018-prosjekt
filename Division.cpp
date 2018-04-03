@@ -1,10 +1,12 @@
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
 #endif 
+#include <iostream>
+#include <fstream>
+
 #include "Division.h"
 #include "Functions.h"
 #include "ListTool2B.h"
-#include <fstream>
 #include "Team.h"
 
 Division::Division() {
@@ -32,7 +34,6 @@ void Division::readFromFile(ifstream &inn) {
     int lastUsed = 1;
     
     inn >> numberOfTeams;
-    
     while (lastUsed <= numberOfTeams) {
         team[lastUsed++]->readFromFile();
         //result[lastUsed++]->readFromFile();     //READ SCHEDULE (terminliste)

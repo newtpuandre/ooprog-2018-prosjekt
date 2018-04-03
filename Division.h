@@ -18,7 +18,7 @@ private:
 public:
 	//Function declarations need to be here
 	Division();     //Paramless constructor
-    Division(char divName[]);
+    Division(char* divName);
 	~Division();    //Destructor
     void New();     //Reads parameters for division object.
 	void display(); //Displays data for division object.
