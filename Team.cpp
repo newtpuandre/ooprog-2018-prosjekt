@@ -14,8 +14,8 @@ Team::Team() {
 };
 
 Team::~Team() {
-	delete name;
-	delete address;
+	delete[] name;
+	delete[] address;
 };
 
 void Team::display() {
@@ -38,19 +38,27 @@ bool Team::operator== (char* name1) {
 };
 
 void Team::readFromFile(ifstream &inn) {
+	char nameBuffer[STRLEN];
+	char addressBuffer[STRLEN];
 	char buffer[STRLEN];
-	int tempNumb;
-    
-	inn.getline(buffer,STRLEN); //Read team name from file
-	name = new char[strlen(buffer) + 1]; //Create a new char array
-	strcpy(name, buffer); //Copy over from buffer
 
-	inn.getline(buffer, STRLEN); //Read team address from file
-	address = new char[strlen(buffer) + 1]; //Create a new char array
-	strcpy(address, buffer); //Copy over from buffer
+	int tempNumb = 0;
+    
+	inn.getline(nameBuffer,STRLEN); //Read team name from file
+
+	name = new char[strlen(nameBuffer) + 1]; //Create a new char array
+	strcpy(name, nameBuffer); //Copy over from buffer
+
+
+	inn.getline(addressBuffer, STRLEN); //Read team address from file
+
+	address = new char[strlen(addressBuffer) + 1]; //Create a new char array
+	strcpy(address, addressBuffer); //Copy over from buffer
+
 
 	inn >> tempNumb;
 	numberOfPlayers = tempNumb;
+	inn.ignore();
 
 	for (int i = 0; i < numberOfPlayers; i++) {
 		inn >> buffer;
@@ -62,17 +70,17 @@ void Team::readFromFile(ifstream &inn) {
 		else { //Must be a text
 			char tempName[STRLEN];
 			char tempAddress[STRLEN];
-
+			cout << endl << buffer;
 			strcpy(tempName, buffer);
 
 			inn.getline(buffer, STRLEN);
-
+			cout << endl << buffer;
 			strcpy(tempAddress, buffer);
 
-
-			Players* tempPlayers;
-			tempPlayers = new Players(players.returnLastId() + 1 , tempName , tempAddress);
-			delete tempPlayers;
+			Player* tempPlayer;
+			tempPlayer = new Player(players.returnLastId() + 1, tempName, tempAddress);
+			players.addToList(tempPlayer);
+			delete tempPlayer;
 		}
 	}
 }
