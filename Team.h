@@ -17,7 +17,7 @@ public:
 	Team(); //Paramless constructor
 	~Team(); //Destructor
 	void display();	//Displays data for team object.
-	bool operator== (char* name);
+	bool operator== (char* name1);
     void readFromFile();
 	void edit();
 };

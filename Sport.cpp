@@ -35,10 +35,11 @@ Sport::Sport(char* name):TextElement(name) {
 void Sport::newDiv() {
 	char divName[STRLEN];
     char fileName[STRLEN];
-    ifstream inn(fileName);
     
     read("Division name", divName, STRLEN);
     read("File name", fileName, STRLEN);
+
+	ifstream inn(fileName);
     
     if (inn) { //KRAV: brukeren taster .dta (ellers må det stringcattes, før det sendes videre)
 	

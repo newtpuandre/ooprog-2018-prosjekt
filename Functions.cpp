@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cctype>
 #include "Functions.h"
 #include "Player.h"
 #include "Division.h"
@@ -49,7 +50,7 @@ void New() { //Defines what object to create a new instance of.
     char ch;
 	cin >> ch; cin.ignore();
     toupper(ch);
-    switch (ch) {
+    switch (toupper(ch)) {
 	case 'S':	players.New();    break;
     case 'I':   sports.New();     break;
     case 'D':   sports.newDiv();  break;

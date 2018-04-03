@@ -22,8 +22,8 @@ void Team::display() {
 	}
 };
 
-bool Team::operator== (char* name) {
-	if (strcmp(name, name) == 0) {
+bool Team::operator== (char* name1) {
+	if (strcmp(name, name1) == 0) {
 		return true;
 	}
 	else {
@@ -43,7 +43,7 @@ void Team::edit() {
     int id;
     
     switch (answ) {
-        case 'a':
+        case 'A':
             
             //TODO: CHECK IF THERE IS DUPLICATE NUMBERS
             
@@ -56,7 +56,7 @@ void Team::edit() {
             
             break;
             
-        case 'd':
+        case 'D':
             id = read("Player ID", MINID, MAXID);
             
             for (int i = 0; i < numberOfPlayers; i++) {

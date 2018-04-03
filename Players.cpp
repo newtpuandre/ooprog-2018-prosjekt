@@ -59,7 +59,7 @@ void Players::display() {
     
     cin.getline(temp, STRLEN);
     
-    if (temp[0] == 'A' && strlen(temp) == 1) {    //Check if the first element in the array are an A
+    if (temp[0] == 'A' && strlen(temp) == 1 || temp[0] == 'a' && strlen(temp) == 1) {    //Check if the first element in the array are an A
         //   and the strlen is 2 A + \0
         playerList->displayList();
     }
