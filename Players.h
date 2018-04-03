@@ -9,7 +9,6 @@ private:
 	List* playerList;
 public:
 	Players(); //Paramless constructor
-	Players(int id, char* name1, char* address1);
 	~Players(); //Destructor
 
     void New(); //Reads parameters for player object.

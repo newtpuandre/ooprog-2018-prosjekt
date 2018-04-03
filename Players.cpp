@@ -13,22 +13,6 @@ Players::Players() {
 	playerList = new List(Sorted);
 };
 
-Players::Players(int id, char* name, char* address) {
-	Player* tempPlayer;
-	cout << "humbugs";
-	cout << endl << id << " " << name << " " << address;
-	tempPlayer = new Player(id,name,address);
-
-	playerList->add(tempPlayer); //Add new user to list
-
-	if (id > lastPlayerId) {
-		lastPlayerId = id;
-	}
-
-	delete tempPlayer;
-
-}
-
 Players::~Players() {
 	//Go through the whole playerList and delete every object from the list;
 
