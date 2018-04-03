@@ -28,7 +28,7 @@ void Division::New() {
 };
 
 void Division::display() {
-    
+	
 };
 
 void Division::readFromFile(ifstream &inn) {
@@ -36,20 +36,19 @@ void Division::readFromFile(ifstream &inn) {
 	Team* temp; //Temporary team
 
     inn >> numberOfTeams; //Read number of teams from file.
+	cout << numberOfTeams;
 	inn.ignore();
     
 	//TODO: CHECK IF FILE IS EMPTY?
 
-
 	for (int i = 0; i < numberOfTeams; i++) {
-
 		temp = new Team(); //Create a new temp team
 		temp->readFromFile(inn); //Read team info from file
-		team[i++] = temp; //Move temp team to array
+		team[i] = temp; //Move temp team to array
 		delete temp; //Delete temp team
-
 		//TODO: READ SCHEDULE (terminliste)
 	}
+
 
 };
 

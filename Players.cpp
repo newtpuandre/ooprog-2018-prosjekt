@@ -15,11 +15,15 @@ Players::Players() {
 
 Players::Players(int id, char* name, char* address) {
 	Player* tempPlayer;
+	cout << "humbugs";
+	cout << endl << id << " " << name << " " << address;
 	tempPlayer = new Player(id,name,address);
 
 	playerList->add(tempPlayer); //Add new user to list
 
-	lastPlayerId = id;
+	if (id > lastPlayerId) {
+		lastPlayerId = id;
+	}
 
 	delete tempPlayer;
 
@@ -116,4 +120,8 @@ void Players::display() {
 
 int Players::returnLastId() {
 	return lastPlayerId;
+}
+
+void Players::addToList(Element *Element) {
+	playerList->add(Element);
 }
