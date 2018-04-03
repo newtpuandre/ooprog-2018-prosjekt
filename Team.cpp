@@ -71,7 +71,7 @@ void Team::readFromFile(ifstream &inn) {
 
 
 			Players* tempPlayers;
-			tempPlayers = new Players(players.returnLastId() + 1 , name , address);
+			tempPlayers = new Players(players.returnLastId() + 1 , tempName , tempAddress);
 			delete tempPlayers;
 		}
 	}

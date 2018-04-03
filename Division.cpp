@@ -41,11 +41,11 @@ void Division::readFromFile(ifstream &inn) {
 	//TODO: CHECK IF FILE IS EMPTY?
 
 
-	for (int i = 0; i < numberOfTeams; i++) {
-
+	for (int i = 0; i <= numberOfTeams; i++) {
+		cout << "1";
 		temp = new Team(); //Create a new temp team
 		temp->readFromFile(inn); //Read team info from file
-		team[i++] = temp; //Move temp team to array
+		team[i] = temp; //Move temp team to array
 		delete temp; //Delete temp team
 
 		//TODO: READ SCHEDULE (terminliste)
