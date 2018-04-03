@@ -5,7 +5,7 @@
 class Players {
 
 private:
-	int lastPlayerId;
+	int lastPlayerId = 0;
 	List* playerList;
 public:
 	Players(); //Paramless constructor
