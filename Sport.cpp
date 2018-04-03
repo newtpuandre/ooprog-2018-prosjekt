@@ -64,6 +64,7 @@ void Sport::display() {
 	case b: cout << "\nTable type: 3-1-0"; break;
 	case c: cout << "\nTable type: 3-2-1-0"; break;
 	}
+	divisionList->displayList();
 };
 
 void Sport::displayTeam() {

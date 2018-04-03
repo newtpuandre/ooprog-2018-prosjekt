@@ -17,7 +17,7 @@ void writeMenu() {
 		<< "\n\tL - Display schedule or write schedule to file"
 		<< "\n\tK - Display, or write to file, all the matches on a given date for a sport/ division"
 		<< "\n\tT - Display, or write to file, sport standings or league standings"
-		<< "\n\tR - Read reasults from file"
+		<< "\n\tR - Read results from file"
 		<< "\n\tD - Display data about a player, sport or division"
 		<< "\n\tE - Edit players within a team"
 		<< "\n\tQ - Quit / avslutt\n\n"

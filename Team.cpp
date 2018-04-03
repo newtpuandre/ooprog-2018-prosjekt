@@ -39,6 +39,7 @@ bool Team::operator== (char* name1) {
 
 void Team::readFromFile(ifstream &inn) {
 	char buffer[STRLEN];
+	int tempNumb;
     
 	inn.getline(buffer,STRLEN); //Read team name from file
 	name = new char[strlen(buffer) + 1]; //Create a new char array
@@ -48,11 +49,12 @@ void Team::readFromFile(ifstream &inn) {
 	address = new char[strlen(buffer) + 1]; //Create a new char array
 	strcpy(address, buffer); //Copy over from buffer
 
-	inn.getline(buffer, STRLEN); //Read number of players
-	numberOfPlayers = atoi(buffer);
+	inn >> tempNumb;
+	numberOfPlayers = tempNumb;
 
 	for (int i = 0; i < numberOfPlayers; i++) {
 		inn >> buffer;
+		inn.ignore();
 
 		if (atoi(buffer)) { //Must be a number
 			playerNo.push_back(atoi(buffer));
@@ -66,6 +68,7 @@ void Team::readFromFile(ifstream &inn) {
 			inn.getline(buffer, STRLEN);
 
 			strcpy(tempAddress, buffer);
+
 
 			Players* tempPlayers;
 			tempPlayers = new Players(players.returnLastId() + 1 , name , address);
