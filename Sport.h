@@ -22,6 +22,7 @@ public:
 	void displayOne(); //Display one team.
 	void displayTeam(); //Displays team in a specific sport and division
     void editPlayer(); //Add or remove a player.
+	void removeDiv(); //Remove a desired division.
 };
 
 #endif

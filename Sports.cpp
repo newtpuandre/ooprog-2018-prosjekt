@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cctype>
 
 #include "Sports.h"
 #include "Sport.h"
@@ -99,4 +100,42 @@ void Sports::editPlayer() {
     else {
         cout << "\nThe sport with name " << sport << " does not exist!";
     }
+}
+
+void Sports::remove() {
+	char sport[STRLEN];
+	char answ;
+
+	read("what is the name of the sport", sport, STRLEN);
+
+	if (sportList->inList(sport)) { //If the sport is in the sportslist.
+		cout << "\nAre you sure you want to delete this sport? All data within will be permanently lost!! (y/N) ";
+		answ = read();
+		
+		if (toupper(answ) == 'Y') {		//If the user confirms the deletion..
+			sportList->destroy(sport);	//.. the sport is destroyed.
+		}
+		else {
+			cout << "\nThe sport '" << sport << "' was not deleted.";
+		}
+	}
+	else {
+		cout << "\nThe sport with name " << sport << " does not exist!";
+	}
+}
+
+void Sports::removeDiv() {
+	char sport[STRLEN];
+
+	Sport* tempSport;
+	read("What is the name of the sport", sport, STRLEN);
+
+	if (sportList->inList(sport)) {
+		tempSport = (Sport*)sportList->remove(sport);
+		tempSport->removeDiv();
+		sportList->add(tempSport);
+	}
+	else {
+		cout << "\nThe sport with name " << sport << " does not exist!";
+	}
 }

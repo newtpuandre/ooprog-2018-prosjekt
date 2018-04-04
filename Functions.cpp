@@ -61,11 +61,10 @@ void New() { //Defines what object to create a new instance of.
 void remove() {
 	char ch;
     cin >> ch; cin.ignore();
-    toupper(ch);
-	switch (ch) {
+	switch (toupper(ch)) {
 	case 'S': players.remove(); break;
-	//case 'I': sports.remove(); break;
-	//case 'D': divisions.remove(); break; //Husk å telle ned Number of elements!!
+	case 'I': sports.remove(); break;
+	case 'D': sports.removeDiv(); break; //Husk å telle ned Number of elements!!
 	}
 
 }

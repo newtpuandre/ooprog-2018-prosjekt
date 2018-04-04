@@ -18,6 +18,8 @@ public:
 	void display();
     void displayTeam();
     void editPlayer();
+	void remove(); //Remove a desired sport.
+	void removeDiv(); //Remove a desired division.
 };
 
 #endif

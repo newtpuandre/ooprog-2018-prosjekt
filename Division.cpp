@@ -85,3 +85,7 @@ void Division::editPlayer() {
         }
     }
 }
+
+void Division::remove() {
+
+}

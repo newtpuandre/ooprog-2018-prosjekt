@@ -26,6 +26,7 @@ public:
 	void displayTeam(); //Display a team
     void readFromFile(ifstream &inn); //Make and read from desired file.
     void editPlayer();
+	void remove(); //Remove a desired division.
 };
 
 #endif

@@ -24,7 +24,7 @@ void Players::New() {
 	
     int playerId;
 	playerId = read("Player id", MINID, MAXID);
-	if (playerList->inList(playerId)) {
+	if (!(playerList->inList(playerId))) {
 
 		if (lastPlayerId < MAXID) {
 			lastPlayerId = playerId;
@@ -44,25 +44,15 @@ void Players::New() {
 }
 
 void Players::remove() {
-	char playerId[STRLEN];
-	cout << "\nWhich player would you like to remove by player id? : ";
-	cin >> playerId;
+	int playerId;
+	
+	playerId = read("\nRemove what player ID?", MINID, MAXID);
 
-	if (atoi(playerId)) { //Check if it is a number that is typed in.
-		if (playerList->inList(atoi(playerId))) {	//Does the player exist in the list?
-
-													//Display the player
-													//if user want to remove it
-													//Delete()
-													//Else
-													//Dont()
-		}
-		else { //Give feedback to the user
-			cout << "\n" << playerId << " does not exist in the list.";
-		}
+	if (playerList->inList(playerId)) {	//Does the player exist in the list?
+		playerList->destroy(playerId);	//Destroys the desired player.
 	}
 	else { //Give feedback to the user
-		cout << "\n" << playerId << " is not a number id!";
+		cout << "\n" << playerId << " does not exist in the list.";
 	}
 
 }
