@@ -17,6 +17,7 @@ public:
 	void remove();
 	void addToList(Element *Element);
 	void readFromFile();
+	void displayId(int playerId);
 	int returnLastId();
 };
 

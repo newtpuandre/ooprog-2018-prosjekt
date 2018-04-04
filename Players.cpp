@@ -21,22 +21,26 @@ Players::~Players() {
 }
 
 void Players::New() {
-	//TODO: CHECK IF THE INPUT ALREADY EXIST
+	
     int playerId;
 	playerId = read("Player id", MINID, MAXID);
+	if (playerList->inList(playerId)) {
 
-	if (playerId > lastPlayerId && lastPlayerId < 1000) {
-		lastPlayerId = playerId;
+		if (lastPlayerId < MAXID) {
+			lastPlayerId = playerId;
 
-		Player* tempPlayer; //
-		tempPlayer = new Player(playerId);
+			Player* tempPlayer; 
+			tempPlayer = new Player(playerId);
 
-		playerList->add(tempPlayer);
+			playerList->add(tempPlayer);
+		}
+		else {
+			cout << "\nThere is no room for more players.";
+		}
 	}
 	else {
-		//TODO: GIVE SOMETHING USEFUL FEEDBACK
+		cout << "\nPlayer ID " << playerId << " already exist!";
 	}
-
 }
 
 void Players::remove() {
@@ -127,9 +131,13 @@ void Players::readFromFile() {
 }
 
 int Players::returnLastId() {
-	return lastPlayerId;
+	return ++lastPlayerId;
 }
 
 void Players::addToList(Element *Element) {
 	playerList->add(Element);
+}
+
+void Players::displayId(int playerId) {
+	playerList->displayElement(playerId);
 }

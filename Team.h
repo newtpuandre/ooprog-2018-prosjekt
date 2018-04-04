@@ -23,7 +23,7 @@ public:
 	//Function declarations need to be here
 	Team(); //Paramless constructor
 	~Team(); //Destructor
-	void display();	//Displays data for team object.
+	void display(bool all);	//Displays data for team object.
 	bool operator== (char name1[]);
     void readFromFile(ifstream &inn);
 	void edit();
