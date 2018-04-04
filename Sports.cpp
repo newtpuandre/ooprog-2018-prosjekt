@@ -23,11 +23,16 @@ void Sports::New() {
     
     char newName[STRLEN];
     read("Name of the sport", newName, STRLEN);
-    
-    Sport* tempSport;
-    tempSport = new Sport(newName);
-    
-    sportList->add(tempSport);
+	if(!sportList->inList(newName)) {
+		Sport* tempSport;
+		tempSport = new Sport(newName);
+
+		sportList->add(tempSport);
+
+	}
+	else {
+		cout << "\nThe sport already exist!";
+	}
 };
 
 void Sports::newDiv() {

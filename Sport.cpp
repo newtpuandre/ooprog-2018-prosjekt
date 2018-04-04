@@ -17,7 +17,7 @@ Sport::Sport() {
 	cout << "\nWHEN CREATING A NEW SPORT IS REQUIRES A NAME!!";
 };
 
-Sport::Sport(char* name):TextElement(name) {
+Sport::Sport(char* name) :TextElement(name) {
 
 	divisionList = new List(Sorted);
 	char temp[STRLEN];
@@ -36,26 +36,30 @@ Sport::Sport(char* name):TextElement(name) {
 
 void Sport::newDiv() {
 	char divName[STRLEN];
-    char fileName[STRLEN];
-    
-    read("Division name", divName, STRLEN);
-    read("File name (Including file extension)", fileName, STRLEN);
+	char fileName[STRLEN];
+
+	read("Division name", divName, STRLEN);
+	read("File name (Including file extension)", fileName, STRLEN);
 
 	ifstream inn(fileName);
-    
-    if (inn) {
-	Division* tempDivision;
-	tempDivision = new Division(divName);
-	tempDivision->readFromFile(inn);
-	divisionList->add(tempDivision);
+	if (!divisionList->inList(divName)) {
+		if (inn) {
+			Division* tempDivision;
+			tempDivision = new Division(divName);
+			tempDivision->readFromFile(inn);
+			divisionList->add(tempDivision);
+		}
+		else {
+			cout << "\nCan't find the file with name: " << fileName;
+		}
+
+		numberOfDivisions++;
 	}
 	else {
-		cout << "\nCan't find the file with name: " << fileName;
+		cout << "\nDivision already exist";
 	}
-
-	numberOfDivisions++;
 }
- 
+
 Sport::~Sport() {
 	delete[] text;
 };
@@ -91,15 +95,15 @@ void Sport::displayTeam() {
 }
 
 void Sport::editPlayer() {
-    char divName[STRLEN];
-    Division* tempDiv;
-    read("What division", divName, STRLEN);
-    if (divisionList->inList(divName)) {
-        tempDiv = (Division*)divisionList->remove(divName);
+	char divName[STRLEN];
+	Division* tempDiv;
+	read("What division", divName, STRLEN);
+	if (divisionList->inList(divName)) {
+		tempDiv = (Division*)divisionList->remove(divName);
 		tempDiv->editPlayer();
-        divisionList->add(tempDiv);
-        }
-    else {
-        cout << "\nThe division with name " << divName << " does not exist";
-        }
+		divisionList->add(tempDiv);
+	}
+	else {
+		cout << "\nThe division with name " << divName << " does not exist";
+	}
 }
