@@ -27,7 +27,7 @@ void Team::display() {
 	}
 };
 
-bool Team::operator== (char* name1) {
+bool Team::operator== (char name1[]) {
 	if (strcmp(name, name1) == 0) {
 		return true;
 	}
@@ -45,23 +45,24 @@ void Team::readFromFile(ifstream &inn) {
 	int tempNumb = 0;
     
 	inn.getline(nameBuffer,STRLEN); //Read team name from file
-
-	name = new char[strlen(nameBuffer) + 1]; //Create a new char array
+	//name = new char[strlen(nameBuffer) + 1]; //Create a new char array
 	strcpy(name, nameBuffer); //Copy over from buffer
 
 
 	inn.getline(addressBuffer, STRLEN); //Read team address from file
-
-	address = new char[strlen(addressBuffer) + 1]; //Create a new char array
+	//address = new char[strlen(addressBuffer) + 1]; //Create a new char array
 	strcpy(address, addressBuffer); //Copy over from buffer
 
 
 	inn >> tempNumb;
+
 	numberOfPlayers = tempNumb;
 	inn.ignore();
 
 	for (int i = 0; i < numberOfPlayers; i++) {
+
 		inn >> buffer;
+
 		inn.ignore();
 
 		if (atoi(buffer)) { //Must be a number
@@ -74,8 +75,9 @@ void Team::readFromFile(ifstream &inn) {
 			strcpy(tempName, buffer);
 
 			inn.getline(buffer, STRLEN);
-			cout << endl << buffer;
+
 			strcpy(tempAddress, buffer);
+
 
 			Player* tempPlayer;
 			tempPlayer = new Player(players.returnLastId() + 1, tempName, tempAddress);
