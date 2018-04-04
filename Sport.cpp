@@ -87,6 +87,7 @@ void Sport::editPlayer() {
     read("What division", divName, STRLEN);
     if (divisionList->inList(divName)) {
         tempDiv = (Division*)divisionList->remove(divName);
+		tempDiv->editPlayer();
         divisionList->add(tempDiv);
         }
     else {

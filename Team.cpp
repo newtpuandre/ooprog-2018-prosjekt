@@ -71,7 +71,6 @@ void Team::readFromFile(ifstream &inn) {
 		else { //Must be a text
 			char tempName[STRLEN];
 			char tempAddress[STRLEN];
-			cout << endl << buffer;
 			strcpy(tempName, buffer);
 
 			inn.getline(buffer, STRLEN);
