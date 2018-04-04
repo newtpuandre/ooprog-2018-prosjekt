@@ -59,9 +59,9 @@ void Sport::newDiv() {
 		cout << "\nDivision already exist";
 	}
 }
-
-Sport::~Sport() {
-	delete[] text;
+ 
+Sport::~Sport() { //No need for this?? No ptr
+	//delete[] text;
 };
 
 void Sport::display() {
@@ -105,5 +105,28 @@ void Sport::editPlayer() {
 	}
 	else {
 		cout << "\nThe division with name " << divName << " does not exist";
+	}
+}
+
+void Sport::removeDiv() {
+	char divName[STRLEN];
+	char answ;
+
+	read("What division", divName, STRLEN);
+
+	if (divisionList->inList(divName)) { //If the desired division is in the divisionlist.
+		cout << "\nAre you sure you want to delete this division? All data within will be permanently lost!! (y/N) ";
+		answ = read();
+
+		if (toupper(answ) == 'Y') {			//If the user confirms deletion..
+			divisionList->destroy(divName); //.. the division is destroyed.
+			numberOfDivisions--;
+		}
+		else {
+			cout << "\nThe division " << divName << " was not deleted.";
+		}
+	}
+	else {
+		cout << "\nThe division with name " << divName << " does not exist!";
 	}
 }
