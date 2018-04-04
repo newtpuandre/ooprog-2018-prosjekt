@@ -30,8 +30,9 @@ using namespace std;
 int main() {
     char ch;
     
-   // players.readFromFile();
+   players.readFromFile();
    // sports.readFromFile();
+
     writeMenu();
     ch = read();        // Reads one character
     ch = toupper(ch);

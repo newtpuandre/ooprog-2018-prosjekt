@@ -15,6 +15,7 @@ public:
 	void display(); //Displays players.
 	void remove();
 	void addToList(Element *Element);
+	void readFromFile();
 	int returnLastId();
 };
 

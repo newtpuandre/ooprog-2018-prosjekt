@@ -79,7 +79,7 @@ void Team::readFromFile(ifstream &inn) {
 
 
 			Player* tempPlayer;
-			tempPlayer = new Player(players.returnLastId() + 1, tempName, tempAddress);
+			tempPlayer = new Player((players.returnLastId() + 1), tempName, tempAddress);
 			players.addToList(tempPlayer);
 			delete tempPlayer;
 		}

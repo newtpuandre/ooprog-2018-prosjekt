@@ -1,8 +1,9 @@
+#include <iostream>
+#include <fstream>
 #include "Players.h"
 #include "Player.h"
 #include "ConstEnum.h"
 #include "Functions.h"
-#include <iostream>
 
 using namespace std;
 
@@ -100,6 +101,35 @@ void Players::display() {
         playerList->displayElement(atoi(temp));        //Displays players data by given number.
     }
     
+}
+
+void Players::readFromFile() {
+	Player* tempPlayer;
+	ifstream inn("PLAYERS.DTA");
+
+	char buffer[STRLEN],nameBuffer[STRLEN],addressBuffer[STRLEN];
+	int tempNumb, tempId;
+
+	if (inn) {
+		inn >> tempNumb; inn.ignore();
+
+		for (int i = 0; i < tempNumb; i++) {
+			inn >> tempId; inn.ignore();
+
+			inn.getline(nameBuffer, STRLEN); //ReaD Name
+
+			inn.getline(addressBuffer, STRLEN); //Read address
+
+			tempPlayer = new Player(tempId,nameBuffer,addressBuffer);
+			playerList->add(tempPlayer);
+		}
+
+
+	}
+	else {
+		cout << "\nThe file PLAYERS.DTA does not exist..";
+	}
+	
 }
 
 int Players::returnLastId() {
