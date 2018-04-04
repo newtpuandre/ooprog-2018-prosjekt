@@ -28,7 +28,12 @@ void Division::New() {
 };
 
 void Division::display() {
-    
+	cout << "\nDivisions name: " << text << '\n'
+		 << "\nNumber of teams in the division: " << numberOfTeams << '\n';
+	//for (int i = 1; i <= numberOfTeams; i++) {
+		//team[i]->display(); //displays teams name, address and number of players. 
+	//}
+
 };
 
 void Division::readFromFile(ifstream &inn) {
