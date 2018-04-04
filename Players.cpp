@@ -107,7 +107,7 @@ void Players::readFromFile() {
 	Player* tempPlayer;
 	ifstream inn("PLAYERS.DTA");
 
-	char buffer[STRLEN],nameBuffer[STRLEN],addressBuffer[STRLEN];
+	char nameBuffer[STRLEN],addressBuffer[STRLEN];
 	int tempNumb, tempId;
 
 	if (inn) {
