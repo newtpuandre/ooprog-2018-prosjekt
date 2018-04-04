@@ -2,6 +2,7 @@
 #define  __DIVISION_H
 
 #include <fstream>
+
 #include "ListTool2B.h"
 #include "ConstEnum.h"
 #include "Team.h"

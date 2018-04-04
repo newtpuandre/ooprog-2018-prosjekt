@@ -2,6 +2,7 @@
 #define  __TEAM_H
 
 #include "ConstEnum.h"
+
 #include <vector>
 
 class Team {

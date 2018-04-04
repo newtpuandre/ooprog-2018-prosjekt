@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cctype>
+
 #include "Functions.h"
 #include "Player.h"
 #include "Division.h"
