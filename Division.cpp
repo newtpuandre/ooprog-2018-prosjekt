@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <fstream>
-
 #include "Division.h"
 #include "Functions.h"
 #include "ListTool2B.h"
@@ -33,28 +32,31 @@ void Division::display() {
 	//for (int i = 1; i <= numberOfTeams; i++) {
 		//team[i]->display(); //displays teams name, address and number of players. 
 	//}
-
 };
 
 void Division::readFromFile(ifstream &inn) {
     
-	Team* temp; //Temporary team
+	Team* tempTeam; //Temporary team
 
     inn >> numberOfTeams; //Read number of teams from file.
 	inn.ignore();
     
 	//TODO: CHECK IF FILE IS EMPTY?
 
-
 	for (int i = 0; i < numberOfTeams; i++) {
 
-		temp = new Team(); //Create a new temp team
-		temp->readFromFile(inn); //Read team info from file
-		team[i++] = temp; //Move temp team to array
-		delete temp; //Delete temp team
+
+		tempTeam = new Team(); //Create a new temp team
+		tempTeam->readFromFile(inn); //Read team info from file
+		team[i] = tempTeam; //Move temp team to array
+
+		//This makes the file not read more than one team???
+		//delete tempTeam; //Delete temp team
+
 
 		//TODO: READ SCHEDULE (terminliste)
 	}
+
 
 };
 
