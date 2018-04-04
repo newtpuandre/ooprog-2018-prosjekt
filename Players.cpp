@@ -109,6 +109,11 @@ void Players::readFromFile() {
 
 		for (int i = 0; i < tempNumb; i++) {
 			inn >> tempId; inn.ignore();
+
+			if (tempId > lastPlayerId) { //Remember to update the lastPlayerId
+				lastPlayerId = tempId;
+			}
+
 			inn.getline(nameBuffer, STRLEN); //ReaD Name
 			inn.getline(addressBuffer, STRLEN); //Read address
 
