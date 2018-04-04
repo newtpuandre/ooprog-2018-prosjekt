@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include "Sports.h"
 #include "Sport.h"
 #include "Player.h"
@@ -57,7 +58,16 @@ void Sports::display() {
         sportList->displayList(); //Display all the elements
     }
     else {
-        sportList->displayElement(temp); //Display the element with the name sent in the parameter
+		if (sportList->inList(temp)) {
+			Sport* tempSport;
+			tempSport = (Sport*)sportList->remove(temp);
+			tempSport->displayOne();
+			sportList->add(tempSport);
+		}
+		else {
+			cout << "\nNo sport with name " << temp << " was found.";
+		}
+        //sportList->displayElement(temp); //Display the element with the name sent in the parameter
     }
 };
 

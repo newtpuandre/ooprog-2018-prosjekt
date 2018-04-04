@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <fstream>
+
 #include "ConstEnum.h"
 #include "Sport.h"
 #include "Functions.h"
@@ -38,11 +39,11 @@ void Sport::newDiv() {
     char fileName[STRLEN];
     
     read("Division name", divName, STRLEN);
-    read("File name", fileName, STRLEN);
+    read("File name (Including file extension)", fileName, STRLEN);
 
 	ifstream inn(fileName);
     
-    if (inn) { //KRAV: brukeren taster .dta (ellers må det stringcattes, før det sendes videre)
+    if (inn) {
 	Division* tempDivision;
 	tempDivision = new Division(divName);
 	tempDivision->readFromFile(inn);
@@ -51,6 +52,8 @@ void Sport::newDiv() {
 	else {
 		cout << "\nCan't find the file with name: " << fileName;
 	}
+
+	numberOfDivisions++;
 }
  
 Sport::~Sport() {
@@ -64,8 +67,14 @@ void Sport::display() {
 	case b: cout << "\nTable type: 3-1-0"; break;
 	case c: cout << "\nTable type: 3-2-1-0"; break;
 	}
-	divisionList->displayList();
+	cout << "\nNumber of divisions: " << numberOfDivisions;
+	//divisionList->displayList();
 };
+
+void Sport::displayOne() {
+	Sport::display();
+	divisionList->displayList();
+}
 
 void Sport::displayTeam() {
 	char divName[STRLEN];

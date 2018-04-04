@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <fstream>
+
 #include "Division.h"
 #include "Functions.h"
 #include "ListTool2B.h"
@@ -29,8 +30,9 @@ void Division::New() {
 void Division::display() {
 	cout << "\nDivisions name: " << text << '\n'
 		 << "\nNumber of teams in the division: " << numberOfTeams << '\n';
-	for (int i = 1; i <= numberOfTeams; i++) {
-		team[i]->display(); //displays teams name, address and number of players. 
+
+	for (int i = 0; i < numberOfTeams; i++) {
+		team[i]->display(false); //displays teams name, address and number of players. 
 	}
 };
 
@@ -40,21 +42,24 @@ void Division::readFromFile(ifstream &inn) {
 
     inn >> numberOfTeams; //Read number of teams from file.
 	inn.ignore();
-    
-	//TODO: CHECK IF FILE IS EMPTY?
 
-	for (int i = 0; i < numberOfTeams; i++) {
-
-
-		tempTeam = new Team(); //Create a new temp team
-		tempTeam->readFromFile(inn); //Read team info from file
-		team[i] = tempTeam; //Move temp team to array
-
-		//This makes the file not read more than one team???
-		//delete tempTeam; //Delete temp team
+	if (!inn.eof()) {
+		for (int i = 0; i < numberOfTeams; i++) {
 
 
-		//TODO: READ SCHEDULE (terminliste)
+			tempTeam = new Team(); //Create a new temp team
+			tempTeam->readFromFile(inn); //Read team info from file
+			team[i] = tempTeam; //Move temp team to array
+
+								//This makes the file not read more than one team???
+								//delete tempTeam; //Delete temp team
+
+
+								//TODO: READ SCHEDULE (terminliste)
+		}
+	}
+	else {
+		cout << "\nThe file is empty";
 	}
 
 
@@ -66,7 +71,7 @@ void Division::displayTeam() {
     for (int i = 0; i < numberOfTeams; i++) {
         
         if (*team[i] == teamName) {
-            team[i]->display();
+            team[i]->display(true);
         }
     }
 }

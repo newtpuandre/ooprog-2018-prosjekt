@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cctype>
+
 #include "Functions.h"
 #include "Player.h"
 #include "Division.h"
@@ -64,7 +65,7 @@ void remove() {
 	switch (ch) {
 	case 'S': players.remove(); break;
 	//case 'I': sports.remove(); break;
-	//case 'D': divisions.remove(); break;
+	//case 'D': divisions.remove(); break; //Husk å telle ned Number of elements!!
 	}
 
 }

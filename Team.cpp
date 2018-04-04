@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <fstream>
+
 #include "Team.h"
 #include "Functions.h"
 #include "Player.h"
@@ -15,16 +16,17 @@ Team::Team() {
 };
 
 Team::~Team() {
-	delete name;
-	delete address;
+	//Deconstructor
 };
 
-void Team::display() {
+void Team::display(bool all) {
 	cout << "\nName of the team: " << name
 		<< "\nTeam address: " << address
 		<< "\nNumber of players on the team: " << numberOfPlayers;
-	for (int i = 0; i < numberOfPlayers; i++) {
-		//We need to print info about ever player here!
+	if (all == true) {
+		for (int i = 0; i < numberOfPlayers; i++) {
+			players.displayId(playerNo[i]);
+		}
 	}
 };
 
@@ -43,7 +45,7 @@ void Team::readFromFile(ifstream &inn) {
 	char addressBuffer[STRLEN];
 	char buffer[STRLEN];
 
-	int tempNumb = 0;
+	int tempNumb = 0, tempId = 0;
     
 	inn.getline(nameBuffer,STRLEN); //Read team name from file
 	//name = new char[strlen(nameBuffer) + 1]; //Create a new char array
@@ -73,10 +75,16 @@ void Team::readFromFile(ifstream &inn) {
 			inn.getline(buffer, STRLEN);
 			strcpy(tempAddress, buffer);
 
+			tempId = players.returnLastId();
+
 			Player* tempPlayer;
-			tempPlayer = new Player((players.returnLastId() + 1), tempName, tempAddress);
+			tempPlayer = new Player(tempId, tempName, tempAddress);
 			players.addToList(tempPlayer);
-			delete tempPlayer;
+
+			playerNo.push_back(tempId);
+			//delete tempPlayer;
+
+			
 		}
 	}
 }
@@ -88,11 +96,26 @@ void Team::edit() {
     int id;
     
     switch (answ) {
-        case 'A': //TODO: CHECK IF THERE IS DUPLICATE NUMBERS
-            id = read("Player ID", MINID, MAXID);
-            
-            numberOfPlayers++;
-            playerNo.push_back(id);
+        case 'A':
+			if(playerNo.size() < MAXPLAYERS){
+				bool found;
+				id = read("Player ID", MINID, MAXID);
+
+				for (int i = 0; i < numberOfPlayers; i++) {
+					if (playerNo[i] == id) {
+						found = true;
+					}
+				}
+
+				if (!found) {
+					numberOfPlayers++;
+					playerNo.push_back(id);
+				}
+			}
+			else {
+				cout << "\nThere are 20 players in the team which is the maximum capacity";
+			}
+
             break;
             
         case 'D':
@@ -100,7 +123,7 @@ void Team::edit() {
             
             for (int i = 0; i < numberOfPlayers; i++) {
                 if (playerNo[i] == id) {
-                    playerNo.erase(playerNo.begin(),playerNo.begin() + i);
+                    playerNo.erase(playerNo.begin()+ i);
                     numberOfPlayers--;
                 }
             }
