@@ -25,6 +25,7 @@ void Team::display(bool all) {
 		<< "\nNumber of players on the team: " << numberOfPlayers;
 	if (all == true) {
 		for (int i = 0; i < numberOfPlayers; i++) {
+			cout << "\nPlayer number: " << playerNo[i];
 			players.displayId(playerNo[i]);
 		}
 	}
