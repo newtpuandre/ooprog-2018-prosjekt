@@ -66,25 +66,35 @@ void Division::readFromFile(ifstream &inn) {
 };
 
 void Division::displayTeam() {
-    char teamName[STRLEN];
-    read("What is the team name: ", teamName, STRLEN);
-    for (int i = 0; i < numberOfTeams; i++) {
-        
-        if (*team[i] == teamName) {
-            team[i]->display(true);
-        }
-    }
+	char teamName[STRLEN];
+	bool found = false;
+	read("What is the team name: ", teamName, STRLEN);
+	for (int i = 0; i < numberOfTeams; i++) {
+
+		if (*team[i] == teamName) {
+			team[i]->display(true);
+			found = true;
+		}
+	}
+	if (found == false) {
+		cout << "The team " << teamName << " does not exist";
+	}
 }
 
 void Division::editPlayer() {
     char teamName[STRLEN];
+	bool found = false;
     read("What is the team name: ", teamName, STRLEN);
     for (int i = 0; i < numberOfTeams; i++) {
         
         if (*team[i] == teamName) {
             team[i]->edit();
+			found = true;
         }
     }
+	if (found == false) {
+		cout << "The team " << teamName << " does not exist";
+	}
 }
 
 void Division::remove() {
