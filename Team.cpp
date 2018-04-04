@@ -99,7 +99,7 @@ void Team::edit() {
     switch (answ) {
         case 'A':
 			if(playerNo.size() < MAXPLAYERS){
-				bool found;
+				bool found = false;
 				id = read("Player ID", MINID, MAXID);
 
 				for (int i = 0; i < numberOfPlayers; i++) {
