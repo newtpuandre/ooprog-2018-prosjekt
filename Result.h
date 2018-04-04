@@ -1,5 +1,6 @@
 #if !defined(__RESULT_H)
 #define  __RESULT_H
+
 #include "ConstEnum.h"
 
 class Result {

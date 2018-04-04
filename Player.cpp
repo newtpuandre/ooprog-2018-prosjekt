@@ -1,9 +1,9 @@
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
-#endif 
+#endif
+
 #include <iostream>
 #include <fstream>
-
 #include "Player.h"
 #include "Functions.h"
 #include "ConstEnum.h"

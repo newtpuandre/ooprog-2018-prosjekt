@@ -12,7 +12,6 @@ private:
     //char* name;                   //Player name
     //char* address;                //Player Address
 
-
 	char name[STRLEN];		//Player name
 	char address[STRLEN];	//Player Address
     

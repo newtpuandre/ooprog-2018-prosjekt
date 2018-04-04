@@ -1,6 +1,7 @@
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
 #endif
+
 #include <iostream>
 #include <fstream>
 #include "Team.h"
@@ -14,8 +15,8 @@ Team::Team() {
 };
 
 Team::~Team() {
-	delete[] name;
-	delete[] address;
+	delete name;
+	delete address;
 };
 
 void Team::display() {
@@ -48,11 +49,9 @@ void Team::readFromFile(ifstream &inn) {
 	//name = new char[strlen(nameBuffer) + 1]; //Create a new char array
 	strcpy(name, nameBuffer); //Copy over from buffer
 
-
 	inn.getline(addressBuffer, STRLEN); //Read team address from file
 	//address = new char[strlen(addressBuffer) + 1]; //Create a new char array
 	strcpy(address, addressBuffer); //Copy over from buffer
-
 
 	inn >> tempNumb;
 
@@ -60,23 +59,19 @@ void Team::readFromFile(ifstream &inn) {
 	inn.ignore();
 
 	for (int i = 0; i < numberOfPlayers; i++) {
-
 		inn >> buffer;
-
 		inn.ignore();
-
+        
 		if (atoi(buffer)) { //Must be a number
 			playerNo.push_back(atoi(buffer));
 		}
 		else { //Must be a text
 			char tempName[STRLEN];
 			char tempAddress[STRLEN];
-			strcpy(tempName, buffer);
-
+			
+            strcpy(tempName, buffer);
 			inn.getline(buffer, STRLEN);
-
 			strcpy(tempAddress, buffer);
-
 
 			Player* tempPlayer;
 			tempPlayer = new Player((players.returnLastId() + 1), tempName, tempAddress);
@@ -93,17 +88,11 @@ void Team::edit() {
     int id;
     
     switch (answ) {
-        case 'A':
-            
-            //TODO: CHECK IF THERE IS DUPLICATE NUMBERS
-            
+        case 'A': //TODO: CHECK IF THERE IS DUPLICATE NUMBERS
             id = read("Player ID", MINID, MAXID);
             
             numberOfPlayers++;
             playerNo.push_back(id);
-            
-            
-            
             break;
             
         case 'D':
@@ -115,11 +104,9 @@ void Team::edit() {
                     numberOfPlayers--;
                 }
             }
-            
             break;
             
         case 'Q': break;
         default: cout << "\nInvalid command."; break;
-            
     }
 }

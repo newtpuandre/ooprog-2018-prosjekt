@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <fstream>
-
 #include "Division.h"
 #include "Functions.h"
 #include "ListTool2B.h"

@@ -1,19 +1,3 @@
-/*
- NOTE: This is the initial version of main heavily influenced by Frode.
- Please note the comments below. In my opinion, we should discuss the brief setup shortly.
- 
- xoxo,
- S <3
-
- EDIT: 19.03.2018:
- I commented out everything that is NYI so we can run the program compiles.
- We need to uncomment the NYI functions later.
- Should we restructure the switch and main?
-
- Hue
- */
-
-
 #include <iostream>
 #include <cctype>
 #include "ListTool2B.h"

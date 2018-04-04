@@ -1,6 +1,7 @@
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
-#endif 
+#endif
+
 #include <iostream>
 #include <fstream>
 #include "ConstEnum.h"
@@ -42,7 +43,6 @@ void Sport::newDiv() {
 	ifstream inn(fileName);
     
     if (inn) { //KRAV: brukeren taster .dta (ellers må det stringcattes, før det sendes videre)
-	
 	Division* tempDivision;
 	tempDivision = new Division(divName);
 	tempDivision->readFromFile(inn);
