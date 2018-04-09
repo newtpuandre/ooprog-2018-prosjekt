@@ -5,6 +5,7 @@
 #include "Sports.h"
 #include "Players.h"
 #include "Functions.h"
+#include "Result.h"
 
 //Classes
 Sports sports;
@@ -28,7 +29,7 @@ int main() {
             case 'N': New();				break;
             case 'F': remove();             break;
             case 'L':
-            case 'K':
+			case 'K': sports.displayResults();
             case 'C':
             case 'T': /*sports.write(ch); */        break;
             case 'R':/* if (sports.results(false))

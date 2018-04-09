@@ -100,3 +100,22 @@ void Division::editPlayer() {
 void Division::remove() {
 
 }
+
+void Division::displayResults() {
+	char date[DATELEN];
+	
+	read("What date", date, DATELEN);
+
+	/*for (int x = 0; i < ?; i++ ) {
+		for (int y = 0; i < ?; y ++) {
+			gå inn i en forloop som leter igjennom alle cellene i terminlista.
+			Finnes da en dato med samme dato som er sendt inn så skal funksjonen gå inn i resultklassen og displaye data.
+
+				if (*terminListe[i] == date){
+				terminListe[i]->displayResults();
+				}
+			}
+
+
+	}*/
+}

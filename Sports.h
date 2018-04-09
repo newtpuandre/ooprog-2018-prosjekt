@@ -20,6 +20,7 @@ public:
     void editPlayer();
 	void remove(); //Remove a desired sport.
 	void removeDiv(); //Remove a desired division.
+	void displayResults();
 };
 
 #endif

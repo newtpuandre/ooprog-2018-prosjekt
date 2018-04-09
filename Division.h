@@ -27,6 +27,7 @@ public:
     void readFromFile(ifstream &inn); //Make and read from desired file.
     void editPlayer();
 	void remove(); //Remove a desired division.
+	void displayResults();
 };
 
 #endif

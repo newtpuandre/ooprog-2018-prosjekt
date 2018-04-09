@@ -144,3 +144,13 @@ void Sports::removeDiv() {
 		cout << "\nThe sport with name " << sport << " does not exist!";
 	}
 }
+
+void Sports::displayResults() {
+	char sport[STRLEN];
+	Sport* tempSport;
+
+	read("What is the name of the sport", sport, STRLEN);
+	tempSport = (Sport*)sportList->remove(sport);
+	tempSport->displayResults();
+	sportList->add(tempSport);
+}
