@@ -12,7 +12,6 @@
 
 Team::Team() {
 	//Paramless constructor
-
 };
 
 Team::~Team() {

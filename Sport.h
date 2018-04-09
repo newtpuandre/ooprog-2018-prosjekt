@@ -24,6 +24,7 @@ public:
     void editPlayer(); //Add or remove a player.
 	void removeDiv(); //Remove a desired division.
 	void displayResults();
+    void schedule(); //Display schedule or write the schedule to file.
 };
 
 #endif

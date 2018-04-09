@@ -28,8 +28,8 @@ int main() {
             case 'I': sports.display();     break;
             case 'N': New();				break;
             case 'F': remove();             break;
-            case 'L':
-			case 'K': sports.displayResults();
+            case 'L': sports.schedule();    break;
+			case 'K': sports.displayResults(); break;
             case 'C':
             case 'T': /*sports.write(ch); */        break;
             case 'R':/* if (sports.results(false))

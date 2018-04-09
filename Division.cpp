@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 #include "Division.h"
 #include "Functions.h"
@@ -119,3 +120,46 @@ void Division::displayResults() {
 
 	}*/
 }
+
+void Division::schedule() {
+    char fileName[STRLEN];
+    read("Filename (including file extension)", fileName, STRLEN);
+    
+    if(fileName[0] == '\0') {
+        displaySchedule();
+    }
+    else {
+        writeSchedule();
+    }
+}
+
+void Division::displaySchedule() { //This section is commented out, as nessacery testing is not done yet. Work will be resumed shortly. -S
+    /*Result* tempRes;
+    
+    for (int x = 0; x < 3; x++) { //Counts number of rows. This must be dynamic and counted somewhere.
+        vector<Result*> row; //Create an empty row.
+        
+        //cout << "rad";
+        
+        for (int y = 0; y < 5; y++) { //Counts number of colums. This must be dynamic and counted somewhere.
+            row.push_back(tempRes); //Add an element (column) to the row.
+            //cout << "kolonne";
+        }
+        
+        results.push_back(row); //Add the row to the main vector.
+    }
+    
+    for (int i = 0; i < results.size(); i++) { //Displays the rows
+        for (int j = 0; j < results[j].size(); j++) { //Displays the columns.
+            cout << results[i][j];
+        }
+        cout << endl;
+    }
+    */
+}
+
+void Division::writeSchedule() {
+    cout << "Test2";
+}
+
+
