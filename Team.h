@@ -27,6 +27,7 @@ public:
 	bool operator== (char name1[]);
     void readFromFile(ifstream &inn);
 	void edit();
+	void displayName();
 };
 
 #endif

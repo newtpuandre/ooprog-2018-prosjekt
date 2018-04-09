@@ -8,6 +8,7 @@
 #include "Team.h"
 #include "Functions.h"
 #include "Player.h"
+#include "Division.h"
 
 
 Team::Team() {
@@ -83,10 +84,12 @@ void Team::readFromFile(ifstream &inn) {
 
 			playerNo.push_back(tempId);
 			//delete tempPlayer;
-
-			
 		}
 	}
+
+	/*Division* tempDiv;
+	tempDiv->readSchedule(inn);*/
+
 }
 
 void Team::edit() {
@@ -132,4 +135,8 @@ void Team::edit() {
         case 'Q': break;
         default: cout << "\nInvalid command."; break;
     }
+}
+
+void Team::displayName() {
+	cout << name;
 }

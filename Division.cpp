@@ -123,7 +123,8 @@ void Division::displayResults() {
 
 void Division::schedule() {
     char fileName[STRLEN];
-    read("Filename (including file extension)", fileName, STRLEN);
+	cout << "Filename (including file extension): ";
+	cin.getline(fileName, STRLEN);
     
     if(fileName[0] == '\0') {
         displaySchedule();
@@ -133,33 +134,54 @@ void Division::schedule() {
     }
 }
 
-void Division::displaySchedule() { //This section is commented out, as nessacery testing is not done yet. Work will be resumed shortly. -S
-    /*Result* tempRes;
+void Division::displaySchedule() { //This section is commented out, as nessacery testing is not done yet. -S
+								// Look into reading from NY_DIV.DTA as well (!!)
+	//cout << "test1";
+
+    Result* tempRes;
+	vector<int> row;
+	//vector<Result*> row; //Create an empty row.
+
+	cout << "\t";
+	for (int n = 1; n <= numberOfTeams; n++) {
+		cout << "\t" << n << ":";
+		if (n == numberOfTeams) { cout << "\n"; }
+	}
     
-    for (int x = 0; x < 3; x++) { //Counts number of rows. This must be dynamic and counted somewhere.
-        vector<Result*> row; //Create an empty row.
+    for (int x = 0; x < numberOfTeams; x++) { //Counts number of rows.
+		cout << x+1 << ":\t";
+		team[x]->displayName();
+		cout << "\t";
         
-        //cout << "rad";
-        
-        for (int y = 0; y < 5; y++) { //Counts number of colums. This must be dynamic and counted somewhere.
-            row.push_back(tempRes); //Add an element (column) to the row.
-            //cout << "kolonne";
+        for (int y = 0; y < numberOfTeams; y++) { //Counts number of colums.
+            //row.push_back(tempRes); //Add an element (column) to the row.
+			//tempRes = new Result;
+			row.push_back(y);
+			cout << "k" << y+1 << "\t";
         }
         
         results.push_back(row); //Add the row to the main vector.
+		cout << endl;
     }
     
+	cout << endl << endl << endl;
+
     for (int i = 0; i < results.size(); i++) { //Displays the rows
-        for (int j = 0; j < results[j].size(); j++) { //Displays the columns.
-            cout << results[i][j];
+        for (int j = 0; j < results.size(); j++) { //Displays the columns.
+            cout << results[i][j] << " ";
         }
         cout << endl;
     }
-    */
 }
 
 void Division::writeSchedule() {
     cout << "Test2";
 }
 
+void Division::readSchedule(ifstream &inn) {
+	/*char tempDate[DATELEN];
+	char shortDate[SHORTDATE];
+
+	inn >> tempDate;*/
+}
 

@@ -8,7 +8,8 @@ using namespace std;
 
 const int NAMELEN = 80;
 const int STRLEN = 80;
-const int DATELEN = 9;
+const int SHORTDATE = 5; //For use when four-digit dates are present.
+const int DATELEN = 9; //For use when eight-digit dates are present.
 const int MAXTEAM = 20;
 const int MAXPLAYERS = 50;
 const int MAXGOALS = 50;
