@@ -144,3 +144,19 @@ void Sports::removeDiv() {
 		cout << "\nThe sport with name " << sport << " does not exist!";
 	}
 }
+
+void Sports::schedule() {
+    char sport [STRLEN];
+    
+    Sport* tempSport;
+    read("Sport", sport, STRLEN);
+    
+    if (sportList->inList(sport)) {
+        tempSport = (Sport*)sportList->remove(sport); //Remove given sport from list
+        tempSport->schedule(); //Display schedule or write schedule to file.
+        sportList->add(tempSport); //Add the given sport back to the list.
+    }
+    else {
+        cout << "\nThe sport " << sport << " does not exist!";
+    }
+}

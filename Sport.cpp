@@ -130,3 +130,20 @@ void Sport::removeDiv() {
 		cout << "\nThe division with name " << divName << " does not exist!";
 	}
 }
+
+void Sport::schedule() {
+    char divName[STRLEN];
+    
+    Division* tempDiv;
+    
+    read("Division", divName, STRLEN);
+    
+    if (divisionList->inList(divName)) {
+        tempDiv = (Division*)divisionList->remove(divName);
+        tempDiv->schedule();
+        divisionList->add(tempDiv);
+    }
+    else {
+        cout << "The division " << divName << " does not exist!";
+    }
+}

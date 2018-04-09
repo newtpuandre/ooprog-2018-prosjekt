@@ -27,7 +27,7 @@ int main() {
             case 'I': sports.display();     break;
             case 'N': New();				break;
             case 'F': remove();             break;
-            case 'L':
+            case 'L': sports.schedule();    break;
             case 'K':
             case 'C':
             case 'T': /*sports.write(ch); */        break;
