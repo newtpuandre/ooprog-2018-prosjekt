@@ -27,3 +27,12 @@ void Result::displayResults() {
 	
 
 }
+
+bool Result::cmpDate(char ddmm[]) {
+	if (strcmp(date,ddmm) == 0) {
+		return true;
+	}
+	else 
+		return false
+	//return (date == ddmm);
+}
