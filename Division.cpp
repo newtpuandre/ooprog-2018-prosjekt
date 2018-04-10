@@ -63,7 +63,7 @@ void Division::readFromFile(ifstream &inn) {
 	else {
 		cout << "\nThe file is empty";
 	}
-
+	
     readSchedule(inn);
 
 };
@@ -128,53 +128,37 @@ void Division::schedule() {
 	cout << "Filename (including file extension): ";
 	cin.getline(fileName, STRLEN);
     
-    if(fileName[0] == '\0') {
-        displaySchedule();
+    if(fileName[0] == '\0') {	//If no input is given..
+        displaySchedule();		//..display schedule on screen.
     }
     else {
-        writeSchedule();
+        writeSchedule();		//Else write to given filename. INSERT 'fileName' AS A PARAMETER!!!
     }
 }
 
-void Division::displaySchedule() { //This section is commented out, as nessacery testing is not done yet. -S
-								// Look into reading from NY_DIV.DTA as well (!!)
-	//cout << "test1";
-    
-    //Result* tempRes;
-	//vector<int> row;
-	//vector<Result*> row; //Create an empty row.
-
-	cout << "\t";
-	for (int n = 1; n <= numberOfTeams; n++) {
-		cout << "\t\t" << n << ":";
+void Division::displaySchedule() { 
+   
+	cout << "\n\t";					//Aestethic - The following four lines..
+	for (int n = 1; n <= numberOfTeams; n++) {	//.. displays the teams index'.
+		cout << "\t" << n << ":";
 		if (n == numberOfTeams) { cout << "\n"; }
 	}
     
     for (int x = 0; x < numberOfTeams; x++) { //Counts number of rows.
-		cout << x+1 << ":\t";
-		team[x]->displayName();
+		cout << x+1 << ":\t";	//Aestethic - Displays team index number.
+		team[x]->displayName(); //Aestethic - Displays team name.
 		cout << "\t";
         
         for (int y = 0; y < numberOfTeams; y++) { //Counts number of colums.
-            //row.push_back(tempRes); //Add an element (column) to the row.
-			//tempRes = new Result;
-			//row.push_back(y);
-			
-            //cout << "k" << y+1 << "\t";
-
-            //results[tempRes].displayDate();
-            //results.displayDate();
-            //Result::displayDate();
-            //tempRes->displayDate();
-            
-            results[x][y]->displayDate();
+		results[x][y]->displayDate();	//Displays dates for each match
             cout << "\t";
         }
-        
-        //results.push_back(row); //Add the row to the main vector.
+     
 		cout << endl;
     }
     
+	/*			THE CODE BELOW SHOWS THE ADDRESS OF THE RESULT OBJECT POINTERS!
+
 	cout << endl << endl << endl;
 
     for (int i = 0; i < results.size(); i++) { //Displays the rows
@@ -182,7 +166,8 @@ void Division::displaySchedule() { //This section is commented out, as nessacery
             cout << results[i][j] << "\t";
         }
         cout << endl;
-    }
+
+    }*/
 }
 
 void Division::writeSchedule() {
@@ -190,19 +175,17 @@ void Division::writeSchedule() {
 }
 
 void Division::readSchedule(ifstream &inn) {
-	char tempDate[DATELEN];       //These two dates might be used later..
-	//char shortDate[SHORTDATE];    //.. when we start working on read from results.dta
-    
+	char tempDate[DATELEN];      
     Result* tempRes;
-    vector<Result*> row; //Create an empty row.
     
     for (int x = 0; x < numberOfTeams; x++) { //Counts number of rows.
-        //inn >> tempDate;
+		
+		vector<Result*> row; //CreatSe an empty row.
         
         for (int y = 0; y < numberOfTeams; y++) { //Counts number of colums.
-            inn >> tempDate;
+            inn >> tempDate; //Reads the date from file.
+			tempRes = new Result(tempDate); //Creates new result with given date.
             row.push_back(tempRes); //Add an element (column) to the row.
-            tempRes = new Result(tempDate);
         }
         
         results.push_back(row); //Add the row to the main vector.
