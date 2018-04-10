@@ -1,3 +1,7 @@
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #include <iomanip>
 #include <iostream>
 #include <fstream>
@@ -38,11 +42,11 @@ void Result::displayResults() {
 }
 
 bool Result::cmpDate(char ddmm[]) {
-	if (strcmp(date,ddmm) == 0) {
+	if (strcmp(date, ddmm) == 0) {
 		return true;
 	}
-	else 
-		return false
+	else
+		return false;
 	//return (date == ddmm);
 }
 void Result::displayDate() {
