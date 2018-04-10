@@ -5,12 +5,14 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <array>
 
 #include "Division.h"
 #include "Functions.h"
 #include "ListTool2B.h"
 #include "Team.h"
 #include "Result.h"
+
 
 Division::Division() {
     //Must be made by reading from file!!
@@ -193,4 +195,82 @@ void Division::readSchedule(ifstream &inn) {
     }
     
 }
+void Division::writeTable(tableType table) {
+	//Need to remember each teams points
+	//Print the table to screen.
+	int* teamTable;
+	teamTable = new int[numberOfTeams]; //[Index] is the same as they appear in the matrix. 1 is team 1. etc..
 
+	
+	for (int i = 0; i < numberOfTeams; i++) { //Double for loop to go through the matrix
+		for (int j = 0; j < numberOfTeams; j++) {
+
+			if (i != j) { //Teams cant be playing them selves..
+				if (results[i][j]->returnScore() == 0) { //Home won
+					teamTable[i] = TabletypeCalc(table, 1);
+				}
+				if (results[i][j]->returnScore() == 1) { //Away won
+					teamTable[j] = TabletypeCalc(table, 1);
+				}
+				if (results[i][j]->returnScore() == 2) { //Tie
+					teamTable[i] = TabletypeCalc(table, 3);
+					teamTable[j] = TabletypeCalc(table, 3);
+				}
+
+				//if overtime add special points
+
+			}
+
+		}
+	}
+}
+
+void Division::writeTable(ifstream &inn) {
+
+}
+
+int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type and returns the correct scoring, wlt, 1 win, 2 loss, 3 tie, 4 overtime
+	switch (table) {
+
+	case a: // a = "2-1-0
+		if (wlt == 1) {
+			return 2;
+		}
+		else if (wlt == 2) {
+			return 1;
+		}
+		else if (wlt == 3) {
+			return 0;
+		}
+		break;
+
+	case b:// b = "3-1-0"
+		if (wlt == 1) {
+			return 3;
+		}
+		else if (wlt == 2) {
+			return 1;
+		}
+		else if (wlt == 3) {
+			return 0;
+		}
+		break;
+
+	case c: // c= "3-2-1-0"
+		if (wlt == 1) {
+			return 3;
+		}
+		else if (wlt == 2) {
+			return 2;
+		}
+		else if (wlt == 3) {
+			return 0;
+		}
+		else { //wlt == 4
+			return 1;
+		}
+		break;
+
+	default: return 0; break;
+	}
+}
