@@ -159,22 +159,42 @@ void Sport::schedule() {
 }
 
 void Sport::writeTable() {
-	char temp[STRLEN];
+	char fileTemp[STRLEN];
+	char divTemp[STRLEN];
 	Division* tempDiv;
-	read("Division name (Empty string for the whole sport)", temp);
-	if (strlen(temp) == 0) { //Empty string, calculate for the whole sport
-		read("Print to file or screen? (empty string = screen)", temp);
+	read("Division name (Empty string for the whole sport)", divTemp);
+
+	if (strlen(divTemp) == 0) { //Empty string, calculate for the whole sport
+
+		read("Print to file or screen? (empty string = screen)", fileTemp);
+
+		if (strlen(fileTemp) == 0) { //Print to screen
+
+		}
+		else { //Print to file
+
+		}
+
 	}
 	else { //Non-empty string, calculate for a division
+		read("Print to file or screen? (empty string = screen)", fileTemp);
 
-		if (divisionList->inList(temp)) {//Is inList
-			tempDiv = (Division*)divisionList->remove(temp);
-			//Do something with the tempDiv!
-			divisionList->add(tempDiv);
+		if (strlen(fileTemp) == 0) { //Print to screen
+
+			if (divisionList->inList(divTemp)) {//Is inList
+				tempDiv = (Division*)divisionList->remove(divTemp);
+				tempDiv->writeTable(table);
+				divisionList->add(tempDiv);
+			}
+			else { //Was not found in the list
+				cout << "\nNo division with name " << divTemp << " was found.";
+			}
+
 		}
-		else { //Was not found in the list
-			cout << "\nNo division with name " << temp << " was found.";
+		else { //Print to file
+
 		}
+
 
 	}
 }

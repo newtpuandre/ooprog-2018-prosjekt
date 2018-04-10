@@ -10,6 +10,7 @@ private:
 	char date[DATELEN]; //Match date
 	int homeGoals = 0;  //Home team goals
 	int awayGoals = 0;	//Away team goals
+	bool overtime = false;
 	int homeScorers[MAXGOALS]; //Home team scorers Player ID
 	int awayScorers[MAXGOALS]; //Away team scorers Player ID
 
@@ -23,7 +24,7 @@ public:
 	bool cmpDate(char ddmm[]); //Checks if the date sent as parameter is the same as its own. 
     void readFromFile(); //Reads schedule from list.
     void displayDate(); //Display the date of the result.
-
+	int returnScore(); //Returns 0 if home won, 1 if away won, 2 if tie, 3 if not played
 };
 
 #endif

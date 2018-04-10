@@ -52,3 +52,19 @@ bool Result::cmpDate(char ddmm[]) {
 void Result::displayDate() {
     cout << date;
 }
+
+int Result::returnScore() { //Returns 0 if home won, 1 if away won, 2 if tie, 3 if not played
+	//Remember to check for overtime
+	if (homeGoals > awayGoals && overtime == false) {
+		return 0; //Home won
+	}
+	else if (awayGoals < homeGoals && overtime == false) {
+		return 1; //Away won
+	}
+	else if ( homeGoals == awayGoals && (homeGoals != 0 && awayGoals != 0) ) {
+		return 2; //Tie
+	}
+	else { //Not played yet
+		return 3;
+	}
+}
