@@ -171,3 +171,23 @@ void Sports::schedule() {
     }
 }
 
+void Sports::writeTable() {
+
+	/*Pseudo code
+	ask for sport name
+	if inlist{
+	remove from list.
+	Ask for div name, if not blank remove division and calculate.
+	else
+	calculate for whole sport
+
+	}
+	ask for file name, if blank write to screen
+	else
+	write to file.
+
+	
+	
+	*/
+
+}

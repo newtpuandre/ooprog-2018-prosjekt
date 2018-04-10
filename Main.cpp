@@ -30,8 +30,8 @@ int main() {
             case 'F': remove();             break;
             case 'L': sports.schedule();    break;
 			case 'K': sports.displayResults(); break;
-            case 'C':
-            case 'T': /*sports.write(ch); */        break;
+			case 'C': /*Voluntary task*/ break;
+            case 'T': sports.writeTable();      break;
             case 'R':/* if (sports.results(false))
                           sports.results(true);*/   break;
             case 'D':
