@@ -38,6 +38,10 @@ void read(const char t[], char s[], const int LEN) { //Print text and reads non-
     } while (strlen(s) == 0);
 }
 
+void read(const char t[], char s[]) { //Print text and allows for reading an empty text.
+		cout << t << ": "; cin.getline(s, STRLEN);
+}
+
 int read(const char t[], const int min, const int max) { //Reads an int in given interval.
     int n;
     do {
