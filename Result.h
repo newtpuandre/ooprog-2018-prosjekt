@@ -16,10 +16,12 @@ private:
 public:
 	//Function declarations need to be here
 	Result(); //Paramless constructor
+    Result(char d[]); //New result with date sent as parameter.
 	~Result(); //Destructor
 	void display();	//Displays data for result object.
 	void displayResults();
     void readFromFile(); //Reads schedule from list.
+    void displayDate(); //Display the date of the result.
 
 };
 

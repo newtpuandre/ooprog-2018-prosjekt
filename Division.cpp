@@ -55,7 +55,7 @@ void Division::readFromFile(ifstream &inn) {
 								//This makes the file not read more than one team???
 								//delete tempTeam; //Delete temp team
 
-
+            
 								//TODO: READ SCHEDULE (terminliste)
 		}
 	}
@@ -63,6 +63,7 @@ void Division::readFromFile(ifstream &inn) {
 		cout << "\nThe file is empty";
 	}
 
+    readSchedule(inn);
 
 };
 
@@ -117,7 +118,7 @@ void Division::displayResults() {
 				}
 			}
 
-
+ni
 	}*/
 }
 
@@ -137,11 +138,11 @@ void Division::schedule() {
 void Division::displaySchedule() { //This section is commented out, as nessacery testing is not done yet. -S
 								// Look into reading from NY_DIV.DTA as well (!!)
 	//cout << "test1";
-
-    Result* tempRes;
-	vector<int> row;
+    
+    //Result* tempRes;
+	//vector<int> row;
 	//vector<Result*> row; //Create an empty row.
-
+/*
 	cout << "\t";
 	for (int n = 1; n <= numberOfTeams; n++) {
 		cout << "\t" << n << ":";
@@ -165,7 +166,7 @@ void Division::displaySchedule() { //This section is commented out, as nessacery
     }
     
 	cout << endl << endl << endl;
-
+*/
     for (int i = 0; i < results.size(); i++) { //Displays the rows
         for (int j = 0; j < results.size(); j++) { //Displays the columns.
             cout << results[i][j] << " ";
@@ -179,9 +180,23 @@ void Division::writeSchedule() {
 }
 
 void Division::readSchedule(ifstream &inn) {
-	/*char tempDate[DATELEN];
-	char shortDate[SHORTDATE];
-
-	inn >> tempDate;*/
+	char tempDate[DATELEN];       //These two dates might be used later..
+	//char shortDate[SHORTDATE];    //.. when we start working on read from results.dta
+    
+    Result* tempRes;
+    vector<Result*> row; //Create an empty row.
+    
+    for (int x = 0; x < numberOfTeams; x++) { //Counts number of rows.
+        inn >> tempDate;
+        
+        for (int y = 0; y < numberOfTeams; y++) { //Counts number of colums.
+            row.push_back(tempRes); //Add an element (column) to the row.
+            tempRes = new Result(tempDate);
+        }
+        
+        results.push_back(row); //Add the row to the main vector.
+        cout << endl;
+    }
+    
 }
 
