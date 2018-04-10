@@ -22,6 +22,7 @@ public:
 	void removeDiv(); //Remove a desired division.
 	void displayResults(); //.fdafd
     void schedule(); //Display schedule or write schedule to file.
+	void writeTable(); //Write the result table to file or screen.
 };
 
 #endif

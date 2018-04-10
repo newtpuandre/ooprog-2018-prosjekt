@@ -158,3 +158,24 @@ void Sport::schedule() {
     }
 }
 
+void Sport::writeTable() {
+	char temp[STRLEN];
+	Division* tempDiv;
+	read("Division name (Empty string for the whole sport)", temp);
+	if (strlen(temp) == 0) { //Empty string, calculate for the whole sport
+		read("Print to file or screen? (empty string = screen)", temp);
+	}
+	else { //Non-empty string, calculate for a division
+
+		if (divisionList->inList(temp)) {//Is inList
+			tempDiv = (Division*)divisionList->remove(temp);
+			//Do something with the tempDiv!
+			divisionList->add(tempDiv);
+		}
+		else { //Was not found in the list
+			cout << "\nNo division with name " << temp << " was found.";
+		}
+
+	}
+}
+
