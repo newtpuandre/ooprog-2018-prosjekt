@@ -10,6 +10,7 @@
 #include "Functions.h"
 #include "ListTool2B.h"
 #include "Team.h"
+#include "Result.h"
 
 Division::Division() {
     //Must be made by reading from file!!
@@ -142,10 +143,10 @@ void Division::displaySchedule() { //This section is commented out, as nessacery
     //Result* tempRes;
 	//vector<int> row;
 	//vector<Result*> row; //Create an empty row.
-/*
+
 	cout << "\t";
 	for (int n = 1; n <= numberOfTeams; n++) {
-		cout << "\t" << n << ":";
+		cout << "\t\t" << n << ":";
 		if (n == numberOfTeams) { cout << "\n"; }
 	}
     
@@ -157,19 +158,28 @@ void Division::displaySchedule() { //This section is commented out, as nessacery
         for (int y = 0; y < numberOfTeams; y++) { //Counts number of colums.
             //row.push_back(tempRes); //Add an element (column) to the row.
 			//tempRes = new Result;
-			row.push_back(y);
-			cout << "k" << y+1 << "\t";
+			//row.push_back(y);
+			
+            //cout << "k" << y+1 << "\t";
+
+            //results[tempRes].displayDate();
+            //results.displayDate();
+            //Result::displayDate();
+            //tempRes->displayDate();
+            
+            results[x][y]->displayDate();
+            cout << "\t";
         }
         
-        results.push_back(row); //Add the row to the main vector.
+        //results.push_back(row); //Add the row to the main vector.
 		cout << endl;
     }
     
 	cout << endl << endl << endl;
-*/
+
     for (int i = 0; i < results.size(); i++) { //Displays the rows
         for (int j = 0; j < results.size(); j++) { //Displays the columns.
-            cout << results[i][j] << " ";
+            cout << results[i][j] << "\t";
         }
         cout << endl;
     }
@@ -187,9 +197,10 @@ void Division::readSchedule(ifstream &inn) {
     vector<Result*> row; //Create an empty row.
     
     for (int x = 0; x < numberOfTeams; x++) { //Counts number of rows.
-        inn >> tempDate;
+        //inn >> tempDate;
         
         for (int y = 0; y < numberOfTeams; y++) { //Counts number of colums.
+            inn >> tempDate;
             row.push_back(tempRes); //Add an element (column) to the row.
             tempRes = new Result(tempDate);
         }
