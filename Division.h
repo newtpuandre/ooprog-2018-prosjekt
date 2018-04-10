@@ -17,8 +17,8 @@ private:
 	int numberOfTeams = 0;	//Number of teams in a division
 	Team* team[MAXTEAM];	//Array with Teams
 	//Result** results;		//Matrix with results
-	//vector< vector<Result*> > results; //Two-dimensional vector with results.
-	vector< vector<int> > results;
+	vector< vector<Result*> > results; //Two-dimensional vector with results.
+	//vector< vector<int> > results;
     //vector<Result*> row; //For testing purposes only (!!)
 public:
 	//Function declarations need to be here

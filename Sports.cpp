@@ -172,7 +172,18 @@ void Sports::schedule() {
 }
 
 void Sports::writeTable() {
+	char temp[STRLEN];
+	Sport* tempSport;
 
+	read("Name of the sport", temp, STRLEN);
+	if (sportList->inList(temp)) {
+		tempSport = (Sport*) sportList->remove(temp);
+		tempSport->writeTable();
+		sportList->add(tempSport);
+	}
+	else {
+		cout << "\nNo sport with name " << temp << " found.";
+	}
 	/*Pseudo code
 	ask for sport name
 	if inlist{

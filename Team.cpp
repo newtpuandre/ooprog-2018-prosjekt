@@ -87,9 +87,6 @@ void Team::readFromFile(ifstream &inn) {
 		}
 	}
 
-	/*Division* tempDiv;
-	tempDiv->readSchedule(inn);*/
-
 }
 
 void Team::edit() {
