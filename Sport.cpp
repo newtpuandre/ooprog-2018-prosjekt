@@ -180,7 +180,6 @@ void Sport::writeTable() {
 		read("Print to file or screen? (empty string = screen)", fileTemp);
 
 		if (strlen(fileTemp) == 0) { //Print to screen
-
 			if (divisionList->inList(divTemp)) {//Is inList
 				tempDiv = (Division*)divisionList->remove(divTemp);
 				tempDiv->writeTable(table);

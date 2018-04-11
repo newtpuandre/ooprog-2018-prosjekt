@@ -223,6 +223,8 @@ void Division::writeTable(tableType table) {
 
 		}
 	}
+
+	cout << "\nCaclulations are done!";
 }
 
 void Division::writeTable(ifstream &inn) {
@@ -237,10 +239,10 @@ int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type a
 			return 2;
 		}
 		else if (wlt == 2) {
-			return 1;
+			return 0;
 		}
 		else if (wlt == 3) {
-			return 0;
+			return 1;
 		}
 		break;
 
@@ -249,10 +251,10 @@ int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type a
 			return 3;
 		}
 		else if (wlt == 2) {
-			return 1;
+			return 0;
 		}
 		else if (wlt == 3) {
-			return 0;
+			return 1;
 		}
 		break;
 
@@ -261,10 +263,10 @@ int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type a
 			return 3;
 		}
 		else if (wlt == 2) {
-			return 2;
+			return 0;
 		}
 		else if (wlt == 3) {
-			return 0;
+			return 2;
 		}
 		else { //wlt == 4
 			return 1;
