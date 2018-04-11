@@ -37,18 +37,19 @@ void Result::readFromFile() {
 }
 
 void Result::displayResults() {
-	
-
+	cout << "\nthe results are"
+		<< "\n" << homeGoals << " - " << awayGoals;
 }
 
 bool Result::cmpDate(char ddmm[]) {
 	if (strcmp(date, ddmm) == 0) {
 		return true;
 	}
-	else
+	else {
 		return false;
-	//return (date == ddmm);
+	}
 }
+
 void Result::displayDate() {
     cout << date;
 }

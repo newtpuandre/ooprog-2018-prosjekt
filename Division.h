@@ -37,7 +37,9 @@ public:
     void readFromFile(ifstream &inn); //Make and read from desired file.
     void editPlayer();
 	void remove(); //Remove a desired division.
-	void displayResults();
+	void matches(); //Display results or write results to file.
+	void displayMatches(); //Displays matches by given date.
+	void writeMatches(); //Write results to file. 
     void schedule(); //Display schedule or write schedule to file.
     void displaySchedule(); //Display schedule.
     void writeSchedule(); //Write schedule to file.

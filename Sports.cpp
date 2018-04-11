@@ -145,13 +145,13 @@ void Sports::removeDiv() {
 	}
 }
 
-void Sports::displayResults() {
+void Sports::matches() {
 	char sport[STRLEN];
 	Sport* tempSport;
 
 	read("What is the name of the sport", sport, STRLEN);
 	tempSport = (Sport*)sportList->remove(sport);
-	tempSport->displayResults();
+	tempSport->matches();
 	sportList->add(tempSport);
 }
 
