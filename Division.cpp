@@ -296,6 +296,19 @@ void Division::writeTable(tableType table,bool file,ofstream &out) {
 					teamTableArr[j].totalScore = TabletypeCalc(table, 3);
 				}
 
+				if (results[i][j]->returnScore() == 4) { //Overtime home win
+					teamTableArr[i].totalScore = TabletypeCalc(table, 3);
+				}
+
+				if (results[i][j]->returnScore() == 5) { //Overtime away win
+					teamTableArr[j].totalScore = TabletypeCalc(table, 3);
+				}
+
+				if (results[i][j]->returnScore() == 6) { //Overtime tie
+					teamTableArr[i].totalScore = TabletypeCalc(table, 4);
+					teamTableArr[j].totalScore = TabletypeCalc(table, 4);
+				}
+
 				//if overtime add special points
 				
 			}
