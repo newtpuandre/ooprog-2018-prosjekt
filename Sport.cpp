@@ -199,7 +199,7 @@ void Sport::writeTable() {
 			for (int i = 0; i < divisionList->noOfElements(); i++) {
 				cout << "HUMBUG";
 				tempDiv = (Division*)divisionList->removeNo(i + 1);
-				tempDiv->writeTable(table, fileTemp, out);
+				tempDiv->writeTable(table, true, out);
 				divisionList->add(tempDiv);
 			}
 
