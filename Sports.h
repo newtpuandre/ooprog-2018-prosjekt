@@ -20,7 +20,7 @@ public:
     void editPlayer();
 	void remove(); //Remove a desired sport.
 	void removeDiv(); //Remove a desired division.
-	void displayResults(); //.fdafd
+	void matches(); //Display results or write results to file.
     void schedule(); //Display schedule or write schedule to file.
 	void writeTable(); //Write the result table to file or screen.
 };

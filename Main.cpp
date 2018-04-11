@@ -29,7 +29,7 @@ int main() {
             case 'N': New();				break;
             case 'F': remove();             break;
             case 'L': sports.schedule();    break;
-			case 'K': sports.displayResults(); break;
+			case 'K': sports.matches();		break;
 			case 'C': /*Voluntary task*/ break;
             case 'T': sports.writeTable();      break;
             case 'R':/* if (sports.results(false))

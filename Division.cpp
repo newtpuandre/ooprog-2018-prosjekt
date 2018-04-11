@@ -103,23 +103,41 @@ void Division::remove() {
 
 }
 
-void Division::displayResults() {
+void Division::matches() {
+	char fileName[STRLEN];
+	cout << "Filename (including file extension): ";
+	cin.getline(fileName, STRLEN);
+
+	if (fileName[0] == '\0') {
+		displayMatches();
+	}
+	else {
+		writeMatches();
+	}
+}
+
+void Division::displayMatches() {
 	char date[DATELEN];
-	
+	Result* tempRes;
+
 	read("What date", date, DATELEN);
 
-	/*for (int x = 0; i < ?; i++ ) {
-		for (int y = 0; i < ?; y ++) {
-			gå inn i en forloop som leter igjennom alle cellene i terminlista.
-			Finnes da en dato med samme dato som er sendt inn så skal funksjonen gå inn i resultklassen og displaye data.
-
-				if (*terminListe[i] == date){
-				terminListe[i]->displayResults();
+	for (int x = 0; x < numberOfTeams; x++) {
+		for (int y = 0; y < numberOfTeams; y++) {
+			tempRes = results[x][y]; //Oppdaterer terminlista sånn at tempRes vet hvor i lista man er. 
+			if (tempRes != nullptr) {
+				if (tempRes->cmpDate(date)) { //Comparing dates.
+					team[y]->displayName(); cout << " - "; team[x]->displayName();
+					//	if (Teams already got results) {
+					//tempRes->displayResults();
 				}
 			}
+		}
+	}
+}
 
-ni
-	}*/
+void Division::writeMatches() {
+	cout << "text";
 }
 
 void Division::schedule() {
