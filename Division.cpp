@@ -6,6 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <array>
+#include <algorithm>
 
 #include "Division.h"
 #include "Functions.h"
@@ -184,7 +185,7 @@ void Division::readSchedule(ifstream &inn) {
 		
 		vector<Result*> row; //CreatSe an empty row.
         
-        for (int y = 0; y < numberOfTeams; y++) { //Counts number of colums.
+        for (int y = 0; y < numberOfTeams; y++) { //Counts number of colums. 
             inn >> tempDate; //Reads the date from file.
 			tempRes = new Result(tempDate); //Creates new result with given date.
             row.push_back(tempRes); //Add an element (column) to the row.
@@ -195,11 +196,15 @@ void Division::readSchedule(ifstream &inn) {
     }
     
 }
-void Division::writeTable(tableType table) {
+void Division::writeTable(tableType table,char* file) {
 	//Need to remember each teams points
 	//Print the table to screen.
-	int* teamTable;
-	teamTable = new int[numberOfTeams]; //[Index] is the same as they appear in the matrix. 1 is team 1. etc..
+	teamTable* teamTableArr;
+	teamTableArr = new teamTable[numberOfTeams];
+
+	for (int i = 0; i < numberOfTeams; i++) { //Populate the structs with teamName.
+		team[i]->returnName(teamTableArr[i].teamName);
+	}
 
 	
 	for (int i = 0; i < numberOfTeams; i++) { //Double for loop to go through the matrix
@@ -207,29 +212,54 @@ void Division::writeTable(tableType table) {
 
 			if (i != j) { //Teams cant be playing them selves..
 				if (results[i][j]->returnScore() == 0) { //Home won
-					teamTable[i] = TabletypeCalc(table, 1);
+					teamTableArr[i].totalScore = TabletypeCalc(table, 1);
 				}
 				if (results[i][j]->returnScore() == 1) { //Away won
-					teamTable[j] = TabletypeCalc(table, 1);
+					teamTableArr[j].totalScore = TabletypeCalc(table, 1);
 				}
 				if (results[i][j]->returnScore() == 2) { //Tie
-					teamTable[i] = TabletypeCalc(table, 3);
-					teamTable[j] = TabletypeCalc(table, 3);
+					teamTableArr[i].totalScore = TabletypeCalc(table, 3);
+					teamTableArr[j].totalScore = TabletypeCalc(table, 3);
 				}
 
 				//if overtime add special points
-
+				
 			}
 
+		}
+	}
+
+	std::sort(&teamTableArr[0], &teamTableArr[numberOfTeams], //Sort by totalScore in descending order.
+		[](teamTable left, teamTable right) {
+		return left.totalScore > right.totalScore; // > = descending, < = ascending
+	});
+	
+	if (strlen(file) == 0) { //Print to screen
+		cout << "\nCurrent table standings for " << text << ":";
+		for (int i = 0; i < numberOfTeams; i++) { //Print out to the screen
+			cout << "\n" << teamTableArr[i].teamName << " " << teamTableArr[i].totalScore;
+		}
+	}
+	else { //Write to file
+		char filename[STRLEN];
+		strcpy(filename, file);
+		strcat(file, ".DTA");
+		ofstream out(filename);
+		
+		out << text << endl;
+		for (int i = 0; i < numberOfTeams; i++) { //Write ever team to file
+			writeTable(teamTableArr[i], out);
 		}
 	}
 
 	cout << "\nCaclulations are done!";
 }
 
-void Division::writeTable(ifstream &inn) {
-
+void Division::writeTable(teamTable teamtable, ofstream &out) {
+		out << teamtable.teamName << " " << teamtable.totalScore << endl;
 }
+
+
 
 int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type and returns the correct scoring, wlt, 1 win, 2 loss, 3 tie, 4 overtime
 	switch (table) {

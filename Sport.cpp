@@ -169,10 +169,22 @@ void Sport::writeTable() {
 		read("Print to file or screen? (empty string = screen)", fileTemp);
 
 		if (strlen(fileTemp) == 0) { //Print to screen
-
+			cout << "yes";
+			for (int i = 1; i > divisionList->noOfElements(); i++) {
+				cout << i;
+				tempDiv = (Division*)divisionList->removeNo(i);
+				tempDiv->writeTable(table, fileTemp);
+				divisionList->add(tempDiv);
+			}
 		}
 		else { //Print to file
-
+			cout << "no";
+			for (int i = 1; i > divisionList->noOfElements(); i++) {
+				cout << i;
+				tempDiv = (Division*)divisionList->removeNo(i);
+				tempDiv->writeTable(table, fileTemp);
+				divisionList->add(tempDiv);
+			}
 		}
 
 	}
@@ -182,7 +194,7 @@ void Sport::writeTable() {
 		if (strlen(fileTemp) == 0) { //Print to screen
 			if (divisionList->inList(divTemp)) {//Is inList
 				tempDiv = (Division*)divisionList->remove(divTemp);
-				tempDiv->writeTable(table);
+				tempDiv->writeTable(table,fileTemp);
 				divisionList->add(tempDiv);
 			}
 			else { //Was not found in the list
@@ -191,7 +203,14 @@ void Sport::writeTable() {
 
 		}
 		else { //Print to file
-
+			if (divisionList->inList(divTemp)) {//Is inList
+				tempDiv = (Division*)divisionList->remove(divTemp);
+				tempDiv->writeTable(table,fileTemp);
+				divisionList->add(tempDiv);
+			}
+			else { //Was not found in the list
+				cout << "\nNo division with name " << divTemp << " was found.";
+			}
 		}
 
 

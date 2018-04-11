@@ -137,3 +137,7 @@ void Team::edit() {
 void Team::displayName() {
 	cout << name;
 }
+
+void Team::returnName(char* pointName) {
+	strcpy(pointName, name);
+}

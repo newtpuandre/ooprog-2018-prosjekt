@@ -9,6 +9,12 @@
 #include "Team.h"
 #include "Result.h"
 
+using namespace std;
+
+struct teamTable { //Used when calculating the team standings
+	char teamName[STRLEN];
+	int totalScore = 0;
+};
 
 class Division : public TextElement {
 
@@ -36,9 +42,9 @@ public:
     void displaySchedule(); //Display schedule.
     void writeSchedule(); //Write schedule to file.
 	void readSchedule(ifstream &inn); //Read schedule from NY_DIV.DTA
-	void writeTable(tableType table); //Writes a table with the current standings for this division
-	void writeTable(ifstream &inn); //Writes a table to file with the current standings for this division
+	void writeTable(tableType table,char* file); //Writes a table with the current standings for this division
+	void writeTable(teamTable teamtable, ofstream &out); //Writes a table to file with the current standings for this division
 	int TabletypeCalc(tableType table, int wlt);  //Finds the table type and returns the correct scoring
-
 };
+
 #endif
