@@ -10,8 +10,8 @@ private:
 
 public:
 	//Function declarations need to be here
-	Sports(); //Paramless constructor
-	~Sports(); //Destructor
+	Sports(); //Paramless constructor.
+	~Sports(); //Destructor.
     void New(); //Reads parameters for new sport object.
     void newDiv(); //Asks what sport the new div will be created under.
 	void modify(char ch);
@@ -23,6 +23,7 @@ public:
 	void matches(); //Display results or write results to file.
     void schedule(); //Display schedule or write schedule to file.
 	void writeTable(); //Write the result table to file or screen.
+    bool results(bool apply); //Read results from file.
 };
 
 #endif
