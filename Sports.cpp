@@ -46,7 +46,10 @@ void Sports::newDiv() {
         tempSport = (Sport*)sportList->remove(sportName);
         tempSport->newDiv();
         sportList->add(tempSport);
-    }
+	}
+	else {
+		cout << "\n" << sportName << " is not a valid sport.";
+	}
 }
 
 void Sports::modify(char ch) {
