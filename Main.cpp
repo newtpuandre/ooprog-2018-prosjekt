@@ -41,7 +41,7 @@ int main() {
 		cout << "\nCommand:  ";
         ch = read();
     }
-    // players.writeToFile();
+    players.writeToFile();
     // sports.writeToFile();
 	
     cout << "\n\n";

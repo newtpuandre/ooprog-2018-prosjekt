@@ -10,7 +10,8 @@ private:
 	char date[DATELEN]; //Match date
 	int homeGoals = 0;  //Home team goals
 	int awayGoals = 0;	//Away team goals
-	bool overtime = false;
+	bool overtime = false; //Did the match enter overtime?
+	bool matchPlayed = false; //Is the match played?
 	int homeScorers[MAXGOALS]; //Home team scorers Player ID
 	int awayScorers[MAXGOALS]; //Away team scorers Player ID
 

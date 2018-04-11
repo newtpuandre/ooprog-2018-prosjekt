@@ -19,6 +19,7 @@ public:
 	void readFromFile();
 	void displayId(int playerId);
 	int returnLastId();
+	void writeToFile(); //Write players to PLAYERS.DTA File
 };
 
 #endif

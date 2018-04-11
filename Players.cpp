@@ -131,3 +131,15 @@ void Players::addToList(Element *Element) {
 void Players::displayId(int playerId) {
 	playerList->displayElement(playerId);
 }
+
+void Players::writeToFile() {
+	ofstream out("PLAYERS.DTA");
+	Player* tempPlayer;
+	out << playerList->noOfElements();
+
+	for (int i = 1; i <= playerList->noOfElements(); i++) {
+		tempPlayer = (Player*)playerList->removeNo(i);
+		tempPlayer->writeToFile(out);
+		playerList->add(tempPlayer);
+	}
+}

@@ -23,6 +23,7 @@ public:
 	~Player(); //Destructor
 	void display();	//Displays data for player object.;
     bool operator == (char* objName);
+	void writeToFile(ofstream &out);
 };
 
 #endif
