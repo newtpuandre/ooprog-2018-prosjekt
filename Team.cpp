@@ -10,7 +10,6 @@
 #include "Player.h"
 #include "Division.h"
 
-
 Team::Team() {
 	//Paramless constructor
 };
@@ -139,4 +138,8 @@ void Team::edit() {
 
 void Team::displayName() {
 	cout << name;
+}
+
+void Team::displayName(ofstream &out) {
+	out << name;
 }

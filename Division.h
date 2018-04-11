@@ -33,7 +33,7 @@ public:
 	void remove(); //Remove a desired division.
 	void matches(); //Display results or write results to file.
 	void displayMatches(); //Displays matches by given date.
-	void writeMatches(); //Write results to file. 
+	void writeMatches(char fileName[]); //Write results to file. 
     void schedule(); //Display schedule or write schedule to file.
     void displaySchedule(); //Display schedule.
     void writeSchedule(); //Write schedule to file.

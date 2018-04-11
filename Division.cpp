@@ -111,11 +111,11 @@ void Division::matches() {
 	cout << "Filename (including file extension): ";
 	cin.getline(fileName, STRLEN);
 
-	if (fileName[0] == '\0') {
-		displayMatches();
+	if (fileName[0] == '\0') { //If no input is given
+		displayMatches();      // display data to screen. 
 	}
 	else {
-		writeMatches();
+		writeMatches(fileName); //Else write to given filename. 
 	}
 }
 
@@ -125,22 +125,49 @@ void Division::displayMatches() {
 
 	read("What date", date, DATELEN);
 
-	for (int x = 0; x < numberOfTeams; x++) {
-		for (int y = 0; y < numberOfTeams; y++) {
+	for (int x = 0; x < numberOfTeams; x++) { //Loops through the x-column in the matrix
+		for (int y = 0; y < numberOfTeams; y++) { //Loops through the y-column in the matrix
 			tempRes = results[x][y]; //Oppdaterer terminlista sånn at tempRes vet hvor i lista man er. 
 			if (tempRes != nullptr) {
 				if (tempRes->cmpDate(date)) { //Comparing dates.
-					team[y]->displayName(); cout << " - "; team[x]->displayName();
+					team[y]->displayName(); cout << " - "; team[x]->displayName(); //Displaying team vs. team at given date.
+					cout << '\n';
 					//	if (Teams already got results) {
 					//tempRes->displayResults();
+				}
 				}
 			}
 		}
 	}
 }
 
-void Division::writeMatches() {
-	cout << "text";
+void Division::writeMatches(char fileName[]) {
+	char date[DATELEN];
+	Result* tempRes;
+
+	read("What date", date, DATELEN);
+
+	ofstream out(fileName);
+	if (out) {                                    //If the file exists.
+		for (int x = 0; x < numberOfTeams; x++) { //Loops through the x-column in the matrix
+			for (int y = 0; y < numberOfTeams; y++) { //Loops through the y-column in the matrix
+				tempRes = results[x][y]; //Oppdaterer terminlista sånn at tempRes vet hvor i lista man er. 
+				if (tempRes != nullptr) { //Checks if tempRes points at anything or not. 
+					if (tempRes->cmpDate(date)) { //Comparing dates.
+						team[y]->displayName(out); out << " - "; team[x]->displayName(out); //Displaying team vs. team at given date.
+						cout << '\n';
+						//	if (Teams already got results) {
+						//tempRes->displayResults();
+						//	}
+
+					}
+				}
+			}
+		}
+	}
+	else {
+		cout << "The file " << fileName << " does not exist.";
+	}
 }
 
 void Division::schedule() {

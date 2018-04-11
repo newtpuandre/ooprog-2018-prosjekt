@@ -148,11 +148,16 @@ void Sports::removeDiv() {
 void Sports::matches() {
 	char sport[STRLEN];
 	Sport* tempSport;
-
 	read("What is the name of the sport", sport, STRLEN);
-	tempSport = (Sport*)sportList->remove(sport);
-	tempSport->matches();
-	sportList->add(tempSport);
+
+	if (sportList->inList(sport)) {
+		tempSport = (Sport*)sportList->remove(sport);
+		tempSport->matches();
+		sportList->add(tempSport);
+	}
+	else {
+		cout << "\nThe sport " << sport << " does not exist!";
+	}
 }
 
 void Sports::schedule() {
