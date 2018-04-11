@@ -214,7 +214,7 @@ void Division::readSchedule(ifstream &inn) {
     }
     
 }
-void Division::writeTable(tableType table,char* file) {
+void Division::writeTable(tableType table,bool file,ofstream &out) {
 	//Need to remember each teams points
 	//Print the table to screen.
 	teamTable* teamTableArr;
@@ -252,20 +252,16 @@ void Division::writeTable(tableType table,char* file) {
 		return left.totalScore > right.totalScore; // > = descending, < = ascending
 	});
 	
-	if (strlen(file) == 0) { //Print to screen
+	if (file == false) { //Print to screen
 		cout << "\nCurrent table standings for " << text << ":";
 		for (int i = 0; i < numberOfTeams; i++) { //Print out to the screen
 			cout << "\n" << teamTableArr[i].teamName << " " << teamTableArr[i].totalScore;
 		}
 	}
 	else { //Write to file
-		char filename[STRLEN];
-		strcpy(filename, file);
-		strcat(file, ".DTA");
-		ofstream out(filename);
 		
 		out << text << endl;
-		for (int i = 0; i < numberOfTeams; i++) { //Write ever team to file
+		for (int i = 0; i < numberOfTeams; i++) { //Write everY team to file
 			writeTable(teamTableArr[i], out);
 		}
 	}

@@ -167,24 +167,25 @@ void Sport::writeTable() {
 	if (strlen(divTemp) == 0) { //Empty string, calculate for the whole sport
 
 		read("Print to file or screen? (empty string = screen)", fileTemp);
-
 		if (strlen(fileTemp) == 0) { //Print to screen
-			cout << "yes";
-			for (int i = 1; i > divisionList->noOfElements(); i++) {
-				cout << i;
-				tempDiv = (Division*)divisionList->removeNo(i);
-				tempDiv->writeTable(table, fileTemp);
+			ofstream out(fileTemp);
+			for (int i = 0; i < divisionList->noOfElements(); i++) {
+				cout << "humbug";
+				tempDiv = (Division*)divisionList->removeNo(i + 1);
+				tempDiv->writeTable(table, false, out);
 				divisionList->add(tempDiv);
 			}
+
 		}
-		else { //Print to file
-			cout << "no";
-			for (int i = 1; i > divisionList->noOfElements(); i++) {
-				cout << i;
-				tempDiv = (Division*)divisionList->removeNo(i);
-				tempDiv->writeTable(table, fileTemp);
+		else { //Print to file			
+			ofstream out(fileTemp);
+			for (int i = 0; i < divisionList->noOfElements(); i++) {
+				cout << "HUMBUG";
+				tempDiv = (Division*)divisionList->removeNo(i + 1);
+				tempDiv->writeTable(table, fileTemp, out);
 				divisionList->add(tempDiv);
 			}
+
 		}
 
 	}
@@ -192,9 +193,10 @@ void Sport::writeTable() {
 		read("Print to file or screen? (empty string = screen)", fileTemp);
 
 		if (strlen(fileTemp) == 0) { //Print to screen
+			ofstream out(fileTemp);
 			if (divisionList->inList(divTemp)) {//Is inList
 				tempDiv = (Division*)divisionList->remove(divTemp);
-				tempDiv->writeTable(table,fileTemp);
+				tempDiv->writeTable(table, false, out);
 				divisionList->add(tempDiv);
 			}
 			else { //Was not found in the list
@@ -203,9 +205,10 @@ void Sport::writeTable() {
 
 		}
 		else { //Print to file
+			ofstream out(fileTemp);
 			if (divisionList->inList(divTemp)) {//Is inList
 				tempDiv = (Division*)divisionList->remove(divTemp);
-				tempDiv->writeTable(table,fileTemp);
+				tempDiv->writeTable(table, true ,out);
 				divisionList->add(tempDiv);
 			}
 			else { //Was not found in the list
