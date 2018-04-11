@@ -29,6 +29,7 @@ public:
 	void edit();
 	void displayName();
     void displayName(ofstream &out);
+	void returnName(char* pointName);
 };
 
 #endif

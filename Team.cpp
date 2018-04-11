@@ -88,6 +88,9 @@ void Team::readFromFile(ifstream &inn) {
 		}
 	}
 
+	/*Division* tempDiv;
+	tempDiv->readSchedule(inn);*/
+
 }
 
 void Team::edit() {
@@ -141,4 +144,8 @@ void Team::displayName() {
 
 void Team::displayName(ofstream &out) {
     out << name;
+}
+
+void Team::returnName(char* pointName) {
+	strcpy(pointName, name);
 }

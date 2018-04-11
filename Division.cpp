@@ -7,6 +7,7 @@
 #include <vector>
 #include <array>
 #include <iomanip>
+#include <algorithm>
 
 #include "Division.h"
 #include "Functions.h"
@@ -107,23 +108,41 @@ void Division::remove() {
 
 }
 
-void Division::displayResults() {
+void Division::matches() {
+	char fileName[STRLEN];
+	cout << "Filename (including file extension): ";
+	cin.getline(fileName, STRLEN);
+
+	if (fileName[0] == '\0') {
+		displayMatches();
+	}
+	else {
+		writeMatches();
+	}
+}
+
+void Division::displayMatches() {
 	char date[DATELEN];
-	
+	Result* tempRes;
+
 	read("What date", date, DATELEN);
 
-	/*for (int x = 0; i < ?; i++ ) {
-		for (int y = 0; i < ?; y ++) {
-			gå inn i en forloop som leter igjennom alle cellene i terminlista.
-			Finnes da en dato med samme dato som er sendt inn så skal funksjonen gå inn i resultklassen og displaye data.
-
-				if (*terminListe[i] == date){
-				terminListe[i]->displayResults();
+	for (int x = 0; x < numberOfTeams; x++) {
+		for (int y = 0; y < numberOfTeams; y++) {
+			tempRes = results[x][y]; //Oppdaterer terminlista sånn at tempRes vet hvor i lista man er. 
+			if (tempRes != nullptr) {
+				if (tempRes->cmpDate(date)) { //Comparing dates.
+					team[y]->displayName(); cout << " - "; team[x]->displayName();
+					//	if (Teams already got results) {
+					//tempRes->displayResults();
 				}
 			}
+		}
+	}
+}
 
-ni
-	}*/
+void Division::writeMatches() {
+	cout << "text";
 }
 
 void Division::schedule() {
@@ -225,11 +244,15 @@ void Division::readSchedule(ifstream &inn) {
     
 }
 
-void Division::writeTable(tableType table) {
+void Division::writeTable(tableType table,bool file,ofstream &out) {
 	//Need to remember each teams points
 	//Print the table to screen.
-	int* teamTable;
-	teamTable = new int[numberOfTeams]; //[Index] is the same as they appear in the matrix. 1 is team 1. etc..
+	teamTable* teamTableArr;
+	teamTableArr = new teamTable[numberOfTeams];
+
+	for (int i = 0; i < numberOfTeams; i++) { //Populate the structs with teamName.
+		team[i]->returnName(teamTableArr[i].teamName);
+	}
 
 	
 	for (int i = 0; i < numberOfTeams; i++) { //Double for loop to go through the matrix
@@ -237,29 +260,50 @@ void Division::writeTable(tableType table) {
 
 			if (i != j) { //Teams cant be playing them selves..
 				if (results[i][j]->returnScore() == 0) { //Home won
-					teamTable[i] = TabletypeCalc(table, 1);
+					teamTableArr[i].totalScore = TabletypeCalc(table, 1);
 				}
 				if (results[i][j]->returnScore() == 1) { //Away won
-					teamTable[j] = TabletypeCalc(table, 1);
+					teamTableArr[j].totalScore = TabletypeCalc(table, 1);
 				}
 				if (results[i][j]->returnScore() == 2) { //Tie
-					teamTable[i] = TabletypeCalc(table, 3);
-					teamTable[j] = TabletypeCalc(table, 3);
+					teamTableArr[i].totalScore = TabletypeCalc(table, 3);
+					teamTableArr[j].totalScore = TabletypeCalc(table, 3);
 				}
 
 				//if overtime add special points
-
+				
 			}
 
+		}
+	}
+
+	std::sort(&teamTableArr[0], &teamTableArr[numberOfTeams], //Sort by totalScore in descending order.
+		[](teamTable left, teamTable right) {
+		return left.totalScore > right.totalScore; // > = descending, < = ascending
+	});
+	
+	if (file == false) { //Print to screen
+		cout << "\nCurrent table standings for " << text << ":";
+		for (int i = 0; i < numberOfTeams; i++) { //Print out to the screen
+			cout << "\n" << teamTableArr[i].teamName << " " << teamTableArr[i].totalScore;
+		}
+	}
+	else { //Write to file
+		
+		out << text << endl;
+		for (int i = 0; i < numberOfTeams; i++) { //Write everY team to file
+			writeTable(teamTableArr[i], out);
 		}
 	}
 
 	cout << "\nCaclulations are done!";
 }
 
-void Division::writeTable(ifstream &inn) {
-
+void Division::writeTable(teamTable teamtable, ofstream &out) {
+		out << teamtable.teamName << " " << teamtable.totalScore << endl;
 }
+
+
 
 int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type and returns the correct scoring, wlt, 1 win, 2 loss, 3 tie, 4 overtime
 	switch (table) {

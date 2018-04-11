@@ -23,7 +23,7 @@ public:
 	void displayTeam(); //Displays team in a specific sport and division
     void editPlayer(); //Add or remove a player.
 	void removeDiv(); //Remove a desired division.
-	void displayResults();
+	void matches(); //Display results or write results to file.
     void schedule(); //Display schedule or write the schedule to file.
 	void writeTable(); //Write the result table to file or screen.
 };
