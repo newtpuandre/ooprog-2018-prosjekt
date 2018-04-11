@@ -75,6 +75,7 @@ char Result::convertDate(char d[DATELEN]) { //Hacky code.. View just given cells
 	}
 
 	return shortDate;*/
+	return 0; //MUST RETURN SOMETHING FIXES COMPILE ERROR
 }
 
 int Result::returnScore() { //Returns 0 if home won, 1 if away won, 2 if tie, 3 if not played
