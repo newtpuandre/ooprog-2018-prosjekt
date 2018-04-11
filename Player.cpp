@@ -61,3 +61,7 @@ bool Player::operator == (char* objName) {
         return false;
     }
 }
+
+void Player::writeToFile(ofstream &out) {
+	out << "\n" << number << "\n" << name << "\n" << address;
+}
