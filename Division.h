@@ -38,6 +38,9 @@ public:
     void displaySchedule(); //Display schedule.
     void writeSchedule(); //Write schedule to file.
 	void readSchedule(ifstream &inn); //Read schedule from NY_DIV.DTA
-};
+	void writeTable(tableType table); //Writes a table with the current standings for this division
+	void writeTable(ifstream &inn); //Writes a table to file with the current standings for this division
+	int TabletypeCalc(tableType table, int wlt);  //Finds the table type and returns the correct scoring
 
+};
 #endif
