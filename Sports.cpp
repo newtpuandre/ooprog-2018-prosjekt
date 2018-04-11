@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cctype>
+#include <fstream>
 
 #include "Sports.h"
 #include "Sport.h"
@@ -192,21 +193,43 @@ void Sports::writeTable() {
 	else {
 		cout << "\nNo sport with name " << temp << " found.";
 	}
-	/*Pseudo code
-	ask for sport name
-	if inlist{
-	remove from list.
-	Ask for div name, if not blank remove division and calculate.
-	else
-	calculate for whole sport
+}
 
-	}
-	ask for file name, if blank write to screen
-	else
-	write to file.
-
-	
-	
-	*/
-
+bool Sports::results(bool apply) {
+    /*char fileName[STRLEN] = "RESULTS.DTA";
+    char sportName[STRLEN], divName[STRLEN], date[DATELEN], teamH[STRLEN], teamA[STRLEN];
+    int noOfSports = 0, noOfDiv = 0, noOfMatches = 0, homeGoals = 0, awayGoals = 0;
+    int homeScorers[STRLEN], awayScorers[STRLEN];
+    bool overtime = false;
+    
+    ifstream inn(fileName);
+    
+    if (inn) { //If the program is able to read the file..
+        if (apply) {    //apply = true
+            
+                        //Sjekk om følgende stemmer:
+                        // 1) Lag, divisjon og lag (hjemme og borte) eksisterer
+                        // 2) De to lagene har spilt mot hverandre denne dagen
+                        // 3) Ikke registrert resultat mellom disse to lagene allerede
+            
+            //sports.checkInfo();
+        }
+        else {          //apply = false
+            inn >> noOfSports;
+            inn.ignore();
+            inn.getline(sportName, STRLEN);
+            inn >> noOfDiv;
+            
+            
+                        //Les resultatene fra fil
+                        //Ihht filstruktur som har blitt laget
+        }
+    }
+    else {
+        cout << "Couldn't find the file " << fileName << " !!";
+    }
+    
+    return apply;
+     */
+    return 0;
 }
