@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 #include "Team.h"
 #include "Functions.h"
@@ -136,4 +137,8 @@ void Team::edit() {
 
 void Team::displayName() {
 	cout << name;
+}
+
+void Team::displayName(ofstream &out) {
+    out << name;
 }

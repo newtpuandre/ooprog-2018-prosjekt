@@ -53,29 +53,12 @@ void Result::displayDate() {
     cout << date;
 }
 
-char Result::convertDate(char d[DATELEN]) { //Hacky code.. View just given cells instead? Still hacky..
-	/*char shortDate[SHORTDATE];
-	char format[SHORTDATE] = "/";
-	
-	// INPUT:	20181231
-	// OUTPUT:	31/12
+void Result::convertDate() { //Displays 'DD/MM' out of the 'ÅÅÅÅMMDD' date.
+    cout << setw(10) << date[6] << date[7] << "/" << date[4] << date[5];
+}
 
-	for (int i = 7; i >= 6; i--) {		//Cell 7 and 6 from the long date format..
-		for (int j = 0; j <= 1; i++) {	//.. is placed at cell 0 and 1.
-			shortDate[j] = d[i];
-		}
-	}
-
-	shortDate[2] = format[0];			//Adds '/' in cell 2 in shortdate for formatting.
-
-	for (int i = 4; i <= 5; i++) {		//Cell 7 and 6 from the long date format..
-		for (int j = 3; j <= 4; j++) {	//.. is place at cell 3 and 4.
-			shortDate[j] = d[i];
-		}
-	}
-
-	return shortDate;*/
-	return 0; //MUST RETURN SOMETHING FIXES COMPILE ERROR
+void Result::convertDate(ofstream &out) { //Displays 'DD/MM' out of the 'ÅÅÅÅMMDD' date.
+    out << setw(10) << date[6] << date[7] << "/" << date[4] << date[5];
 }
 
 int Result::returnScore() { //Returns 0 if home won, 1 if away won, 2 if tie, 3 if not played

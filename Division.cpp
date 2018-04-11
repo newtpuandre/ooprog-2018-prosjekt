@@ -6,6 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <array>
+#include <iomanip>
 
 #include "Division.h"
 #include "Functions.h"
@@ -134,28 +135,30 @@ void Division::schedule() {
         displaySchedule();		//..display schedule on screen.
     }
     else {
-        writeSchedule();		//Else write to given filename. INSERT 'fileName' AS A PARAMETER!!!
+        writeSchedule(fileName);		//Else write to given filename. INSERT 'fileName' AS A PARAMETER!!!
     }
 }
 
-void Division::displaySchedule() { 
-   
-	cout << "\n\t";					//Aestethic - The following four lines..
-	for (int n = 1; n <= numberOfTeams; n++) {	//.. displays the teams index'.
-		cout << "\t" << n << ":";
+void Division::displaySchedule() {
+    cout << "\n" << setw(5) << "Team:";			//Aestethic - The following four lines..
+	for (int n = 1; n <= numberOfTeams; n++) {	//.. displays the teams index on y-axis.
+		cout << setw(14) << n;
 		if (n == numberOfTeams) { cout << "\n"; }
 	}
     
     for (int x = 0; x < numberOfTeams; x++) { //Counts number of rows.
-		cout << x+1 << ":\t";	//Aestethic - Displays team index number.
+		cout << x+1 << ": ";	//Aestethic - Displays team index number.
 		team[x]->displayName(); //Aestethic - Displays team name.
-		cout << "\t";
         
         for (int y = 0; y < numberOfTeams; y++) { //Counts number of colums.
-		results[x][y]->displayDate();	//Displays dates for each match
-            cout << "\t";
+            if (x != y) {
+                results[x][y]->convertDate();	//Displays dates for each match
+            }
+            else {
+                cout << setw(14) << "--";   //'--' is printed is the matrix when the team ..
+            }                               //.. would play against themselves.
         }
-     
+        
 		cout << endl;
     }
     
@@ -172,8 +175,32 @@ void Division::displaySchedule() {
     }*/
 }
 
-void Division::writeSchedule() {
-    cout << "Test2";
+void Division::writeSchedule(char fileName[STRLEN]) {
+    
+    ofstream out(fileName);
+    
+    out << setw(5) << "Team:";            //Aestethic - The following four lines..
+    for (int n = 1; n <= numberOfTeams; n++) {    //.. displays the teams index on y-axis.
+        out << setw(14) << n;
+        if (n == numberOfTeams) { out << endl; }
+    }
+    
+    for (int x = 0; x < numberOfTeams; x++) { //Counts number of rows.
+        out << x+1 << ": ";    //Aestethic - Displays team index number.
+        team[x]->displayName(out); //Aestethic - Displays team name.
+        
+        for (int y = 0; y < numberOfTeams; y++) { //Counts number of colums.
+            if (x != y) {
+                results[x][y]->convertDate(out);    //Displays dates for each match
+            }
+            else {
+                out << setw(14) << "--";   //'--' is printed is the matrix when the team ..
+            }                               //.. would play against themselves.
+        }
+        
+        out << endl;
+    }
+    
 }
 
 void Division::readSchedule(ifstream &inn) {
@@ -185,8 +212,10 @@ void Division::readSchedule(ifstream &inn) {
 		vector<Result*> row; //CreatSe an empty row.
         
         for (int y = 0; y < numberOfTeams; y++) { //Counts number of colums.
+            if (x != y) {
             inn >> tempDate; //Reads the date from file.
 			tempRes = new Result(tempDate); //Creates new result with given date.
+            }
             row.push_back(tempRes); //Add an element (column) to the row.
         }
         
@@ -195,6 +224,7 @@ void Division::readSchedule(ifstream &inn) {
     }
     
 }
+
 void Division::writeTable(tableType table) {
 	//Need to remember each teams points
 	//Print the table to screen.
@@ -273,6 +303,7 @@ int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type a
 		}
 		break;
 
-	default: return 0; break;
+	default: break;
 	}
+    return 0;
 }

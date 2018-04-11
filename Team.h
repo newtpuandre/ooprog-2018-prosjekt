@@ -28,6 +28,7 @@ public:
     void readFromFile(ifstream &inn);
 	void edit();
 	void displayName();
+    void displayName(ofstream &out);
 };
 
 #endif
