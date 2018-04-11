@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 #include "Team.h"
 #include "Functions.h"
@@ -142,4 +143,8 @@ void Team::displayName() {
 
 void Team::displayName(ofstream &out) {
 	out << name;
+}
+
+void Team::returnName(char* pointName) {
+	strcpy(pointName, name);
 }

@@ -24,7 +24,8 @@ public:
 	bool cmpDate(char ddmm[]); //Checks if the date sent as parameter is the same as its own. 
     void readFromFile(); //Reads schedule from list.
     void displayDate(); //Display the date of the result.
-	char convertDate(char d[DATELEN]); //Convert from ååååmmdd to dd/mm
+	void convertDate(); //Convert from ååååMMDD to DD/MM
+    void convertDate(ofstream &out); //Convert from MMDD to DD/MM
 	int returnScore(); //Returns 0 if home won, 1 if away won, 2 if tie, 3 if not played
 };
 
