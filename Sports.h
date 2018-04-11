@@ -24,6 +24,7 @@ public:
     void schedule(); //Display schedule or write schedule to file.
 	void writeTable(); //Write the result table to file or screen.
     bool results(bool apply); //Read results from file.
+	bool checkInfo(); //Check if file has corrupt data. True = everything ok.
 };
 
 #endif
