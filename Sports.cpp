@@ -196,7 +196,8 @@ void Sports::writeTable() {
 }
 
 bool Sports::results(bool apply) {
-    /*char fileName[STRLEN] = "RESULTS.DTA";
+    /*
+	char fileName[STRLEN] = "RESULTS.DTA";
     char sportName[STRLEN], divName[STRLEN], date[DATELEN], teamH[STRLEN], teamA[STRLEN];
     int noOfSports = 0, noOfDiv = 0, noOfMatches = 0, homeGoals = 0, awayGoals = 0, buffer = 0;
     int homeScorers[STRLEN], awayScorers[STRLEN];
@@ -206,77 +207,76 @@ bool Sports::results(bool apply) {
 
 	inn >> noOfSports;		inn.ignore();	//Read number of sports on file, ignore /n
     
-    if (inn) { //If the program is able to read the file..
-        if (apply == false) {		//apply = false, check file for errors.
+	if (inn) { //If the program is able to read the file..
+		for (int s = 1; s <= noOfSports; s++) {		//Read results of 'noOfSports'-sports
+			inn.getline(sportName, STRLEN);			//Read sportsname
+			inn >> noOfDiv;			inn.ignore();	//Read number of divisions on file, ignore /n
 
-			for (int s = 1; s <= noOfSports; s++) {		//Read results of 'noOfSports'-sports
-				inn.getline(sportName, STRLEN);			//Read sportsname
-				inn >> noOfDiv;			inn.ignore();	//Read number of divisions on file, ignore /n
+			for (int d = 1; d <= noOfDiv; d++) {	//Read results of 'noOfDiv'-divisions within each sport
+				inn.getline(divName, STRLEN);			//Read division name
+				inn >> noOfMatches;		inn.ignore();	//Read number of matches on file, ignore /n
 
-				for (int d = 1; d <= noOfDiv; d++) {	//Read results of 'noOfDiv'-divisions within each sport
-					inn.getline(divName, STRLEN);			//Read division name
-					inn >> noOfMatches;		inn.ignore();	//Read number of matches on file, ignore /n
-				}
-			}
+				for (int m = 1; m <= noOfMatches; m++) {//Read match results for 'noOfMatches'-matches within each divisions
+					inn.getline(date, STRLEN);		//RESULT - date
+					inn.getline(teamH, STRLEN);		//RESULT - HOMETEAM
+					inn.getline(teamA, STRLEN);		//RESULT - AWAYTEAM
+					inn >> overtime;				//RESULT - BOOL OVERTIME
+													// ^ABOVE^ 1 = true. 0 = false.
 
-                        //Sjekk om følgende stemmer:
-                        // 1) Sport, divisjon og lag (hjemme og borte) eksisterer
-                        // 2) De to lagene har spilt mot hverandre denne dagen
-                        // 3) Ikke registrert resultat mellom disse to lagene allerede
-            
-         apply = sports.checkInfo(); //return true = everything ok.
-			//apply = true;
-        }
-        else {						//apply = true ... read from file
-            
-			for (int s = 1; s <= noOfSports; s++) {		//Read results of 'noOfSports'-sports
-				inn.getline(sportName, STRLEN);			//Read sportsname
-				inn >> noOfDiv;			inn.ignore();	//Read number of divisions on file, ignore /n
-				
-				for (int d = 1; d <= noOfDiv; d++) {	//Read results of 'noOfDiv'-divisions within each sport
-					inn.getline(divName, STRLEN);			//Read division name
-					inn >> noOfMatches;		inn.ignore();	//Read number of matches on file, ignore /n
-
-					for (int m = 1; m <= noOfMatches; m++) {//Read match results for 'noOfMatches'-matches within each divisions
-						inn.getline(date, STRLEN);		//RESULT - date
-						inn.getline(teamH, STRLEN);		//RESULT - HOMETEAM
-						inn.getline(teamA, STRLEN);		//RESULT - AWAYTEAM
-						inn >> overtime;				//RESULT - BOOL OVERTIME
-														// ^ABOVE^ 1 = true. 0 = false.
-
-						for (int h = 0; h <= homeGoals; h++) {	//Read home scorers
-							inn >> buffer;				//HOME SCORERS - player ID
-							homeScorers[h] = buffer;	//HOME SCORERS - place player ID into tray 'j'
-						}
-
-						for (int a = 0; a <= awayGoals; a++) {	//Read away scorers
-							inn >> buffer;				//AWAY SCORERS - player ID
-							awayScorers[a] = buffer;	//AWAY SCORERS - place player ID into tray 'k'
-						}
-						//LAG NYE RESULTATER??
+					for (int h = 0; h <= homeGoals; h++) {	//Read home scorers
+						inn >> buffer;				//HOME SCORERS - player ID
+						homeScorers[h] = buffer;	//HOME SCORERS - place player ID into tray 'j'
 					}
+
+					for (int a = 0; a <= awayGoals; a++) {	//Read away scorers
+						inn >> buffer;				//AWAY SCORERS - player ID
+						awayScorers[a] = buffer;	//AWAY SCORERS - place player ID into tray 'k'
+					}
+					//LAG NYE RESULTATER??
 				}
 			}
-        }
+		}
+	}
+	else {
+		cout << "Couldn't find the file " << fileName << " !!";
+	}
+
+	if (apply == false) {		//apply = false, check file for errors.
+		apply = sports.checkInfo(sportName, divName, teamH, teamA, date); //return true = everything ok.
+		return apply;
+	}
+	else {						//apply = true ... create new results with given info
+		
+		//CREATE NEW RESULTS
+
+		return apply;
     }
-    else {
-        cout << "Couldn't find the file " << fileName << " !!";
-    }
-    
-    return apply; // ???*/
-    return 0;
+    */
+	return 0;
 }
 
-bool Sports::checkInfo() {
-	//Sport* tempSport;		//Create temp sport.
+bool Sports::checkInfo(char s[], char d[], char h[], char a[], char date[]) {
+	/*
+	Sport* tempSport;		//Create temp sport.
+	bool allGood = false;
+	//bool sportExist = false;
 
+	if (sportList->inList(s)) { //Returns true if sport exists, will then check..
+		//allGood = tempSport->checkInfo(d, h, a, date);	// .. d = divName, h = homeTeam, a = awayTeam
+		return allGood; // DENNE SKAL MULIGENS RETURNERE NOE ANNET..
+	}
 
-	//tempSport->checkInfo();
-
-	return 0;
+	else {
+		return allGood;
+	}
+	
+	//return allGood;
+	//return 0;
 
 	//Sjekk om følgende stemmer:
-	// 1) Sport, divisjon og lag (hjemme og borte) eksisterer
+	// V 1) Sport, divisjon og lag (hjemme og borte) eksisterer
 	// 2) De to lagene har spilt mot hverandre denne dagen
 	// 3) Ikke registrert resultat mellom disse to lagene allerede
+	*/
+	return 0;
 }

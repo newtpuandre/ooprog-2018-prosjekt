@@ -27,6 +27,7 @@ public:
 	void matches(); //Display results or write results to file.
     void schedule(); //Display schedule or write the schedule to file.
 	void writeTable(); //Write the result table to file or screen.
+	bool checkInfo(char d[], char h[], char a[], char date[]); //Check if file has corrupt data. True = everything ok.
 };
 
 #endif

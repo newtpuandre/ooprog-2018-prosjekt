@@ -32,8 +32,8 @@ int main() {
 			case 'K': sports.matches();		        break;
 			case 'C': /*Voluntary task*/            break;
             case 'T': sports.writeTable();          break;
-            case 'R': if (sports.results(false))
-                          sports.results(true);     break;
+            case 'R': /*if (sports.results(false))
+                          sports.results(true);*/     break;
             case 'D':
             case 'E': sports.modify(ch);            break;
             default: writeMenu();
