@@ -236,17 +236,19 @@ void Sport::writeTable() {
 }
 
 bool Sport::checkInfo(char d[], char h[], char a[], char date[]) {
-	/*
 	Division* tempDiv;		//Create temp division.
 	bool allGood = false;
 
+    cout << d << endl;
+    
 	if (divisionList->inList(d)) { //If divName exist, the following will be checked..
-		//allGood = tempDiv->checkInfo(h, a, date); //.. h = homeTeam, a = awayTeam.
+        tempDiv = (Division*)divisionList->remove(d);
+        allGood = tempDiv->checkInfo(h, a, date); //.. h = homeTeam, a = awayTeam.
+        divisionList->add(tempDiv);
 		return allGood; // DENNE SKAL MULIGENS RETURNERE NOE ANNET
 	}
 	else {
 		return allGood; //Return false
 	}
-	*/
-	return 0;
+	//return 0;
 }

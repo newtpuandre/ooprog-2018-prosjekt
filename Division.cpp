@@ -392,10 +392,10 @@ int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type a
 }
 
 bool Division::checkInfo(char h[], char a[], char date[]) {
-	/*Team* tempTeam; //Create temp team.
-	bool buffer = false, homeOK = false, awayOK = false, matchPlayed = false;
-
-	for (int i = 1; i <= numberOfTeams; i++) {
+	//Team* tempTeam; //Create temp team.
+	bool buffer = false, homeOK = false, awayOK = false/*, matchPlayed = false*/;
+    
+	for (int i = 0; i < numberOfTeams; i++) {
 		buffer = team[i]->compareName(h); //Check if hometeams name exist.
 		if (buffer == true) {
 			homeOK = buffer;
@@ -406,16 +406,17 @@ bool Division::checkInfo(char h[], char a[], char date[]) {
 			awayOK = buffer;
 		}
 	}
-
+    
 	//matchPlayed = matchPlayed(a, h, date);
 
-	if (homeOK && awayOK && matchPlayed) {	//If both teams names exists and match is played, return true.
+	if (homeOK && awayOK/* && matchPlayed*/) {	//If both teams names exists and match is played, return true.
 		return 1;
 	}
 	else {
 		return 0;
-	}*/
-	return 0;
+	}
+	
+    //return 0;
 }
 
 bool Division::matchPlayed(char a[], char h[], char date[]) {
