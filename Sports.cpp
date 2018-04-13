@@ -1,11 +1,13 @@
 #include <iostream>
 #include <cctype>
+#include <fstream>
 
 #include "Sports.h"
 #include "Sport.h"
 #include "Player.h"
 #include "ListTool2B.h"
 #include "Functions.h"
+#include "ConstEnum.h"
 
 using namespace std;
 
@@ -210,3 +212,22 @@ void Sports::writeTable() {
 	*/
 
 }
+
+/*void Sports::readFromFile() {
+	char sport[STRLEN];
+	Sport* tempSport;
+	ifstream inn(SPORTSDTA);
+
+	for (int i = 0; i < sportList->noOfElements(); i++) {
+
+	if (sportList->inList(sport)) {
+		tempSport = (Sport*)sportList->remove(sport);
+		//tempSport->readFromFile();
+		sportList->add(tempSport);
+	}
+	else {
+		cout << "\nThe sport " << sport << " does not exist!";
+	}
+
+}
+	*/

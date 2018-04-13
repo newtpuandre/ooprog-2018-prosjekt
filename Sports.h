@@ -23,6 +23,7 @@ public:
 	void matches(); //Display results or write results to file.
     void schedule(); //Display schedule or write schedule to file.
 	void writeTable(); //Write the result table to file or screen.
+	//void readFromFile(); //Reads data from file.
 };
 
 #endif
