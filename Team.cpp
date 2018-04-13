@@ -148,3 +148,7 @@ void Team::displayName(ofstream &out) {
 void Team::returnName(char* pointName) {
 	strcpy(pointName, name);
 }
+
+bool Team::compareName(char n[]) {
+	return (name == n);
+}

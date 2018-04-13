@@ -30,6 +30,7 @@ public:
 	void displayName();
 	void displayName(ofstream &out);
 	void returnName(char* pointName);
+	bool compareName(char n[]); //Compare parameter with teamname.
 };
 
 #endif

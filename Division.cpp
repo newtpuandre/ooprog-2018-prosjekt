@@ -296,6 +296,19 @@ void Division::writeTable(tableType table,bool file,ofstream &out) {
 					teamTableArr[j].totalScore = TabletypeCalc(table, 3);
 				}
 
+				if (results[i][j]->returnScore() == 4) { //Overtime home win
+					teamTableArr[i].totalScore = TabletypeCalc(table, 3);
+				}
+
+				if (results[i][j]->returnScore() == 5) { //Overtime away win
+					teamTableArr[j].totalScore = TabletypeCalc(table, 3);
+				}
+
+				if (results[i][j]->returnScore() == 6) { //Overtime tie
+					teamTableArr[i].totalScore = TabletypeCalc(table, 4);
+					teamTableArr[j].totalScore = TabletypeCalc(table, 4);
+				}
+
 				//if overtime add special points
 				
 			}
@@ -376,4 +389,44 @@ int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type a
 	default: break;
 	}
     return 0;
+}
+
+bool Division::checkInfo(char h[], char a[], char date[]) {
+	/*Team* tempTeam; //Create temp team.
+	bool buffer = false, homeOK = false, awayOK = false, matchPlayed = false;
+
+	for (int i = 1; i <= numberOfTeams; i++) {
+		buffer = team[i]->compareName(h); //Check if hometeams name exist.
+		if (buffer == true) {
+			homeOK = buffer;
+		}
+
+		buffer = team[i]->compareName(a); //Check if awayteams name exist.
+		if (buffer == true) {
+			awayOK = buffer;
+		}
+	}
+
+	//matchPlayed = matchPlayed(a, h, date);
+
+	if (homeOK && awayOK && matchPlayed) {	//If both teams names exists and match is played, return true.
+		return 1;
+	}
+	else {
+		return 0;
+	}*/
+	return 0;
+}
+
+bool Division::matchPlayed(char a[], char h[], char date[]) {
+	/*
+	bool buffer = false;
+	
+	for (int i = 0; i <= results.size(); i++) {
+		for (int j = 0; j <= results.size(); j++) {
+
+		}
+	}
+	*/
+	return 0;
 }

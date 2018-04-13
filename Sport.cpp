@@ -187,7 +187,6 @@ void Sport::writeTable() {
 		if (strlen(fileTemp) == 0) { //Print to screen
 			ofstream out(fileTemp);
 			for (int i = 0; i < divisionList->noOfElements(); i++) {
-				cout << "humbug";
 				tempDiv = (Division*)divisionList->removeNo(i + 1);
 				tempDiv->writeTable(table, false, out);
 				divisionList->add(tempDiv);
@@ -197,7 +196,6 @@ void Sport::writeTable() {
 		else { //Print to file			
 			ofstream out(fileTemp);
 			for (int i = 0; i < divisionList->noOfElements(); i++) {
-				cout << "HUMBUG";
 				tempDiv = (Division*)divisionList->removeNo(i + 1);
 				tempDiv->writeTable(table, true, out);
 				divisionList->add(tempDiv);
@@ -237,3 +235,18 @@ void Sport::writeTable() {
 	}
 }
 
+bool Sport::checkInfo(char d[], char h[], char a[], char date[]) {
+	/*
+	Division* tempDiv;		//Create temp division.
+	bool allGood = false;
+
+	if (divisionList->inList(d)) { //If divName exist, the following will be checked..
+		//allGood = tempDiv->checkInfo(h, a, date); //.. h = homeTeam, a = awayTeam.
+		return allGood; // DENNE SKAL MULIGENS RETURNERE NOE ANNET
+	}
+	else {
+		return allGood; //Return false
+	}
+	*/
+	return 0;
+}

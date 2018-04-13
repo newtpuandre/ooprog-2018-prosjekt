@@ -45,6 +45,8 @@ public:
 	void writeTable(tableType table, bool file, ofstream &out); //Writes a table with the current standings for this division
 	void writeTable(teamTable teamtable, ofstream &out); //Writes a table to file with the current standings for this division
 	int TabletypeCalc(tableType table, int wlt);  //Finds the table type and returns the correct scoring
+	bool checkInfo(char h[], char a[], char date[]); //Check if file has corrupt data. True = everything ok.
+	bool matchPlayed(char h[], char a[], char date[]); //Check if the match is played
 };
 
 #endif

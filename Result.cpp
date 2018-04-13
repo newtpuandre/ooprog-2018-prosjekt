@@ -63,6 +63,7 @@ void Result::convertDate(ofstream &out) { //Displays 'DD/MM' out of the 'ÅÅÅ�
 }
 
 int Result::returnScore() { //Returns 0 if home won, 1 if away won, 2 if tie, 3 if not played
+							//4 if home won overtime, 5 if away won overtime, 6 if tie
 	//Remember to check for overtime
 	if (homeGoals > awayGoals && overtime == false) {
 		return 0; //Home won
@@ -70,10 +71,19 @@ int Result::returnScore() { //Returns 0 if home won, 1 if away won, 2 if tie, 3 
 	else if (awayGoals < homeGoals && overtime == false) {
 		return 1; //Away won
 	}
-	else if ( homeGoals == awayGoals && (homeGoals != 0 && awayGoals != 0) ) {
+	else if ( homeGoals == awayGoals && overtime == false ) {
 		return 2; //Tie
 	}
-	else { //Not played yet
+	else if ( homeGoals == awayGoals && overtime == true ){ 
+		return 6; //overtime tie
+	}
+	else if (homeGoals > awayGoals && overtime == true) {
+		return 4; //Overtime Home won
+	}
+	else if (homeGoals < awayGoals && overtime == true) {
+		return 5; //Overtime away won
+	}
+	else {//Not played yet
 		return 3;
 	}
 }
