@@ -17,7 +17,7 @@ int main() {
     char ch;
     
    players.readFromFile();
- //  sports.readFromFile();
+   sports.readFromFile();
 
     writeMenu();
     ch = read();        // Reads one character
@@ -42,7 +42,7 @@ int main() {
         ch = read();
     }
     players.writeToFile();
-   // sports.writeToFile();
+  //  sports.writeToFile();
 	
     cout << "\n\n";
 	return 0;

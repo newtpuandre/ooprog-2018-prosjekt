@@ -162,13 +162,19 @@ bool Team::compareName(char n[]) {
 }
 
 void Team::readFromFileSports(ifstream &inn) {
-	inn.getline(name, STRLEN);				//Reads name of team from file.
-	inn.getline(address, STRLEN);			//Reads adress of team from file.
-	inn >> numberOfPlayers; inn.ignore();	//Reads number of players within a team from file and ignore \n.
+	char nameBuffer[STRLEN];
+	int tempNumb = 0;
+	
+	inn.getline(nameBuffer, STRLEN); 			//Reads name of team from file.
+	strcpy(name, nameBuffer);
+	inn.getline(nameBuffer, STRLEN);			//Reads adress of team from file.
+	strcpy(name, nameBuffer);
+	inn >> tempNumb; inn.ignore();	//Reads number of players within a team from file and ignore \n.
+	numberOfPlayers = tempNumb;
 }
 
 void Team::writeToFile(ofstream &out) {
-	out << name << "  "					//Writes name of team to file. 
+	out << name << " "					//Writes name of team to file. 
 		<< address << '\n'				//Writes name of adress to file.
 		<< numberOfPlayers << '\n';		//Writes number of players to file.
 }

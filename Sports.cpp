@@ -305,7 +305,7 @@ bool Sports::checkInfo(char s[], char d[], char h[], char a[], char date[]) {
 
 void Sports::readFromFile() {
 	Sport* tempSport;
-	ifstream inn("SPORTS.DTA");
+	ifstream inn("TEST.DTA");
 	int numberOfSports;
 	char nameBuffer[STRLEN];
 

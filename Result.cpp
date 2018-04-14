@@ -92,7 +92,10 @@ int Result::returnScore() { //Returns 0 if home won, 1 if away won, 2 if tie, 3 
 }
 
 void Result::readFromFile(ifstream &inn) {
-	inn.getline(date, STRLEN);
+	char tempDate[DATELEN];
+
+	inn.getline(tempDate, STRLEN);
+	strcpy(date, tempDate);
 	inn >> homeGoals >> awayGoals; inn.ignore();
 	inn >> overtime; inn.ignore();
 }

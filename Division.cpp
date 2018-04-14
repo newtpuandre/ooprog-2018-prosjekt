@@ -429,7 +429,7 @@ void Division::readFromFileSports(ifstream &inn) {
 	inn.getline(text, STRLEN); //Reads name of division from file.
 	inn >> numberOfTeams; inn.ignore(); //Reads number of teams from file and ignores \n.
 
-	for (int i = 0; i < numberOfTeams; i++) {
+	for (int i = 1; i <= numberOfTeams; i++) {
 		team[i]->readFromFile(inn);
 	}
 
@@ -437,7 +437,7 @@ void Division::readFromFileSports(ifstream &inn) {
 		for (int y = 0; y < numberOfTeams; y++) { //Loops through the y-column in the matrix
 			team[x]->readName(inn); team[y]->readName(inn);
 			if (x != y) {
-				//results[x][y]
+				results[x][y]->readFromFile(inn);
 			}
 		}
 	}
@@ -454,7 +454,7 @@ void Division::writeToFile(ofstream &out) {
 	for (int x = 0; x < numberOfTeams; x++) { //Loops through the x-column in the matrix
 		for (int y = 0; y < numberOfTeams; y++) { //Loops through the y-column in the matrix
 			if (x != y) {
-				team[x]->displayName(out); team[y]->displayName(out); out << '\n';
+				team[x]->displayName(out); out << " "; team[y]->displayName(out); out << '\n';
 				results[x][y]->writeToFile(out);
 			}
 		}
