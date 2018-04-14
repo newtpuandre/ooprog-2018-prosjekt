@@ -150,7 +150,7 @@ void Team::returnName(char* pointName) {
 }
 
 bool Team::compareName(char n[]) {
-	//This doesnt work!
+	//This doesnt work unless you overload ==
 	//return (name == n);
 
 	//But this does :)
