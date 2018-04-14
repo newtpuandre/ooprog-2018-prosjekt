@@ -284,21 +284,42 @@ bool Sports::checkInfo(char s[], char d[], char h[], char a[], char date[]) {
 	return 0;
 }
 
-/*void Sports::readFromFile() {
-char sport[STRLEN];
-Sport* tempSport;
-ifstream inn(SPORTSDTA);
+void Sports::readFromFile() {
+	Sport* tempSport;
+	ifstream inn("SPORTS.DTA");
+	int numberOfSports;
+	char nameBuffer[STRLEN];
 
-for (int i = 0; i < sportList->noOfElements(); i++) {
+	if (inn) {
+		inn >> numberOfSports;	inn.ignore();					//number of sports are read from file. 
+		for (int i = 1; i <= numberOfSports; i++) {				//Loops through all sports
+			inn.getline(nameBuffer, STRLEN);					// ,reads the name of the sport
+			tempSport = new Sport(nameBuffer, inn);				// and add the sport to the sport list. 
+			tempSport->readFromFile(inn);
+			sportList->add(tempSport);
+		}
 
-if (sportList->inList(sport)) {
-tempSport = (Sport*)sportList->remove(sport);
-//tempSport->readFromFile();
-sportList->add(tempSport);
-}
-else {
-cout << "\nThe sport " << sport << " does not exist!";
+	}
+	else
+		cout << "File not found";
 }
 
+void Sports::writeToFile() {
+	Sport* tempSport;
+	ofstream out("TEST.DTA");
+
+	if (out) {
+		
+		out << sportList->noOfElements(); //Number of elements in sportlist (number of sports) are written to file. 
+		out << '\n';
+		for (int i = 1; i <= sportList->noOfElements(); i++) {		//Loops through all sports.
+				tempSport = (Sport*)sportList->removeNo(i);			//Remove number i.
+				tempSport->writeToFile(out);						//Sport object calls its writeToFile function.
+				sportList->add(tempSport);							//Add number i.
+		}
+
+	}
+	else
+		cout << "File not found";
 }
-*/
+

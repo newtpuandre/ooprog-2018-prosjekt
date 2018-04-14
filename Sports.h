@@ -25,7 +25,8 @@ public:
 	void writeTable(); //Write the result table to file or screen.
     bool results(bool apply); //Read results from file.
 	bool checkInfo(char s[], char d[], char h[], char a[], char date[]); //Check if file has corrupt data. True = everything ok.
-	//void readFromFile(); //Reads data from file.
+	void readFromFile(); //Reads data from file.
+	void writeToFile(); //Writes data to file.
 };
 
 #endif

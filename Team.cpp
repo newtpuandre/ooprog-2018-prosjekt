@@ -145,10 +145,26 @@ void Team::displayName(ofstream &out) {
 	out << name;
 }
 
+void Team::readName(ifstream &inn) {		
+	inn.getline(name, STRLEN);
+}
+
 void Team::returnName(char* pointName) {
 	strcpy(pointName, name);
 }
 
 bool Team::compareName(char n[]) {
 	return (name == n);
+}
+
+void Team::readFromFileSports(ifstream &inn) {
+	inn.getline(name, STRLEN);				//Reads name of team from file.
+	inn.getline(address, STRLEN);			//Reads adress of team from file.
+	inn >> numberOfPlayers; inn.ignore();	//Reads number of players within a team from file and ignore \n.
+}
+
+void Team::writeToFile(ofstream &out) {
+	out << name << "  "					//Writes name of team to file. 
+		<< address << '\n'				//Writes name of adress to file.
+		<< numberOfPlayers << '\n';		//Writes number of players to file.
 }

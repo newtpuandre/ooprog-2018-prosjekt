@@ -47,6 +47,8 @@ public:
 	int TabletypeCalc(tableType table, int wlt);  //Finds the table type and returns the correct scoring
 	bool checkInfo(char h[], char a[], char date[]); //Check if file has corrupt data. True = everything ok.
 	bool matchPlayed(char h[], char a[], char date[]); //Check if the match is played
+	void writeToFile(ofstream &out);
+	void readFromFileSports(ifstream &inn);
 };
 
 #endif

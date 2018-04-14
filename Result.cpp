@@ -87,3 +87,15 @@ int Result::returnScore() { //Returns 0 if home won, 1 if away won, 2 if tie, 3 
 		return 3;
 	}
 }
+
+void Result::readFromFile(ifstream &inn) {
+	inn.getline(date, STRLEN);
+	inn >> homeGoals >> awayGoals; inn.ignore();
+	inn >> overtime; inn.ignore();
+}
+
+void Result::writeToFile(ofstream &out) {
+	out << date << '\n'			//Writes date of schedule out to file. 
+		<< homeGoals << ' ' << awayGoals << '\n'
+		<< overtime << '\n';
+}

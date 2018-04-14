@@ -27,10 +27,13 @@ public:
 	bool operator== (char name1[]);
     void readFromFile(ifstream &inn);
 	void edit();
-	void displayName();
-	void displayName(ofstream &out);
+	void displayName();					//Displays name for a team to screen. 
+	void displayName(ofstream &out);	//Displays a name for a team to file.
+	void readName(ifstream &inn);		//Reads a name for a team from file.
 	void returnName(char* pointName);
 	bool compareName(char n[]); //Compare parameter with teamname.
+	void readFromFileSports(ifstream &inn); //Reads data from SPORTS.DTA file.
+	void writeToFile(ofstream &out); //Writes data to file.
 };
 
 #endif

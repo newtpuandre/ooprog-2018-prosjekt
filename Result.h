@@ -28,6 +28,8 @@ public:
 	void convertDate(); //Convert from ååååMMDD to DD/MM
     void convertDate(ofstream &out); //Convert from MMDD to DD/MM
 	int returnScore(); //Returns 0 if home won, 1 if away won, 2 if tie, 3 if not played
+	void writeToFile(ofstream &out); //Writes data to file. 
+	void readFromFile(ifstream &inn); //Reads data from file.
 };
 
 #endif

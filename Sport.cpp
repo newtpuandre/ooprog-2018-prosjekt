@@ -34,6 +34,19 @@ Sport::Sport(char* name) :TextElement(name) {
 
 };
 
+Sport::Sport(char* name, ifstream &inn) :TextElement(name) {
+	divisionList = new List(Sorted);
+	int tempTable;
+
+	inn >> tempTable; inn.ignore();					//Read table type from file, and ignore \n
+	switch (tempTable) {
+	case 1: table = tableType(a); break;
+	case 2: table = tableType(b); break;
+	case 3: table = tableType(c); break;
+	}
+
+}
+
 void Sport::newDiv() {
 	char divName[STRLEN];
 	char fileName[STRLEN];
@@ -249,4 +262,37 @@ bool Sport::checkInfo(char d[], char h[], char a[], char date[]) {
 	}
 	*/
 	return 0;
+}
+
+void Sport::readFromFile(ifstream &inn) {
+	Division* tempDiv;
+	char nameBuffer[STRLEN];
+	int tempTable;
+
+	inn >> numberOfDivisions; inn.ignore();
+
+	if (numberOfDivisions > 0) {						//If number of divisions is above 0.
+		for (int i = 1; i <= numberOfDivisions; i++) {  //Loops through number of divisions and call divisions readFromFile function.
+			inn.getline(nameBuffer, STRLEN);		//Reads name of division from file,
+			tempDiv = new Division(nameBuffer);		// and adding the name to division list. 
+			divisionList->add(tempDiv);
+			tempDiv->readFromFile(inn);
+		}
+	}
+}
+
+void Sport::writeToFile(ofstream &out) {
+	Division* tempDiv;
+
+	out << text << '\n';				//Writes name of sport out to file. 
+	out << table << '\n';				//Writes table type out to file.
+	out << numberOfDivisions << '\n';	//Writes out number of divisions in sport. 
+
+	if (numberOfDivisions > 0) {
+		for (int i = 1; i <= numberOfDivisions; i++) {
+				tempDiv = (Division*)divisionList->removeNo(i);
+				tempDiv->writeToFile(out);
+				divisionList->add(tempDiv);
+		}
+	}
 }

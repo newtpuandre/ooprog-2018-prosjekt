@@ -17,6 +17,7 @@ public:
 	//Function declarations need to be here
 	Sport();
 	Sport(char* name);
+	Sport(char* name, ifstream &inn);
 	~Sport();
     void newDiv(); //Creates new division within the sport.
 	void display();	//Displays data for sport object.
@@ -28,6 +29,8 @@ public:
     void schedule(); //Display schedule or write the schedule to file.
 	void writeTable(); //Write the result table to file or screen.
 	bool checkInfo(char d[], char h[], char a[], char date[]); //Check if file has corrupt data. True = everything ok.
+	void readFromFile(ifstream &inn); //Reads data from file.
+	void writeToFile(ofstream &out); //Write data to file. 
 };
 
 #endif
