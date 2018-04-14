@@ -148,8 +148,8 @@ void Division::displayMatches() {
 
 	for (int x = 0; x < numberOfTeams; x++) { //Loops through the x-column in the matrix
 		for (int y = 0; y < numberOfTeams; y++) { //Loops through the y-column in the matrix
-			tempRes = results[x][y]; //Oppdaterer terminlista sånn at tempRes vet hvor i lista man er. 
 			if (x != y) { //Team cannot play against itself. 
+			tempRes = results[x][y]; //Oppdaterer terminlista sånn at tempRes vet hvor i lista man er. 
 				if (tempRes->cmpDate(date)) { //Comparing dates.
 					team[x]->displayName(); cout << " - "; team[y]->displayName(); //Displaying team vs. team at given date.
 					cout << '\n';
@@ -307,28 +307,24 @@ void Division::writeTable(tableType table,bool file,ofstream &out) {
 				if (results[i][j]->returnScore() == 0) { //Home won
 					teamTableArr[i].totalScore = TabletypeCalc(table, 1);
 				}
-				if (results[i][j]->returnScore() == 1) { //Away won
+				else if (results[i][j]->returnScore() == 1) { //Away won
 					teamTableArr[j].totalScore = TabletypeCalc(table, 1);
 				}
-				if (results[i][j]->returnScore() == 2) { //Tie
+				else if (results[i][j]->returnScore() == 2) { //Tie
 					teamTableArr[i].totalScore = TabletypeCalc(table, 3);
 					teamTableArr[j].totalScore = TabletypeCalc(table, 3);
 				}
-
-				if (results[i][j]->returnScore() == 4) { //Overtime home win
+				else if (results[i][j]->returnScore() == 4) { //Overtime home win
 					teamTableArr[i].totalScore = TabletypeCalc(table, 3);
 				}
-
-				if (results[i][j]->returnScore() == 5) { //Overtime away win
+				else if (results[i][j]->returnScore() == 5) { //Overtime away win
 					teamTableArr[j].totalScore = TabletypeCalc(table, 3);
 				}
-
-				if (results[i][j]->returnScore() == 6) { //Overtime tie
+				else if (results[i][j]->returnScore() == 6) { //Overtime tie
 					teamTableArr[i].totalScore = TabletypeCalc(table, 4);
 					teamTableArr[j].totalScore = TabletypeCalc(table, 4);
 				}
 
-				//if overtime add special points
 				
 			}
 
