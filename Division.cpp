@@ -151,7 +151,7 @@ void Division::displayMatches() {
 			tempRes = results[x][y]; //Oppdaterer terminlista sånn at tempRes vet hvor i lista man er. 
 			if (x != y) { //Team cannot play against itself. 
 				if (tempRes->cmpDate(date)) { //Comparing dates.
-					team[y]->displayName(); cout << " - "; team[x]->displayName(); //Displaying team vs. team at given date.
+					team[x]->displayName(); cout << " - "; team[y]->displayName(); //Displaying team vs. team at given date.
 					cout << '\n';
 					//	if (Teams already got results) {
 					//tempRes->displayResults();
@@ -174,7 +174,7 @@ void Division::writeMatches(char fileName[]) {
 				tempRes = results[x][y]; //Oppdaterer terminlista sånn at tempRes vet hvor i lista man er. 
 				if (tempRes != nullptr) { //Checks if tempRes points at anything or not. 
 					if (tempRes->cmpDate(date)) { //Comparing dates.
-						team[y]->displayName(out); out << " - "; team[x]->displayName(out); //Displaying team vs. team at given date.
+						team[x]->displayName(out); out << " - "; team[y]->displayName(out); //Displaying team vs. team at given date.
 						cout << '\n';
 						//	if (Teams already got results) {
 						//tempRes->displayResults();
