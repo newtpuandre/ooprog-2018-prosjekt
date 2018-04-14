@@ -154,7 +154,11 @@ void Team::returnName(char* pointName) {
 }
 
 bool Team::compareName(char n[]) {
-	return (name == n);
+	//This doesnt work unless you overload ==
+	//return (name == n);
+
+	//But this does :)
+	return (strcmp(name, n) == 0);
 }
 
 void Team::readFromFileSports(ifstream &inn) {

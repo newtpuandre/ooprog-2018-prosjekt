@@ -65,7 +65,10 @@ void Result::convertDate(ofstream &out) { //Displays 'DD/MM' out of the 'ÅÅÅ�
 int Result::returnScore() { //Returns 0 if home won, 1 if away won, 2 if tie, 3 if not played
 							//4 if home won overtime, 5 if away won overtime, 6 if tie
 	//Remember to check for overtime
-	if (homeGoals > awayGoals && overtime == false) {
+	if (matchPlayed == false) {
+		return 3;
+	}
+	else if (homeGoals > awayGoals && overtime == false) {
 		return 0; //Home won
 	}
 	else if (awayGoals < homeGoals && overtime == false) {

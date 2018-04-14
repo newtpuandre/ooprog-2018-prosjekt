@@ -392,30 +392,24 @@ int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type a
 }
 
 bool Division::checkInfo(char h[], char a[], char date[]) {
-	/*Team* tempTeam; //Create temp team.
-	bool buffer = false, homeOK = false, awayOK = false, matchPlayed = false;
+	//Team* tempTeam; //Create temp team.
+	bool homeOK = false, awayOK = false/*, matchPlayed = false*/;
 
-	for (int i = 1; i <= numberOfTeams; i++) {
-		buffer = team[i]->compareName(h); //Check if hometeams name exist.
-		if (buffer == true) {
-			homeOK = buffer;
-		}
-
-		buffer = team[i]->compareName(a); //Check if awayteams name exist.
-		if (buffer == true) {
-			awayOK = buffer;
-		}
-	}
+	homeOK = teamsExist(h);
+	awayOK = teamsExist(a);
 
 	//matchPlayed = matchPlayed(a, h, date);
 
-	if (homeOK && awayOK && matchPlayed) {	//If both teams names exists and match is played, return true.
+	if (homeOK && awayOK/* && matchPlayed*/) {	//If both teams names exists and match is played, return true.
+		cout << "Everything is inorder";
 		return 1;
 	}
 	else {
+		cout << "Things are on fire..";
 		return 0;
-	}*/
-	return 0;
+	}
+	
+    //return 0;
 }
 
 bool Division::matchPlayed(char a[], char h[], char date[]) {
@@ -461,8 +455,20 @@ void Division::writeToFile(ofstream &out) {
 		for (int y = 0; y < numberOfTeams; y++) { //Loops through the y-column in the matrix
 			if (x != y) {
 				team[x]->displayName(out); team[y]->displayName(out); out << '\n';
-				results[x][y]->writeToFile(out); 
+				results[x][y]->writeToFile(out);
 			}
 		}
 	}
+}
+
+bool Division::teamsExist(char teamName[]) {
+	bool found = false, allOK = false;
+	for (int i = 0; i < numberOfTeams; i++) {
+		found = team[i]->compareName(teamName); //Check if hometeams name exist.
+		if (found == true) {
+			allOK = true;
+		}
+	}
+
+	return allOK;
 }

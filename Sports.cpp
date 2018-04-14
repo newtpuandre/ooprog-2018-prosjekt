@@ -197,43 +197,74 @@ void Sports::writeTable() {
 }
 
 bool Sports::results(bool apply) {
-    /*
 	char fileName[STRLEN] = "RESULTS.DTA";
     char sportName[STRLEN], divName[STRLEN], date[DATELEN], teamH[STRLEN], teamA[STRLEN];
     int noOfSports = 0, noOfDiv = 0, noOfMatches = 0, homeGoals = 0, awayGoals = 0, buffer = 0;
     int homeScorers[STRLEN], awayScorers[STRLEN];
-    bool overtime = false;
+    bool overtime = false, alright = false;
+    
+    //char* charBuffer;
+    //char* charBuffer2;
     
     ifstream inn(fileName);
 
+	if (inn) { //The file exists
+
 	inn >> noOfSports;		inn.ignore();	//Read number of sports on file, ignore /n
     
-	if (inn) { //If the program is able to read the file..
 		for (int s = 1; s <= noOfSports; s++) {		//Read results of 'noOfSports'-sports
 			inn.getline(sportName, STRLEN);			//Read sportsname
+            //charBuffer = sportName;
 			inn >> noOfDiv;			inn.ignore();	//Read number of divisions on file, ignore /n
 
 			for (int d = 1; d <= noOfDiv; d++) {	//Read results of 'noOfDiv'-divisions within each sport
 				inn.getline(divName, STRLEN);			//Read division name
+                //charBuffer2 = divName;
 				inn >> noOfMatches;		inn.ignore();	//Read number of matches on file, ignore /n
 
 				for (int m = 1; m <= noOfMatches; m++) {//Read match results for 'noOfMatches'-matches within each divisions
 					inn.getline(date, STRLEN);		//RESULT - date
 					inn.getline(teamH, STRLEN);		//RESULT - HOMETEAM
 					inn.getline(teamA, STRLEN);		//RESULT - AWAYTEAM
-					inn >> overtime;				//RESULT - BOOL OVERTIME
+					inn >> homeGoals; inn.ignore();
+					inn >>awayGoals; inn.ignore(); //RESULT - les inn hjemmemål og bortemål
+					inn >> overtime; inn.ignore();				//RESULT - BOOL OVERTIME
 													// ^ABOVE^ 1 = true. 0 = false.
-
-					for (int h = 0; h <= homeGoals; h++) {	//Read home scorers
-						inn >> buffer;				//HOME SCORERS - player ID
-						homeScorers[h] = buffer;	//HOME SCORERS - place player ID into tray 'j'
+					if (homeGoals != 0) {
+						for (int h = 0; h < homeGoals; h++) {	//Read home scorers
+							inn >> buffer; inn.ignore();			//HOME SCORERS - player ID
+							homeScorers[h] = buffer;	//HOME SCORERS - place player ID into tray 'j'
+						}
+					}
+					else {
+						inn >> buffer; inn.ignore(); //Info still need to be read, but not stored.
+					}
+					
+					if (awayGoals != 0) {
+						for (int a = 0; a < awayGoals; a++) {	//Read away scorers
+							inn >> buffer;	inn.ignore();			//AWAY SCORERS - player ID
+							awayScorers[a] = buffer;	//AWAY SCORERS - place player ID into tray 'k'
+						}
+					}
+					else {
+						inn >> buffer; inn.ignore(); //Info still need to be read, but not stored.
 					}
 
-					for (int a = 0; a <= awayGoals; a++) {	//Read away scorers
-						inn >> buffer;				//AWAY SCORERS - player ID
-						awayScorers[a] = buffer;	//AWAY SCORERS - place player ID into tray 'k'
-					}
-					//LAG NYE RESULTATER??
+					//LAG NYE RESULTATER?? //lag nye resultat objekter..
+     
+                    if (apply == false ) {
+                        alright = sports.checkInfo(sportName, divName, teamH, teamA, date); //return true = everything ok.
+                        //alright = sports.checkInfo(charBuffer, charBuffer2, teamH, teamA, date); //return true = everything ok.
+
+                        if (!alright){
+                            //is false
+                            cout << "\nERROR IN FILE!!";
+                            return false;
+                        }
+                    } else {
+                        //sports.applyInfo(sportName, divName, teamH, teamA, date);
+                        cout << "\nApply == true. Her skal resultater oppdateres.";
+                    }
 				}
 			}
 		}
@@ -241,32 +272,22 @@ bool Sports::results(bool apply) {
 	else {
 		cout << "Couldn't find the file " << fileName << " !!";
 	}
-
-	if (apply == false) {		//apply = false, check file for errors.
-		apply = sports.checkInfo(sportName, divName, teamH, teamA, date); //return true = everything ok.
-		return apply;
-	}
-	else {						//apply = true ... create new results with given info
-		
-		//CREATE NEW RESULTS
-
-		return apply;
-    }
-    */
-	return 0;
+    
+     return (alright == true && apply == false);
 }
 
 bool Sports::checkInfo(char s[], char d[], char h[], char a[], char date[]) {
-	/*
 	Sport* tempSport;		//Create temp sport.
 	bool allGood = false;
 	//bool sportExist = false;
-
 	if (sportList->inList(s)) { //Returns true if sport exists, will then check..
-		//allGood = tempSport->checkInfo(d, h, a, date);	// .. d = divName, h = homeTeam, a = awayTeam
+		cout << s << endl;
+        tempSport = (Sport*)sportList->remove(s);
+        allGood = tempSport->checkInfo(d, h, a, date);	// .. d = divName, h = homeTeam, a = awayTeam
+        sportList->add(tempSport);
 		return allGood; // DENNE SKAL MULIGENS RETURNERE NOE ANNET..
 	}
-
+    
 	else {
 		return allGood;
 	}
@@ -280,9 +301,7 @@ bool Sports::checkInfo(char s[], char d[], char h[], char a[], char date[]) {
 	// V 1) Sport, divisjon og lag (hjemme og borte) eksisterer
 	// 2) De to lagene har spilt mot hverandre denne dagen
 	// 3) Ikke registrert resultat mellom disse to lagene allerede
-	*/
-	return 0;
-}
+
 
 void Sports::readFromFile() {
 	Sport* tempSport;
@@ -322,4 +341,3 @@ void Sports::writeToFile() {
 	else
 		cout << "File not found";
 }
-

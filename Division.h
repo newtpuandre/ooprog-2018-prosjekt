@@ -49,6 +49,7 @@ public:
 	bool matchPlayed(char h[], char a[], char date[]); //Check if the match is played
 	void writeToFile(ofstream &out);
 	void readFromFileSports(ifstream &inn);
+	bool teamsExist(char teamName[]);
 };
 
 #endif
