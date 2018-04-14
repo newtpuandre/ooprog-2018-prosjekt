@@ -150,5 +150,9 @@ void Team::returnName(char* pointName) {
 }
 
 bool Team::compareName(char n[]) {
-	return (name == n);
+	//This doesnt work!
+	//return (name == n);
+
+	//But this does :)
+	return (strcmp(name, n) == 0);
 }

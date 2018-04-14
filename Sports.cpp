@@ -208,9 +208,10 @@ bool Sports::results(bool apply) {
     
     ifstream inn(fileName);
 
+	if (inn) { //The file exists
+
 	inn >> noOfSports;		inn.ignore();	//Read number of sports on file, ignore /n
     
-	if (inn) { //If the program is able to read the file..
 		for (int s = 1; s <= noOfSports; s++) {		//Read results of 'noOfSports'-sports
 			inn.getline(sportName, STRLEN);			//Read sportsname
             //charBuffer = sportName;
@@ -225,19 +226,30 @@ bool Sports::results(bool apply) {
 					inn.getline(date, STRLEN);		//RESULT - date
 					inn.getline(teamH, STRLEN);		//RESULT - HOMETEAM
 					inn.getline(teamA, STRLEN);		//RESULT - AWAYTEAM
-                    inn >> homeGoals >> awayGoals; inn.ignore(); //RESULT - les inn hjemmemål og bortemål
-					inn >> overtime;				//RESULT - BOOL OVERTIME
+					inn >> homeGoals; inn.ignore();
+					inn >>awayGoals; inn.ignore(); //RESULT - les inn hjemmemål og bortemål
+					inn >> overtime; inn.ignore();				//RESULT - BOOL OVERTIME
 													// ^ABOVE^ 1 = true. 0 = false.
-
-					for (int h = 0; h <= homeGoals; h++) {	//Read home scorers
-						inn >> buffer;				//HOME SCORERS - player ID
-						homeScorers[h] = buffer;	//HOME SCORERS - place player ID into tray 'j'
+					if (homeGoals != 0) {
+						for (int h = 0; h < homeGoals; h++) {	//Read home scorers
+							inn >> buffer; inn.ignore();			//HOME SCORERS - player ID
+							homeScorers[h] = buffer;	//HOME SCORERS - place player ID into tray 'j'
+						}
+					}
+					else {
+						inn >> buffer; inn.ignore(); //Info still need to be read, but not stored.
+					}
+					
+					if (awayGoals != 0) {
+						for (int a = 0; a < awayGoals; a++) {	//Read away scorers
+							inn >> buffer;	inn.ignore();			//AWAY SCORERS - player ID
+							awayScorers[a] = buffer;	//AWAY SCORERS - place player ID into tray 'k'
+						}
+					}
+					else {
+						inn >> buffer; inn.ignore(); //Info still need to be read, but not stored.
 					}
 
-					for (int a = 0; a <= awayGoals; a++) {	//Read away scorers
-						inn >> buffer;				//AWAY SCORERS - player ID
-						awayScorers[a] = buffer;	//AWAY SCORERS - place player ID into tray 'k'
-					}
 					//LAG NYE RESULTATER?? //lag nye resultat objekter..
      
                     if (apply == false ) {
@@ -268,8 +280,8 @@ bool Sports::checkInfo(char s[], char d[], char h[], char a[], char date[]) {
 	Sport* tempSport;		//Create temp sport.
 	bool allGood = false;
 	//bool sportExist = false;
-
 	if (sportList->inList(s)) { //Returns true if sport exists, will then check..
+		cout << s << endl;
         tempSport = (Sport*)sportList->remove(s);
         allGood = tempSport->checkInfo(d, h, a, date);	// .. d = divName, h = homeTeam, a = awayTeam
         sportList->add(tempSport);
