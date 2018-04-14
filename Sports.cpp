@@ -262,7 +262,7 @@ bool Sports::results(bool apply) {
                             return false;
                         }
                     } else {
-                        //sports.applyInfo(sportName, divName, teamH, teamA, date);
+                        sports.applyInfo(sportName, divName, teamH, teamA, date, homeScorers, awayScorers, homeGoals, awayGoals, overtime);
                         cout << "\nApply == true. Her skal resultater oppdateres.";
                     }
 				}
@@ -280,6 +280,7 @@ bool Sports::checkInfo(char s[], char d[], char h[], char a[], char date[]) {
 	Sport* tempSport;		//Create temp sport.
 	bool allGood = false;
 	//bool sportExist = false;
+    
 	if (sportList->inList(s)) { //Returns true if sport exists, will then check..
 		cout << s << endl;
         tempSport = (Sport*)sportList->remove(s);
@@ -297,11 +298,14 @@ bool Sports::checkInfo(char s[], char d[], char h[], char a[], char date[]) {
 
 }
 
-	//Sjekk om følgende stemmer:
-	// V 1) Sport, divisjon og lag (hjemme og borte) eksisterer
-	// 2) De to lagene har spilt mot hverandre denne dagen
-	// 3) Ikke registrert resultat mellom disse to lagene allerede
-
+void Sports::applyInfo(char s[], char d[], char h[], char a[], char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool ot) {
+    Sport* tempSport;
+                                            //Doesnt need to check inlist.. Already checked in check info..
+    tempSport = (Sport*)sportList->remove(s);
+    tempSport->applyInfo(d, h, a, date, hArr, aArr, hGoals, aGoals, ot);    //sending info through data structure..
+    sportList->add(tempSport);                          //will update results
+    
+}
 
 void Sports::readFromFile() {
 	Sport* tempSport;

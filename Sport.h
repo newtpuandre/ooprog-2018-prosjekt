@@ -30,7 +30,8 @@ public:
 	void writeTable(); //Write the result table to file or screen.
 	bool checkInfo(char d[], char h[], char a[], char date[]); //Check if file has corrupt data. True = everything ok.
 	void readFromFile(ifstream &inn); //Reads data from file.
-	void writeToFile(ofstream &out); //Write data to file. 
+	void writeToFile(ofstream &out); //Write data to file.
+    void applyInfo(char d[], char h[], char a[], char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool ot); //Update results, will only pass info further in the data structure.
 };
 
 #endif

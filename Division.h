@@ -47,9 +47,11 @@ public:
 	void writeTable(teamTable teamtable, ofstream &out); //Writes a table to file with the current standings for this division
 	int TabletypeCalc(tableType table, int wlt);  //Finds the table type and returns the correct scoring
 	bool checkInfo(char h[], char a[], char date[]); //Check if file has corrupt data. True = everything ok.
-	bool matchPlayed(char h[], char a[], char date[]); //Check if the match is played
+	bool matchPlayed(char h[], char a[]); //Check if the match is played
 	void writeToFile(ofstream &out);
 	bool teamsExist(char teamName[]);
+    void applyInfo(char h[], char a[], char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool overtime); //Should update results.
+    int returnTeamNo(char teamName[]); //Return teamNo for a teamName.
 };
 
 #endif

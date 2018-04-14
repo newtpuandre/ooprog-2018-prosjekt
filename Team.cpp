@@ -10,6 +10,7 @@
 #include "Functions.h"
 #include "Player.h"
 #include "Division.h"
+#include "Players.h"
 
 Team::Team() {
 	//Paramless constructor

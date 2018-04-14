@@ -27,6 +27,7 @@ public:
 	bool checkInfo(char s[], char d[], char h[], char a[], char date[]); //Check if file has corrupt data. True = everything ok.
 	void readFromFile(); //Reads data from file.
 	void writeToFile(); //Writes data to file.
+    void applyInfo(char s[], char d[], char h[], char a[], char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool ot); //Update results, will only pass info further in the data structure.
 };
 
 #endif

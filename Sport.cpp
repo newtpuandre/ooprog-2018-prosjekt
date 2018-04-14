@@ -299,3 +299,12 @@ void Sport::writeToFile(ofstream &out) {
 	}
 }
 
+void Sport::applyInfo(char d[], char h[], char a[], char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool ot) {
+    Division* tempDiv;
+    
+    tempDiv = (Division*)divisionList->remove(d); //Will not need to check inlist. Done in checkinfo
+    tempDiv->applyInfo(h, a, date, hArr, aArr, hGoals, aGoals, ot);   //Will send info throught datastructure
+    divisionList->add(tempDiv);                   //until results can and will be updated..
+    
+}
+

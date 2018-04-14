@@ -408,14 +408,14 @@ int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type a
 
 bool Division::checkInfo(char h[], char a[], char date[]) {
 	//Team* tempTeam; //Create temp team.
-	bool homeOK = false, awayOK = false/*, matchPlayed = false*/;
+	bool homeOK = false, awayOK = false, played = false;
 
 	homeOK = teamsExist(h);
 	awayOK = teamsExist(a);
 
-	//matchPlayed = matchPlayed(a, h, date);
-
-	if (homeOK && awayOK/* && matchPlayed*/) {	//If both teams names exists and match is played, return true.
+	played = matchPlayed(h, a);
+    
+	if (homeOK && awayOK && played) {	//If both teams names exists and match is played, return true.
 		cout << "Everything is inorder";
 		return 1;
 	}
@@ -427,17 +427,19 @@ bool Division::checkInfo(char h[], char a[], char date[]) {
     //return 0;
 }
 
-bool Division::matchPlayed(char a[], char h[], char date[]) {
-	/*
-	bool buffer = false;
-	
-	for (int i = 0; i <= results.size(); i++) {
-		for (int j = 0; j <= results.size(); j++) {
+bool Division::matchPlayed(char h[], char a[]) {
+    int hTeamNo = 0, aTeamNo = 0;
+    bool played = false;
+    
+    hTeamNo = returnTeamNo(h);  //Find hometeams teamnumber. (Is used as x axis in vector.)
+    aTeamNo = returnTeamNo(a);  //Find awayteams teamnumber. (Is used as y axis in vector.)
+    
+    played = results[hTeamNo][aTeamNo]->returnPlayed(); //Return if match between the teams is already written..
 
-		}
-	}
-	*/
-	return 0;
+    if (!played) { //If not written already. Return true (ok to write result)
+        return true;
+    }
+    return false; //If not, return false.
 }
 
 void Division::writeToFile(ofstream &out) {
@@ -467,4 +469,24 @@ bool Division::teamsExist(char teamName[]) {
 	}
 
 	return allOK;
+}
+
+void Division::applyInfo(char h[], char a[], char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool overtime) {
+    int hTeamNo = 0, aTeamNo = 0;
+    
+    hTeamNo = returnTeamNo(h);  //Find hometeams teamnumber. (Is used as x axis in vector.)
+    aTeamNo = returnTeamNo(a);  //Find awayteams teamnumber. (Is used as y axis in vector.)
+    
+    results[hTeamNo][aTeamNo]->applyInfo(date, hArr, aArr, hGoals, aGoals, overtime); //Update cell [hometeam][awayteam]'s results.
+}
+
+int Division::returnTeamNo(char teamName[]) { //Will search through all teamnames. Return index of team with given name.
+    
+    for (int i = 0; i < numberOfTeams; i++) {
+        if (team[i]->compareName(teamName)) {
+            return i;
+        }
+    }
+    
+    return 0;
 }
