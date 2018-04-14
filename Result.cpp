@@ -153,6 +153,10 @@ Result::Result(ifstream &inn) {
 		inn >> throwAway; inn.ignore();
 	}
 
+	if (homeGoals > 0 || awayGoals > 0) {
+		matchPlayed = true;
+	}
+
 	inn >> overtime; inn.ignore();
 
 }
