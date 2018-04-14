@@ -40,9 +40,9 @@ Sport::Sport(char* name, ifstream &inn) :TextElement(name) {
 
 	inn >> tempTable; inn.ignore();					//Read table type from file, and ignore \n
 	switch (tempTable) {
-	case 1: table = tableType(a); break;
-	case 2: table = tableType(b); break;
-	case 3: table = tableType(c); break;
+	case 0: table = tableType(a); break;
+	case 1: table = tableType(b); break;
+	case 2: table = tableType(c); break;
 	}
 
 }
@@ -59,7 +59,7 @@ void Sport::newDiv() {
 		if (inn) {
 			Division* tempDivision;
 			tempDivision = new Division(divName);
-			tempDivision->readFromFile(inn);
+			tempDivision->readFromFile(inn, false);
 			divisionList->add(tempDivision);
 		}
 		else {
@@ -78,7 +78,7 @@ Sport::~Sport() { //No need for this?? No ptr
 };
 
 void Sport::display() {
-	cout << "\nName of the sport: " << text;
+	cout << "\n\nName of the sport: " << text;
 	switch (table) {
 	case a: cout << "\nTable type: 2-1-0"; break;
 	case b: cout << "\nTable type: 3-1-0"; break;
@@ -273,13 +273,12 @@ void Sport::readFromFile(ifstream &inn) {
 	int tempTable;
 
 	inn >> numberOfDivisions; inn.ignore();
-
 	if (numberOfDivisions > 0) {						//If number of divisions is above 0.
 		for (int i = 1; i <= numberOfDivisions; i++) {  //Loops through number of divisions and call divisions readFromFile function.
 			inn.getline(nameBuffer, STRLEN);		//Reads name of division from file,
 			tempDiv = new Division(nameBuffer);		// and adding the name to division list. 
+			tempDiv->readFromFile(inn, true);
 			divisionList->add(tempDiv);
-			tempDiv->readFromFile(inn);
 		}
 	}
 }

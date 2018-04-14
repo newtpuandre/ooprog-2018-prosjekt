@@ -42,7 +42,7 @@ void Division::display() {
 	}
 };
 
-void Division::readFromFile(ifstream &inn) {
+void Division::readFromFile(ifstream &inn, bool startupRead) {
     
 	Team* tempTeam; //Temporary team
 
@@ -57,20 +57,39 @@ void Division::readFromFile(ifstream &inn) {
 			tempTeam->readFromFile(inn); //Read team info from file
 			team[i] = tempTeam; //Move temp team to array
 
-								//This makes the file not read more than one team???
-								//delete tempTeam; //Delete temp team
-
-            
-								//TODO: READ SCHEDULE (terminliste)
 		}
 	}
 	else {
 		cout << "\nThe file is empty";
 	}
-	
-    readSchedule(inn);
+
+	if (startupRead) {
+		//Read Schedule from SPORTS.DTA HERE
+		readScheduleStartup(inn);
+	}
+	else {
+		readSchedule(inn);
+	}
 
 };
+
+void Division::readScheduleStartup(ifstream &inn) {
+	Result* tempRes;
+
+	for (int x = 0; x < numberOfTeams; x++) { //Counts number of rows.
+
+		vector<Result*> row; //CreatSe an empty row.
+
+		for (int y = 0; y < numberOfTeams; y++) { //Counts number of colums.
+			if (x != y) {
+				tempRes = new Result(inn); //Creates new result with given date.
+			}
+			row.push_back(tempRes); //Add an element (column) to the row.
+		}
+
+		results.push_back(row); //Add the row to the main vector.
+	}
+}
 
 void Division::displayTeam() {
 	char teamName[STRLEN];
@@ -425,24 +444,6 @@ bool Division::matchPlayed(char a[], char h[], char date[]) {
 	return 0;
 }
 
-void Division::readFromFileSports(ifstream &inn) {
-	inn.getline(text, STRLEN); //Reads name of division from file.
-	inn >> numberOfTeams; inn.ignore(); //Reads number of teams from file and ignores \n.
-
-	for (int i = 1; i <= numberOfTeams; i++) {
-		team[i]->readFromFile(inn);
-	}
-
-	for (int x = 0; x < numberOfTeams; x++) { //Loops through the x-column in the matrix
-		for (int y = 0; y < numberOfTeams; y++) { //Loops through the y-column in the matrix
-			team[x]->readName(inn); team[y]->readName(inn);
-			if (x != y) {
-				results[x][y]->readFromFile(inn);
-			}
-		}
-	}
-}
-
 void Division::writeToFile(ofstream &out) {
 	out << text << '\n';					//Writes out name of division to file. 
 	out << numberOfTeams << '\n';			//Writes out number of teams to file.
@@ -454,7 +455,6 @@ void Division::writeToFile(ofstream &out) {
 	for (int x = 0; x < numberOfTeams; x++) { //Loops through the x-column in the matrix
 		for (int y = 0; y < numberOfTeams; y++) { //Loops through the y-column in the matrix
 			if (x != y) {
-				team[x]->displayName(out); out << " "; team[y]->displayName(out); out << '\n';
 				results[x][y]->writeToFile(out);
 			}
 		}

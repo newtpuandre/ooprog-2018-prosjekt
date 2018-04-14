@@ -19,6 +19,7 @@ public:
 	//Function declarations need to be here
 	Result(); //Paramless constructor
     Result(char d[DATELEN]); //New result with date sent as parameter.
+	Result(ifstream &inn);
 	~Result(); //Destructor
 	void display();	//Displays data for result object.
 	void displayResults(); //Not sure if this is needed yet. 

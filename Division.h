@@ -32,7 +32,8 @@ public:
     void New();     //Reads parameters for division object.
 	void display(); //Displays data for division object.
 	void displayTeam(); //Display a team
-    void readFromFile(ifstream &inn); //Make and read from desired file.
+    void readFromFile(ifstream &inn, bool startupRead); //Make and read from desired file.
+	void readScheduleStartup(ifstream &inn);
     void editPlayer();
 	void remove(); //Remove a desired division.
 	void matches(); //Display results or write results to file.
@@ -48,7 +49,6 @@ public:
 	bool checkInfo(char h[], char a[], char date[]); //Check if file has corrupt data. True = everything ok.
 	bool matchPlayed(char h[], char a[], char date[]); //Check if the match is played
 	void writeToFile(ofstream &out);
-	void readFromFileSports(ifstream &inn);
 	bool teamsExist(char teamName[]);
 };
 

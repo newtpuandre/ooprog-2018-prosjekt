@@ -42,7 +42,7 @@ int main() {
         ch = read();
     }
     players.writeToFile();
-  //  sports.writeToFile();
+	sports.writeToFile();
 	
     cout << "\n\n";
 	return 0;

@@ -174,7 +174,11 @@ void Team::readFromFileSports(ifstream &inn) {
 }
 
 void Team::writeToFile(ofstream &out) {
-	out << name << " "					//Writes name of team to file. 
+	out << name << "\n"					//Writes name of team to file. 
 		<< address << '\n'				//Writes name of adress to file.
 		<< numberOfPlayers << '\n';		//Writes number of players to file.
+
+	for (int i = 0; i < numberOfPlayers; i++) {
+		out << playerNo[i] << "\n";
+	}
 }
