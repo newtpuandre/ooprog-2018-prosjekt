@@ -24,15 +24,13 @@ public:
 	Team(); //Paramless constructor
 	~Team(); //Destructor
 	void display(bool all);	//Displays data for team object.
-	bool operator== (char name1[]);
-    void readFromFile(ifstream &inn);
-	void edit();
+	bool operator== (char name1[]);		//Operator overload for comparing team names
+    void readFromFile(ifstream &inn);	//Read team and player info from file
+	void edit();						//Edit player from team, add or remove.
 	void displayName();					//Displays name for a team to screen. 
 	void displayName(ofstream &out);	//Displays a name for a team to file.
-	void readName(ifstream &inn);		//Reads a name for a team from file.
 	void returnName(char* pointName);
 	bool compareName(char n[]); //Compare parameter with teamname.
-	void readFromFileSports(ifstream &inn); //Reads data from SPORTS.DTA file.
 	void writeToFile(ofstream &out); //Writes data to file.
 };
 

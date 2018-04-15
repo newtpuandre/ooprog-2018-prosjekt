@@ -20,11 +20,11 @@ Team::~Team() {
 	//Deconstructor
 };
 
-void Team::display(bool all) {
+void Team::display(bool all) { //Display the team and its players
 	cout << "\nName of the team: " << name
 		<< "\nTeam address: " << address
 		<< "\nNumber of players on the team: " << numberOfPlayers;
-	if (all == true) {
+	if (all == true) { //Param is true, info about every player will be displayed
 		for (int i = 0; i < numberOfPlayers; i++) {
 			cout << "\nPlayer number: " << playerNo[i];
 			players.displayId(playerNo[i]);
@@ -32,7 +32,7 @@ void Team::display(bool all) {
 	}
 };
 
-bool Team::operator== (char name1[]) {
+bool Team::operator== (char name1[]) { //Compare team name with param
 	if (strcmp(name, name1) == 0) {
 		return true;
 	}
@@ -57,7 +57,7 @@ void Team::readFromFile(ifstream &inn) {
 
 	inn >> tempNumb;
 
-	numberOfPlayers = tempNumb;
+	numberOfPlayers = tempNumb; //Copy over number of players
 	inn.ignore();
 
 	for (int i = 0; i < numberOfPlayers; i++) {
@@ -65,7 +65,7 @@ void Team::readFromFile(ifstream &inn) {
 		inn.ignore();
         
 		if (atoi(buffer)) { //Must be a number
-			playerNo.push_back(atoi(buffer));
+			playerNo.push_back(atoi(buffer)); //add the player id to the player ID vector
 		}
 		else { //Must be a text
 			char tempName[STRLEN];
@@ -75,39 +75,42 @@ void Team::readFromFile(ifstream &inn) {
 			inn.getline(buffer, STRLEN);
 			strcpy(tempAddress, buffer);
 
-			tempId = players.returnLastId();
+			tempId = players.returnLastId();						//Return the last player ID used. lastID +1
 
-			Player* tempPlayer;
-			tempPlayer = new Player(tempId, tempName, tempAddress);
-			players.addToList(tempPlayer);
+			Player* tempPlayer;										//TempPlayer
+			tempPlayer = new Player(tempId, tempName, tempAddress); //Create new player
+			players.addToList(tempPlayer);							//And add it to the list
 
-			playerNo.push_back(tempId);
+			playerNo.push_back(tempId);								//Add the player id to the Player ID vector
 		}
 	}
 
 }
 
-void Team::edit() {
+void Team::edit() { //Edit a player on the team.
     char answ;
     cout << "Would you like to add or remove a player (a)dd / (d)elete / (Q)uit";
     answ = read();
     int id;
     
     switch (answ) {
-        case 'A':
-			if(playerNo.size() < MAXPLAYERS){
+        case 'A': //Add a player
+			if(playerNo.size() < MAXPLAYERS){ //Dont go over max team limit!
 				bool found = false;
 				id = read("Player ID", MINID, MAXID);
 
-				for (int i = 0; i < numberOfPlayers; i++) {
+				for (int i = 0; i < numberOfPlayers; i++) { //Go through and check if ID already exists
 					if (playerNo[i] == id) {
-						found = true;
+						found = true; //We found the player. Dont add another one.
 					}
 				}
 
 				if (!found) {
-					numberOfPlayers++;
-					playerNo.push_back(id);
+					numberOfPlayers++; //Add another player to the team member counter
+					playerNo.push_back(id); //Add the player to the player ID Vector
+				}
+				else {
+					cout << "\nPlayer with ID " << id << " already exists on this team";
 				}
 			}
 			else {
@@ -116,13 +119,13 @@ void Team::edit() {
 
             break;
             
-        case 'D':
+        case 'D': //Delete a player
             id = read("Player ID", MINID, MAXID);
             
-            for (int i = 0; i < numberOfPlayers; i++) {
-                if (playerNo[i] == id) {
-                    playerNo.erase(playerNo.begin()+ i);
-                    numberOfPlayers--;
+            for (int i = 0; i < numberOfPlayers; i++) { //Check to find the correct player id.
+                if (playerNo[i] == id) {	//Id was found
+                    playerNo.erase(playerNo.begin()+ i); //Go i out from the start in the vector and delete it
+                    numberOfPlayers--; //Remove 1 from the team member counter
                 }
             }
             break;
@@ -132,36 +135,20 @@ void Team::edit() {
     }
 }
 
-void Team::displayName() {
+void Team::displayName() { //Prints team name to screen
 	cout << name;
 }
 
-void Team::displayName(ofstream &out) {
+void Team::displayName(ofstream &out) { //Prints team name to file
 	out << name;
 }
 
-void Team::readName(ifstream &inn) {		
-	inn.getline(name, STRLEN);
-}
-
-void Team::returnName(char* pointName) {
+void Team::returnName(char* pointName) { //Returns name to the param pointer
 	strcpy(pointName, name);
 }
 
-bool Team::compareName(char n[]) {
+bool Team::compareName(char n[]) { //Compares team name with param
 	return (strcmp(name, n) == 0);
-}
-
-void Team::readFromFileSports(ifstream &inn) {
-	char nameBuffer[STRLEN];
-	int tempNumb = 0;
-	
-	inn.getline(nameBuffer, STRLEN); 			//Reads name of team from file.
-	strcpy(name, nameBuffer);
-	inn.getline(nameBuffer, STRLEN);			//Reads adress of team from file.
-	strcpy(name, nameBuffer);
-	inn >> tempNumb; inn.ignore();	//Reads number of players within a team from file and ignore \n.
-	numberOfPlayers = tempNumb;
 }
 
 void Team::writeToFile(ofstream &out) {
@@ -169,7 +156,7 @@ void Team::writeToFile(ofstream &out) {
 		<< address << '\n'				//Writes name of adress to file.
 		<< numberOfPlayers << '\n';		//Writes number of players to file.
 
-	for (int i = 0; i < numberOfPlayers; i++) {
-		out << playerNo[i] << "\n";
+	for (int i = 0; i < numberOfPlayers; i++) { //Loop through players in a team and write to file.
+		out << playerNo[i] << "\n";				//Writes player number to file
 	}
 }
