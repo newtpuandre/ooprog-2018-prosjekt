@@ -34,6 +34,19 @@ Sport::Sport(char* name) :TextElement(name) {
 
 };
 
+Sport::Sport(char* name, ifstream &inn) :TextElement(name) {
+	divisionList = new List(Sorted);
+	int tempTable;
+
+	inn >> tempTable; inn.ignore();					//Read table type from file, and ignore \n
+	switch (tempTable) {
+	case 0: table = tableType(a); break;
+	case 1: table = tableType(b); break;
+	case 2: table = tableType(c); break;
+	}
+
+}
+
 void Sport::newDiv() {
 	char divName[STRLEN];
 	char fileName[STRLEN];
@@ -46,7 +59,7 @@ void Sport::newDiv() {
 		if (inn) {
 			Division* tempDivision;
 			tempDivision = new Division(divName);
-			tempDivision->readFromFile(inn);
+			tempDivision->readFromFile(inn, false);
 			divisionList->add(tempDivision);
 		}
 		else {
@@ -65,7 +78,7 @@ Sport::~Sport() { //No need for this?? No ptr
 };
 
 void Sport::display() {
-	cout << "\nName of the sport: " << text;
+	cout << "\n\nName of the sport: " << text;
 	switch (table) {
 	case a: cout << "\nTable type: 2-1-0"; break;
 	case b: cout << "\nTable type: 3-1-0"; break;
@@ -131,29 +144,27 @@ void Sport::removeDiv() {
 	}
 }
 
-void Sport::matches() {
-	char divName[STRLEN];
+void Sport::matches(char* divi, char* filename, char* date) {
 	Division* tempDiv;
 
-	cout << "Division name: ";
-	cin.getline(divName, STRLEN);
 
-	if (divName[0] == '\0') { //Empty string, calculate for the whole sport.
-		for (int i = 0; i < divisionList->noOfElements(); i++) { //Loop through divisionlist and display all matches in given sport
+	if (divi[0] == '\0') { //Empty string, calculate for the whole sport.
+		for (int i = 1; i <= divisionList->noOfElements(); i++) { //Loop through divisionlist and display all matches in given sport
 			tempDiv = (Division*)divisionList->removeNo(i);
-			tempDiv->matches();
+			cout << "\nMatches for division: "; tempDiv->displayName(); cout << "\n";
+			tempDiv->matches(filename, date);
 			divisionList->add(tempDiv);
 		}
 
 	}
 	else { //Non-empty string, calculate for the given division.
-		if (divisionList->inList(divName)) {
-			tempDiv = (Division*)divisionList->remove(divName);
-			tempDiv->matches();
+		if (divisionList->inList(divi)) {
+			tempDiv = (Division*)divisionList->remove(divi);
+			tempDiv->matches(filename, date);
 			divisionList->add(tempDiv);
 		}
 		else {
-			cout << "The division " << divName << " does not exist!";
+			cout << "The division " << divi << " does not exist!";
 		}
 	}
 }
@@ -236,17 +247,61 @@ void Sport::writeTable() {
 }
 
 bool Sport::checkInfo(char d[], char h[], char a[], char date[]) {
-	/*
 	Division* tempDiv;		//Create temp division.
 	bool allGood = false;
 
+    
 	if (divisionList->inList(d)) { //If divName exist, the following will be checked..
-		//allGood = tempDiv->checkInfo(h, a, date); //.. h = homeTeam, a = awayTeam.
+        tempDiv = (Division*)divisionList->remove(d);
+        allGood = tempDiv->checkInfo(h, a, date); //.. h = homeTeam, a = awayTeam.
+        divisionList->add(tempDiv);
 		return allGood; // DENNE SKAL MULIGENS RETURNERE NOE ANNET
 	}
 	else {
 		return allGood; //Return false
 	}
-	*/
+
 	return 0;
 }
+
+void Sport::readFromFile(ifstream &inn) {
+	Division* tempDiv;
+	char nameBuffer[STRLEN];
+	int tempTable;
+
+	inn >> numberOfDivisions; inn.ignore();
+	if (numberOfDivisions > 0) {						//If number of divisions is above 0.
+		for (int i = 1; i <= numberOfDivisions; i++) {  //Loops through number of divisions and call divisions readFromFile function.
+			inn.getline(nameBuffer, STRLEN);		//Reads name of division from file,
+			tempDiv = new Division(nameBuffer);		// and adding the name to division list. 
+			tempDiv->readFromFile(inn, true);
+			divisionList->add(tempDiv);
+		}
+	}
+}
+
+void Sport::writeToFile(ofstream &out) {
+	Division* tempDiv;
+
+	out << text << '\n';				//Writes name of sport out to file. 
+	out << table << '\n';				//Writes table type out to file.
+	out << numberOfDivisions << '\n';	//Writes out number of divisions in sport. 
+
+	if (numberOfDivisions > 0) {
+		for (int i = 1; i <= numberOfDivisions; i++) {
+				tempDiv = (Division*)divisionList->removeNo(i);
+				tempDiv->writeToFile(out);
+				divisionList->add(tempDiv);
+		}
+	}
+}
+
+void Sport::applyInfo(char d[], char h[], char a[], char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool ot) {
+    Division* tempDiv;  //Create temp division.
+                        //Will not need to check inlist. Done in checkInfo.
+    tempDiv = (Division*)divisionList->remove(d); //Remove divName from divisionList.
+    tempDiv->applyInfo(h, a, date, hArr, aArr, hGoals, aGoals, ot); //Will update result with given parameters.
+    divisionList->add(tempDiv);                   //Add the divName back to the divisionList.
+    
+}
+

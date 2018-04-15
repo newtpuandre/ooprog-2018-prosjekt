@@ -10,6 +10,7 @@
 #include "Functions.h"
 #include "Player.h"
 #include "Division.h"
+#include "Players.h"
 
 Team::Team() {
 	//Paramless constructor
@@ -49,11 +50,9 @@ void Team::readFromFile(ifstream &inn) {
 	int tempNumb = 0, tempId = 0;
     
 	inn.getline(nameBuffer,STRLEN); //Read team name from file
-	//name = new char[strlen(nameBuffer) + 1]; //Create a new char array
 	strcpy(name, nameBuffer); //Copy over from buffer
 
 	inn.getline(addressBuffer, STRLEN); //Read team address from file
-	//address = new char[strlen(addressBuffer) + 1]; //Create a new char array
 	strcpy(address, addressBuffer); //Copy over from buffer
 
 	inn >> tempNumb;
@@ -83,12 +82,8 @@ void Team::readFromFile(ifstream &inn) {
 			players.addToList(tempPlayer);
 
 			playerNo.push_back(tempId);
-			//delete tempPlayer;
 		}
 	}
-
-	/*Division* tempDiv;
-	tempDiv->readSchedule(inn);*/
 
 }
 
@@ -145,10 +140,36 @@ void Team::displayName(ofstream &out) {
 	out << name;
 }
 
+void Team::readName(ifstream &inn) {		
+	inn.getline(name, STRLEN);
+}
+
 void Team::returnName(char* pointName) {
 	strcpy(pointName, name);
 }
 
 bool Team::compareName(char n[]) {
-	return (name == n);
+	return (strcmp(name, n) == 0);
+}
+
+void Team::readFromFileSports(ifstream &inn) {
+	char nameBuffer[STRLEN];
+	int tempNumb = 0;
+	
+	inn.getline(nameBuffer, STRLEN); 			//Reads name of team from file.
+	strcpy(name, nameBuffer);
+	inn.getline(nameBuffer, STRLEN);			//Reads adress of team from file.
+	strcpy(name, nameBuffer);
+	inn >> tempNumb; inn.ignore();	//Reads number of players within a team from file and ignore \n.
+	numberOfPlayers = tempNumb;
+}
+
+void Team::writeToFile(ofstream &out) {
+	out << name << "\n"					//Writes name of team to file. 
+		<< address << '\n'				//Writes name of adress to file.
+		<< numberOfPlayers << '\n';		//Writes number of players to file.
+
+	for (int i = 0; i < numberOfPlayers; i++) {
+		out << playerNo[i] << "\n";
+	}
 }

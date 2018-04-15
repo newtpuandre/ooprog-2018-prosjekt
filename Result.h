@@ -6,7 +6,6 @@
 class Result {
 
 private:
-	//Need to add specific variables for this class
 	char date[DATELEN]; //Match date
 	int homeGoals = 0;  //Home team goals
 	int awayGoals = 0;	//Away team goals
@@ -18,16 +17,22 @@ private:
 public:
 	//Function declarations need to be here
 	Result(); //Paramless constructor
-    Result(char d[DATELEN]); //New result with date sent as parameter.
+    Result(char d[]); //New result with date sent as parameter.
+	Result(ifstream &inn);
 	~Result(); //Destructor
 	void display();	//Displays data for result object.
-	void displayResults(); //Not sure if this is needed yet. 
+	void displayResults(); //Display the result of a match
+    void displayResults(ofstream &out); //Write the result of a match
 	bool cmpDate(char ddmm[]); //Checks if the date sent as parameter is the same as its own. 
     void readFromFile(); //Reads schedule from list.
     void displayDate(); //Display the date of the result.
 	void convertDate(); //Convert from ÂÂÂÂMMDD to DD/MM
     void convertDate(ofstream &out); //Convert from ÅÅÅÅMMDD to DD/MM
 	int returnScore(); //Returns 0 if home won, 1 if away won, 2 if tie, 3 if not played
+	void writeToFile(ofstream &out); //Writes data to file. 
+	void readFromFile(ifstream &inn); //Reads data from file.
+    void applyInfo(char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool ot); //Update info of a result.
+    bool returnPlayed(); //Return bool matchPlayed.
 };
 
 #endif

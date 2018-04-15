@@ -33,6 +33,10 @@ void Division::New() {
     
 };
 
+void Division::displayName() {
+	cout << text;
+}
+
 void Division::display() {
 	cout << "\nDivisions name: " << text << '\n'
 		 << "\nNumber of teams in the division: " << numberOfTeams << '\n';
@@ -42,7 +46,7 @@ void Division::display() {
 	}
 };
 
-void Division::readFromFile(ifstream &inn) {
+void Division::readFromFile(ifstream &inn, bool startupRead) {
     
 	Team* tempTeam; //Temporary team
 
@@ -57,20 +61,39 @@ void Division::readFromFile(ifstream &inn) {
 			tempTeam->readFromFile(inn); //Read team info from file
 			team[i] = tempTeam; //Move temp team to array
 
-								//This makes the file not read more than one team???
-								//delete tempTeam; //Delete temp team
-
-            
-								//TODO: READ SCHEDULE (terminliste)
 		}
 	}
 	else {
 		cout << "\nThe file is empty";
 	}
-	
-    readSchedule(inn);
+
+	if (startupRead) {
+		//Read Schedule from SPORTS.DTA HERE
+		readScheduleStartup(inn);
+	}
+	else {
+		readSchedule(inn);
+	}
 
 };
+
+void Division::readScheduleStartup(ifstream &inn) {
+	Result* tempRes;
+
+	for (int x = 0; x < numberOfTeams; x++) { //Counts number of rows.
+
+		vector<Result*> row; //CreatSe an empty row.
+
+		for (int y = 0; y < numberOfTeams; y++) { //Counts number of colums.
+			if (x != y) {
+				tempRes = new Result(inn); //Creates new result with given date.
+			}
+			row.push_back(tempRes); //Add an element (column) to the row.
+		}
+
+		results.push_back(row); //Add the row to the main vector.
+	}
+}
 
 void Division::displayTeam() {
 	char teamName[STRLEN];
@@ -108,45 +131,44 @@ void Division::remove() {
 
 }
 
-void Division::matches() {
-	char fileName[STRLEN];
-	cout << "Filename (including file extension): ";
-	cin.getline(fileName, STRLEN);
+void Division::matches(char* filename, char* date) {
 
-	if (fileName[0] == '\0') { //If no input is given
-		displayMatches();      // display data to screen. 
+	if (filename[0] == '\0') { //If no input is given
+		displayMatches(date);      // display data to screen. 
 	}
 	else {
-		writeMatches(fileName); //Else write to given filename. 
+		writeMatches(filename, date); //Else write to given filename. 
 	}
 }
 
-void Division::displayMatches() {
-	char date[DATELEN];
+void Division::displayMatches(char* date) {
 	Result* tempRes;
-
-	read("What date", date, DATELEN);
+	bool areMatches = false;
 
 	for (int x = 0; x < numberOfTeams; x++) { //Loops through the x-column in the matrix
 		for (int y = 0; y < numberOfTeams; y++) { //Loops through the y-column in the matrix
-			tempRes = results[x][y]; //Oppdaterer terminlista sånn at tempRes vet hvor i lista man er. 
 			if (x != y) { //Team cannot play against itself. 
+			tempRes = results[x][y]; //Oppdaterer terminlista sånn at tempRes vet hvor i lista man er. 
 				if (tempRes->cmpDate(date)) { //Comparing dates.
-					team[y]->displayName(); cout << " - "; team[x]->displayName(); //Displaying team vs. team at given date.
+					cout << "\n"; 
+					team[x]->displayName(); cout << " - "; team[y]->displayName(); //Displaying team vs. team at given date.
 					cout << '\n';
-					//	if (Teams already got results) {
-					//tempRes->displayResults();
+					areMatches = true;
+                    if (results[x][y]->returnPlayed()) {
+                        tempRes->displayResults();
+                    }
 				}
 			}
 		}
 	}
+
+	if (areMatches == false) {
+		cout << "\nNo matches on given date for this division.\n";
+	}
 }
 
-void Division::writeMatches(char fileName[]) {
-	char date[DATELEN];
+void Division::writeMatches(char fileName[], char* date) {
 	Result* tempRes;
-
-	read("What date", date, DATELEN);
 
 	ofstream out(fileName);
 	if (out) {                                    //If the file exists.
@@ -155,11 +177,11 @@ void Division::writeMatches(char fileName[]) {
 				tempRes = results[x][y]; //Oppdaterer terminlista sånn at tempRes vet hvor i lista man er. 
 				if (tempRes != nullptr) { //Checks if tempRes points at anything or not. 
 					if (tempRes->cmpDate(date)) { //Comparing dates.
-						team[y]->displayName(out); out << " - "; team[x]->displayName(out); //Displaying team vs. team at given date.
-						cout << '\n';
-						//	if (Teams already got results) {
-						//tempRes->displayResults();
-						//	}
+						team[x]->displayName(out); out << " - "; team[y]->displayName(out); //Displaying team vs. team at given date.
+						out << '\n';
+						if (results[x][y]->returnPlayed()) {
+                            tempRes->displayResults(out);
+						}
 
 					}
 				}
@@ -286,30 +308,26 @@ void Division::writeTable(tableType table,bool file,ofstream &out) {
 
 			if (i != j) { //Teams cant be playing them selves..
 				if (results[i][j]->returnScore() == 0) { //Home won
-					teamTableArr[i].totalScore = TabletypeCalc(table, 1);
+					teamTableArr[i].totalScore += TabletypeCalc(table, 1);
 				}
-				if (results[i][j]->returnScore() == 1) { //Away won
-					teamTableArr[j].totalScore = TabletypeCalc(table, 1);
+				else if (results[i][j]->returnScore() == 1) { //Away won
+					teamTableArr[j].totalScore += TabletypeCalc(table, 1);
 				}
-				if (results[i][j]->returnScore() == 2) { //Tie
-					teamTableArr[i].totalScore = TabletypeCalc(table, 3);
-					teamTableArr[j].totalScore = TabletypeCalc(table, 3);
+				else if (results[i][j]->returnScore() == 2) { //Tie
+					teamTableArr[i].totalScore += TabletypeCalc(table, 3);
+					teamTableArr[j].totalScore += TabletypeCalc(table, 3);
 				}
-
-				if (results[i][j]->returnScore() == 4) { //Overtime home win
-					teamTableArr[i].totalScore = TabletypeCalc(table, 3);
+				else if (results[i][j]->returnScore() == 4) { //Overtime home win
+					teamTableArr[i].totalScore += TabletypeCalc(table, 3);
 				}
-
-				if (results[i][j]->returnScore() == 5) { //Overtime away win
-					teamTableArr[j].totalScore = TabletypeCalc(table, 3);
+				else if (results[i][j]->returnScore() == 5) { //Overtime away win
+					teamTableArr[j].totalScore += TabletypeCalc(table, 3);
 				}
-
-				if (results[i][j]->returnScore() == 6) { //Overtime tie
-					teamTableArr[i].totalScore = TabletypeCalc(table, 4);
-					teamTableArr[j].totalScore = TabletypeCalc(table, 4);
+				else if (results[i][j]->returnScore() == 6) { //Overtime tie
+					teamTableArr[i].totalScore += TabletypeCalc(table, 4);
+					teamTableArr[j].totalScore += TabletypeCalc(table, 4);
 				}
 
-				//if overtime add special points
 				
 			}
 
@@ -323,8 +341,9 @@ void Division::writeTable(tableType table,bool file,ofstream &out) {
 	
 	if (file == false) { //Print to screen
 		cout << "\nCurrent table standings for " << text << ":";
+		cout << "\nTeam:\t" << "Score:";
 		for (int i = 0; i < numberOfTeams; i++) { //Print out to the screen
-			cout << "\n" << teamTableArr[i].teamName << " " << teamTableArr[i].totalScore;
+			cout << "\n" << teamTableArr[i].teamName << "\t" << teamTableArr[i].totalScore;
 		}
 	}
 	else { //Write to file
@@ -379,10 +398,10 @@ int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type a
 			return 0;
 		}
 		else if (wlt == 3) {
-			return 2;
+			return 1;
 		}
 		else { //wlt == 4
-			return 1;
+			return 2;
 		}
 		break;
 
@@ -392,41 +411,86 @@ int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type a
 }
 
 bool Division::checkInfo(char h[], char a[], char date[]) {
-	/*Team* tempTeam; //Create temp team.
-	bool buffer = false, homeOK = false, awayOK = false, matchPlayed = false;
+	bool homeOK = false, awayOK = false, played = false;
 
-	for (int i = 1; i <= numberOfTeams; i++) {
-		buffer = team[i]->compareName(h); //Check if hometeams name exist.
-		if (buffer == true) {
-			homeOK = buffer;
-		}
+	homeOK = teamsExist(h);
+	awayOK = teamsExist(a);
 
-		buffer = team[i]->compareName(a); //Check if awayteams name exist.
-		if (buffer == true) {
-			awayOK = buffer;
-		}
-	}
-
-	//matchPlayed = matchPlayed(a, h, date);
-
-	if (homeOK && awayOK && matchPlayed) {	//If both teams names exists and match is played, return true.
+	played = matchPlayed(h, a, date); //Check if match is played (result is written already). (and if dates are correct)
+    
+	if (homeOK && awayOK && played) {	//If both teams names exists and match is played, return true.
+		//cout << "Everything is inorder";
 		return 1;
 	}
 	else {
+		cout << "One or both teams does not exist or the results is already written";
 		return 0;
-	}*/
-	return 0;
+	}
+	
 }
 
-bool Division::matchPlayed(char a[], char h[], char date[]) {
-	/*
-	bool buffer = false;
-	
-	for (int i = 0; i <= results.size(); i++) {
-		for (int j = 0; j <= results.size(); j++) {
+bool Division::matchPlayed(char h[], char a[], char date[]) {
+    int hTeamNo = 0, aTeamNo = 0;
+    bool played = false, onDate = false;
+    
+    hTeamNo = returnTeamNo(h);  //Find hometeams teamnumber. (Is used as x axis in vector.)
+    aTeamNo = returnTeamNo(a);  //Find awayteams teamnumber. (Is used as y axis in vector.)
+    
+    played = results[hTeamNo][aTeamNo]->returnPlayed(); //Return if match between the teams is already written..
+    onDate = results[hTeamNo][aTeamNo]->cmpDate(date); //Check if the match is played on date read from RESULTS.DTA (will in practise compare dates with NY_DIV.DTA)
 
+    if (!played && onDate) { //If not written already. Return true (ok to write result)
+        return true;
+    }
+    return false; //If not, return false.
+}
+
+void Division::writeToFile(ofstream &out) {
+	out << text << '\n';					//Writes out name of division to file. 
+	out << numberOfTeams << '\n';			//Writes out number of teams to file.
+
+	for (int i = 0; i < numberOfTeams; i++) {
+		team[i]->writeToFile(out);
+	}
+
+	for (int x = 0; x < numberOfTeams; x++) { //Loops through the x-column in the matrix
+		for (int y = 0; y < numberOfTeams; y++) { //Loops through the y-column in the matrix
+			if (x != y) {
+				results[x][y]->writeToFile(out);
+			}
 		}
 	}
-	*/
-	return 0;
+}
+
+bool Division::teamsExist(char teamName[]) {
+	bool found = false, allOK = false;
+	for (int i = 0; i < numberOfTeams; i++) {
+		found = team[i]->compareName(teamName); //Check if hometeams name exist.
+		if (found == true) {
+			allOK = true;
+		}
+	}
+
+	return allOK;
+}
+
+void Division::applyInfo(char h[], char a[], char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool overtime) {
+    int hTeamNo = 0, aTeamNo = 0;
+    
+    hTeamNo = returnTeamNo(h);  //Find hometeams teamnumber. (Is used as x axis in vector.)
+    aTeamNo = returnTeamNo(a);  //Find awayteams teamnumber. (Is used as y axis in vector.)
+    
+    results[hTeamNo][aTeamNo]->applyInfo(date, hArr, aArr, hGoals, aGoals, overtime); //Update cell [hometeam][awayteam]'s results.
+    //results[hTeamNo][aTeamNo]->displayResults(); //Display results too see if updated.. USED FOR DEBUGGING
+}
+
+int Division::returnTeamNo(char teamName[]) { //Will search through all teamnames. Return index of team with given name.
+    
+    for (int i = 0; i < numberOfTeams; i++) {
+        if (team[i]->compareName(teamName)) {
+            return i;
+        }
+    }
+    
+    return 0;
 }
