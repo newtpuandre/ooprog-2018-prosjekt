@@ -19,7 +19,6 @@ struct teamTable { //Used when calculating the team standings
 class Division : public TextElement {
 
 private:
-	//Text derived
 	int numberOfTeams = 0;	//Number of teams in a division
 	Team* team[MAXTEAM];	//Array with Teams
 	vector< vector<Result*> > results; //Two-dimensional vector with results.

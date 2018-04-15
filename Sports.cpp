@@ -196,114 +196,106 @@ void Sports::writeTable() {
 	}
 }
 
-bool Sports::results(bool apply) {
+bool Sports::results(bool apply) { //Call from main is false first - will check format. If alright - will run again and apply info.
 	char fileName[STRLEN] = "RESULTS.DTA";
     char sportName[STRLEN], divName[STRLEN], date[DATELEN], teamH[STRLEN], teamA[STRLEN];
-    int noOfSports = 0, noOfDiv = 0, noOfMatches = 0, homeGoals = 0, awayGoals = 0, buffer = 0;
+    int noOfSports = 0, noOfDiv = 0, noOfMatches = 0, homeGoals = 0, awayGoals = 0, buffer = 0, success = 0;
     int homeScorers[STRLEN], awayScorers[STRLEN];
     bool overtime = false, alright = false;
-    
-    //char* charBuffer;
-    //char* charBuffer2;
     
     ifstream inn(fileName);
 
 	if (inn) { //The file exists
 
-	inn >> noOfSports;		inn.ignore();	//Read number of sports on file, ignore /n
+	inn >> noOfSports;  inn.ignore();	//Read number of sports on file, ignore /n
     
 		for (int s = 1; s <= noOfSports; s++) {		//Read results of 'noOfSports'-sports
 			inn.getline(sportName, STRLEN);			//Read sportsname
-            //charBuffer = sportName;
 			inn >> noOfDiv;			inn.ignore();	//Read number of divisions on file, ignore /n
 
 			for (int d = 1; d <= noOfDiv; d++) {	//Read results of 'noOfDiv'-divisions within each sport
-				inn.getline(divName, STRLEN);			//Read division name
-                //charBuffer2 = divName;
+				inn.getline(divName, STRLEN);		//Read division name
 				inn >> noOfMatches;		inn.ignore();	//Read number of matches on file, ignore /n
 
 				for (int m = 1; m <= noOfMatches; m++) {//Read match results for 'noOfMatches'-matches within each divisions
 					inn.getline(date, STRLEN);		//RESULT - date
 					inn.getline(teamH, STRLEN);		//RESULT - HOMETEAM
 					inn.getline(teamA, STRLEN);		//RESULT - AWAYTEAM
-					inn >> homeGoals; inn.ignore();
-					inn >>awayGoals; inn.ignore(); //RESULT - les inn hjemmemål og bortemål
-					inn >> overtime; inn.ignore();				//RESULT - BOOL OVERTIME
-													// ^ABOVE^ 1 = true. 0 = false.
-					if (homeGoals != 0) {
+					inn >> homeGoals; inn.ignore(); //RESULT - HOMEGOALS
+					inn >>awayGoals; inn.ignore();  //RESULT - AWAYGOALS
+					inn >> overtime; inn.ignore();	//RESULT - BOOL OVERTIME
+
+                    if (homeGoals != 0) {
 						for (int h = 0; h < homeGoals; h++) {	//Read home scorers
-							inn >> buffer; inn.ignore();			//HOME SCORERS - player ID
-							homeScorers[h] = buffer;	//HOME SCORERS - place player ID into tray 'j'
+							inn >> buffer; inn.ignore();		//HOME SCORERS - player ID
+							homeScorers[h] = buffer;	        //HOME SCORERS - place player ID into tray 'j'
 						}
 					}
 					else {
-						inn >> buffer; inn.ignore(); //Info still need to be read, but not stored.
+						inn >> buffer; inn.ignore();            //If homeGoals = 0, will read but not store info.
 					}
 					
 					if (awayGoals != 0) {
 						for (int a = 0; a < awayGoals; a++) {	//Read away scorers
-							inn >> buffer;	inn.ignore();			//AWAY SCORERS - player ID
-							awayScorers[a] = buffer;	//AWAY SCORERS - place player ID into tray 'k'
+							inn >> buffer;	inn.ignore();		//AWAY SCORERS - player ID
+							awayScorers[a] = buffer;	        //AWAY SCORERS - place player ID into tray 'k'
 						}
 					}
 					else {
-						inn >> buffer; inn.ignore(); //Info still need to be read, but not stored.
+						inn >> buffer; inn.ignore();            //If homeGoals = 0, will read but not store info.
 					}
-
-					//LAG NYE RESULTATER?? //lag nye resultat objekter..
      
-                    if (apply == false ) {
+                    if (apply == false ) { //Used to check file format and contents.
                         alright = sports.checkInfo(sportName, divName, teamH, teamA, date); //return true = everything ok.
-                        //alright = sports.checkInfo(charBuffer, charBuffer2, teamH, teamA, date); //return true = everything ok.
 
-                        if (!alright){
-                            //is false
-                            cout << "\nERROR IN FILE!!";
-                            return false;
+                        if (!alright){     //If there is any formatting of content error..
+                            cout << "\nERROR IN FILE!!"; //..the program will tell the user..
+                            return false;  //..and not update any results.
                         }
-                    } else {
+                        
+                    } else { //If the check above is successful, this will be run to update results.
                         sports.applyInfo(sportName, divName, teamH, teamA, date, homeScorers, awayScorers, homeGoals, awayGoals, overtime);
-                        //cout << "\nApply == true. Her skal resultater oppdateres.";
+                        success += 1; //Function above updates all parameters given. This line counts number of results successfully updated.
+                        if (success == noOfMatches) { //If all results are successfully updated, the program will tell the user..
+                            cout << "\nResults updated!"; // <-
+                        }
+                        
                     }
 				}
 			}
 		}
 	}
+    
 	else {
 		cout << "Couldn't find the file " << fileName << " !!";
 	}
     
-     return (alright == true && apply == false);
+     return (alright == true && apply == false); //Return to main true if file format and contents are alright AND results are not updated yet.
 }
 
 bool Sports::checkInfo(char s[], char d[], char h[], char a[], char date[]) {
 	Sport* tempSport;		//Create temp sport.
 	bool allGood = false;
-	//bool sportExist = false;
     
 	if (sportList->inList(s)) { //Returns true if sport exists, will then check..
-		//cout << s << endl;
-        tempSport = (Sport*)sportList->remove(s);
-        allGood = tempSport->checkInfo(d, h, a, date);	// .. d = divName, h = homeTeam, a = awayTeam
-        sportList->add(tempSport);
-		return allGood; // DENNE SKAL MULIGENS RETURNERE NOE ANNET..
+        tempSport = (Sport*)sportList->remove(s); //Remove sportName from list to check info.
+        allGood = tempSport->checkInfo(d, h, a, date); //Will check divName, homeTeams & awayTeams names, date.
+        sportList->add(tempSport); //Add sportName back to the list.
+		return allGood; //Returns wether or not everything was okey.
 	}
     
-	else {
-		return allGood;
+	else { //If sportName is not in list.
+		return allGood; //Return false as some of the data was not okey.
 	}
-	
-	//return allGood;
-	//return 0;
 
 }
 
 void Sports::applyInfo(char s[], char d[], char h[], char a[], char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool ot) {
-    Sport* tempSport;
-                                            //Doesnt need to check inlist.. Already checked in check info..
-    tempSport = (Sport*)sportList->remove(s);
-    tempSport->applyInfo(d, h, a, date, hArr, aArr, hGoals, aGoals, ot);    //sending info through data structure..
-    sportList->add(tempSport);                          //will update results
+    Sport* tempSport;   //Create temp sport.
+    
+    tempSport = (Sport*)sportList->remove(s); //Remove sportName from list to check info.
+    tempSport->applyInfo(d, h, a, date, hArr, aArr, hGoals, aGoals, ot); //Will apply divName, homeTeams & awayTeams names, date.
+    sportList->add(tempSport);                //Add sportName back to the list.
     
 }
 
@@ -314,10 +306,11 @@ void Sports::readFromFile() {
 	char nameBuffer[STRLEN];
 
 	if (inn) {
-		inn >> numberOfSports;	inn.ignore();					//number of sports are read from file. 
-		for (int i = 1; i <= numberOfSports; i++) {				//Loops through all sports
-			inn.getline(nameBuffer, STRLEN);					// ,reads the name of the sport
-			tempSport = new Sport(nameBuffer, inn);				// and add the sport to the sport list. 
+		inn >> numberOfSports;	inn.ignore();					//Number of sports are read from file.
+        
+		for (int i = 1; i <= numberOfSports; i++) {				//Loops through all sports ..
+			inn.getline(nameBuffer, STRLEN);					//.. reads the name of the sport ..
+			tempSport = new Sport(nameBuffer, inn);				//.. and add the sport to the sport list. 
 			tempSport->readFromFile(inn);
 			sportList->add(tempSport);
 		}

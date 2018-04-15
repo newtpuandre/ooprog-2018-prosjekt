@@ -407,7 +407,6 @@ int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type a
 }
 
 bool Division::checkInfo(char h[], char a[], char date[]) {
-	//Team* tempTeam; //Create temp team.
 	bool homeOK = false, awayOK = false, played = false;
 
 	homeOK = teamsExist(h);
@@ -424,7 +423,6 @@ bool Division::checkInfo(char h[], char a[], char date[]) {
 		return 0;
 	}
 	
-    //return 0;
 }
 
 bool Division::matchPlayed(char h[], char a[], char date[]) {
@@ -479,7 +477,7 @@ void Division::applyInfo(char h[], char a[], char date[], int hArr[], int aArr[]
     aTeamNo = returnTeamNo(a);  //Find awayteams teamnumber. (Is used as y axis in vector.)
     
     results[hTeamNo][aTeamNo]->applyInfo(date, hArr, aArr, hGoals, aGoals, overtime); //Update cell [hometeam][awayteam]'s results.
-    results[hTeamNo][aTeamNo]->displayResults(); //Display results too see if updated..
+    //results[hTeamNo][aTeamNo]->displayResults(); //Display results too see if updated.. USED FOR DEBUGGING
 }
 
 int Division::returnTeamNo(char teamName[]) { //Will search through all teamnames. Return index of team with given name.

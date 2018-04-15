@@ -170,9 +170,8 @@ Result::Result(ifstream &inn) {
 }
 
 void Result::applyInfo(char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool ot) {
-    //This function updates all info within result except date. Date is already set, checked and is correct.
-    homeGoals = hGoals;
-    awayGoals = aGoals;
+    homeGoals = hGoals;     //This function updates all info within result except date.
+    awayGoals = aGoals;     //Date is already set, checked and is correct.
     overtime = ot;
  
     for (int i = 0; i < hGoals; i++) { //Read all goalscoreres for hometeam.

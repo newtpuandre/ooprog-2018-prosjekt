@@ -255,7 +255,6 @@ bool Sport::checkInfo(char d[], char h[], char a[], char date[]) {
     
 	if (divisionList->inList(d)) { //If divName exist, the following will be checked..
         tempDiv = (Division*)divisionList->remove(d);
-		//cout << d << endl;
         allGood = tempDiv->checkInfo(h, a, date); //.. h = homeTeam, a = awayTeam.
         divisionList->add(tempDiv);
 		return allGood; // DENNE SKAL MULIGENS RETURNERE NOE ANNET
@@ -300,11 +299,11 @@ void Sport::writeToFile(ofstream &out) {
 }
 
 void Sport::applyInfo(char d[], char h[], char a[], char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool ot) {
-    Division* tempDiv;
-    
-    tempDiv = (Division*)divisionList->remove(d); //Will not need to check inlist. Done in checkinfo
-    tempDiv->applyInfo(h, a, date, hArr, aArr, hGoals, aGoals, ot);   //Will send info throught datastructure
-    divisionList->add(tempDiv);                   //until results can and will be updated..
+    Division* tempDiv;  //Create temp division.
+                        //Will not need to check inlist. Done in checkInfo.
+    tempDiv = (Division*)divisionList->remove(d); //Remove divName from divisionList.
+    tempDiv->applyInfo(h, a, date, hArr, aArr, hGoals, aGoals, ot); //Will update result with given parameters.
+    divisionList->add(tempDiv);                   //Add the divName back to the divisionList.
     
 }
 

@@ -50,11 +50,9 @@ void Team::readFromFile(ifstream &inn) {
 	int tempNumb = 0, tempId = 0;
     
 	inn.getline(nameBuffer,STRLEN); //Read team name from file
-	//name = new char[strlen(nameBuffer) + 1]; //Create a new char array
 	strcpy(name, nameBuffer); //Copy over from buffer
 
 	inn.getline(addressBuffer, STRLEN); //Read team address from file
-	//address = new char[strlen(addressBuffer) + 1]; //Create a new char array
 	strcpy(address, addressBuffer); //Copy over from buffer
 
 	inn >> tempNumb;
@@ -84,12 +82,8 @@ void Team::readFromFile(ifstream &inn) {
 			players.addToList(tempPlayer);
 
 			playerNo.push_back(tempId);
-			//delete tempPlayer;
 		}
 	}
-
-	/*Division* tempDiv;
-	tempDiv->readSchedule(inn);*/
 
 }
 
@@ -155,10 +149,6 @@ void Team::returnName(char* pointName) {
 }
 
 bool Team::compareName(char n[]) {
-	//This doesnt work unless you overload ==
-	//return (name == n);
-
-	//But this does :)
 	return (strcmp(name, n) == 0);
 }
 

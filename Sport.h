@@ -7,8 +7,6 @@
 
 class Sport : public TextElement {
 private:
-	//char* sportName; //Name of the sport
-
 	int numberOfDivisions = 0; //Number of divisions
 	tableType table; //TableType
 	List* divisionList;
