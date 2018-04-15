@@ -110,30 +110,32 @@ void Result::readFromFile(ifstream &inn) {
 }
 
 void Result::writeToFile(ofstream &out) {
-	out << date << '\n'			//Writes date of schedule out to file. 
-		<< homeGoals << ' ' << awayGoals << '\n';
+	if (strlen(date) != 0) { //Dont write result to file if there is nothing to write!
+		out << date << '\n'			//Writes date of schedule out to file. 
+			<< homeGoals << ' ' << awayGoals << '\n';
 
-	if (homeGoals > 0) {
-		for (int i = 0; i < homeGoals; i++) {
-			out << homeScorers[i] << " ";
+		if (homeGoals > 0) {
+			for (int i = 0; i < homeGoals; i++) {
+				out << homeScorers[i] << " ";
+			}
+			out << "\n";
 		}
-		out << "\n";
-	}
-	else {
-		out << "0\n";
-	}
+		else {
+			out << "0\n";
+		}
 
-	if (awayGoals > 0) {
-		for (int i = 0; i < awayGoals; i++) {
-			out << awayScorers[i] << " ";
+		if (awayGoals > 0) {
+			for (int i = 0; i < awayGoals; i++) {
+				out << awayScorers[i] << " ";
+			}
+			out << "\n";
 		}
-		out << "\n";
+		else {
+			out << "0\n";
+		}
+		out << matchPlayed << '\n';
+		out << overtime << '\n';
 	}
-	else {
-		out << "0\n";
-	}
-	out << matchPlayed << '\n';
-	out << overtime << '\n';
 }
 
 Result::Result(ifstream &inn) {
