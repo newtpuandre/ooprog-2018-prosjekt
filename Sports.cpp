@@ -196,7 +196,7 @@ void Sports::writeTable() {
 }
 
 bool Sports::results(bool apply) {
-    /*
+    
 	char fileName[STRLEN] = "RESULTS.DTA";
     char sportName[STRLEN], divName[STRLEN], date[DATELEN], teamH[STRLEN], teamA[STRLEN];
     int noOfSports = 0, noOfDiv = 0, noOfMatches = 0, homeGoals = 0, awayGoals = 0, buffer = 0;
@@ -204,55 +204,59 @@ bool Sports::results(bool apply) {
     bool overtime = false;
     
     ifstream inn(fileName);
+	Sport* tempSport;
 
 	inn >> noOfSports;		inn.ignore();	//Read number of sports on file, ignore /n
     
 	if (inn) { //If the program is able to read the file..
-		for (int s = 1; s <= noOfSports; s++) {		//Read results of 'noOfSports'-sports
-			inn.getline(sportName, STRLEN);			//Read sportsname
-			inn >> noOfDiv;			inn.ignore();	//Read number of divisions on file, ignore /n
+		if (apply == false) { //apply = false, check file for errors.
 
-			for (int d = 1; d <= noOfDiv; d++) {	//Read results of 'noOfDiv'-divisions within each sport
-				inn.getline(divName, STRLEN);			//Read division name
-				inn >> noOfMatches;		inn.ignore();	//Read number of matches on file, ignore /n
+			for (int s = 1; s <= noOfSports; s++) {		//Read results of 'noOfSports'-sports
+				inn.getline(sportName, STRLEN);			//Read sportsname
+				inn >> noOfDiv;			inn.ignore();	//Read number of divisions on file, ignore /n
 
-				for (int m = 1; m <= noOfMatches; m++) {//Read match results for 'noOfMatches'-matches within each divisions
-					inn.getline(date, STRLEN);		//RESULT - date
-					inn.getline(teamH, STRLEN);		//RESULT - HOMETEAM
-					inn.getline(teamA, STRLEN);		//RESULT - AWAYTEAM
-					inn >> overtime;				//RESULT - BOOL OVERTIME
-													// ^ABOVE^ 1 = true. 0 = false.
+				for (int d = 1; d <= noOfDiv; d++) {	//Read results of 'noOfDiv'-divisions within each sport
+					inn.getline(divName, STRLEN);			//Read division name
+					inn >> noOfMatches;		inn.ignore();	//Read number of matches on file, ignore /n
 
-					for (int h = 0; h <= homeGoals; h++) {	//Read home scorers
-						inn >> buffer;				//HOME SCORERS - player ID
-						homeScorers[h] = buffer;	//HOME SCORERS - place player ID into tray 'j'
+					for (int m = 1; m <= noOfMatches; m++) {//Read match results for 'noOfMatches'-matches within each divisions
+						inn.getline(date, STRLEN);		//RESULT - date
+						inn.getline(teamH, STRLEN);		//RESULT - HOMETEAM
+						inn.getline(teamA, STRLEN);		//RESULT - AWAYTEAM
+						inn >> overtime;				//RESULT - BOOL OVERTIME
+
+						for (int h = 0; h <= homeGoals; h++) {	//Read home scorers
+							inn >> buffer;				//HOME SCORERS - player ID
+							homeScorers[h] = buffer;	//HOME SCORERS - place player ID into tray 'j'
+						}
+
+						inn.ignore(); //Ignore newline.
+
+						for (int a = 0; a <= awayGoals; a++) {	//Read away scorers
+							inn >> buffer;				//AWAY SCORERS - player ID
+							awayScorers[a] = buffer;	//AWAY SCORERS - place player ID into tray 'k'
+						}
+
+						apply = sports.checkInfo(sportName, divName, teamH, teamA, date); //return true = everything ok.
+						return apply;
+						//LAG NYE RESULTATER??
 					}
-
-					for (int a = 0; a <= awayGoals; a++) {	//Read away scorers
-						inn >> buffer;				//AWAY SCORERS - player ID
-						awayScorers[a] = buffer;	//AWAY SCORERS - place player ID into tray 'k'
-					}
-					//LAG NYE RESULTATER??
 				}
 			}
 		}
-	}
-	else {
-		cout << "Couldn't find the file " << fileName << " !!";
-	}
-
-	if (apply == false) {		//apply = false, check file for errors.
-		apply = sports.checkInfo(sportName, divName, teamH, teamA, date); //return true = everything ok.
-		return apply;
-	}
-	else {						//apply = true ... create new results with given info
+		else {				//apply = true ... create new results with given info
 		
 		//CREATE NEW RESULTS
 
 		return apply;
-    }
-    */
-	return 0;
+		}
+	}
+		
+	else {
+		cout << "Couldn't find the file " << fileName << " !!";
+	}
+    
+	//return 0;
 }
 
 bool Sports::checkInfo(char s[], char d[], char h[], char a[], char date[]) {
