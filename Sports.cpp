@@ -301,7 +301,7 @@ void Sports::applyInfo(char s[], char d[], char h[], char a[], char date[], int 
 
 void Sports::readFromFile() {
 	Sport* tempSport;
-	ifstream inn("TEST.DTA");
+	ifstream inn("SPORTS.DTA");
 	int numberOfSports;
 	char nameBuffer[STRLEN];
 
@@ -322,7 +322,7 @@ void Sports::readFromFile() {
 
 void Sports::writeToFile() {
 	Sport* tempSport;
-	ofstream out("TEST.DTA");
+	ofstream out("SPORTS.DTA");
 
 	if (out) {
 		

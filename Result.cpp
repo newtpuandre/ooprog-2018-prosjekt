@@ -132,7 +132,7 @@ void Result::writeToFile(ofstream &out) {
 	else {
 		out << "0\n";
 	}
-
+	out << matchPlayed << '\n';
 	out << overtime << '\n';
 }
 
@@ -162,9 +162,7 @@ Result::Result(ifstream &inn) {
 		inn >> throwAway; inn.ignore();
 	}
 
-	if (homeGoals > 0 || awayGoals > 0) {
-		matchPlayed = true;
-	}
+	inn >> matchPlayed; inn.ignore();
 
 	inn >> overtime; inn.ignore();
 
