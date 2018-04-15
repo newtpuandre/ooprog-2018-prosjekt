@@ -306,24 +306,24 @@ void Division::writeTable(tableType table,bool file,ofstream &out) {
 
 			if (i != j) { //Teams cant be playing them selves..
 				if (results[i][j]->returnScore() == 0) { //Home won
-					teamTableArr[i].totalScore = TabletypeCalc(table, 1);
+					teamTableArr[i].totalScore += TabletypeCalc(table, 1);
 				}
 				else if (results[i][j]->returnScore() == 1) { //Away won
-					teamTableArr[j].totalScore = TabletypeCalc(table, 1);
+					teamTableArr[j].totalScore += TabletypeCalc(table, 1);
 				}
 				else if (results[i][j]->returnScore() == 2) { //Tie
-					teamTableArr[i].totalScore = TabletypeCalc(table, 3);
-					teamTableArr[j].totalScore = TabletypeCalc(table, 3);
+					teamTableArr[i].totalScore += TabletypeCalc(table, 3);
+					teamTableArr[j].totalScore += TabletypeCalc(table, 3);
 				}
 				else if (results[i][j]->returnScore() == 4) { //Overtime home win
-					teamTableArr[i].totalScore = TabletypeCalc(table, 3);
+					teamTableArr[i].totalScore += TabletypeCalc(table, 3);
 				}
 				else if (results[i][j]->returnScore() == 5) { //Overtime away win
-					teamTableArr[j].totalScore = TabletypeCalc(table, 3);
+					teamTableArr[j].totalScore += TabletypeCalc(table, 3);
 				}
 				else if (results[i][j]->returnScore() == 6) { //Overtime tie
-					teamTableArr[i].totalScore = TabletypeCalc(table, 4);
-					teamTableArr[j].totalScore = TabletypeCalc(table, 4);
+					teamTableArr[i].totalScore += TabletypeCalc(table, 4);
+					teamTableArr[j].totalScore += TabletypeCalc(table, 4);
 				}
 
 				
