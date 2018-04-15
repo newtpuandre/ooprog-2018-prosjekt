@@ -89,11 +89,10 @@ void Sport::display() { //Display data for sport object.
 	case c: cout << "\nTable type: 3-2-1-0"; break;
 	}
 	cout << "\nNumber of divisions: " << numberOfDivisions; //..and number of divisions.
-	//divisionList->displayList();
 };
 
 void Sport::displayOne() { //Display one sport.
-	Sport::display();
+	display();
 	divisionList->displayList();
 }
 

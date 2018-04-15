@@ -84,7 +84,6 @@ void Sports::display() { //Display all or one given sport.
 		else {
 			cout << "\nNo sport with name " << temp << " was found.";
 		}
-		//sportList->displayElement(temp); //Display the element with the name sent in the parameter
 	}
 };
 
