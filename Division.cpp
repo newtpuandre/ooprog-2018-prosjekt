@@ -33,6 +33,10 @@ void Division::New() {
     
 };
 
+void Division::displayName() {
+	cout << text;
+}
+
 void Division::display() {
 	cout << "\nDivisions name: " << text << '\n'
 		 << "\nNumber of teams in the division: " << numberOfTeams << '\n';
@@ -127,32 +131,29 @@ void Division::remove() {
 
 }
 
-void Division::matches() {
-	char fileName[STRLEN];
-	cout << "Filename (including file extension): ";
-	cin.getline(fileName, STRLEN);
+void Division::matches(char* filename, char* date) {
 
-	if (fileName[0] == '\0') { //If no input is given
-		displayMatches();      // display data to screen. 
+	if (filename[0] == '\0') { //If no input is given
+		displayMatches(date);      // display data to screen. 
 	}
 	else {
-		writeMatches(fileName); //Else write to given filename. 
+		writeMatches(filename, date); //Else write to given filename. 
 	}
 }
 
-void Division::displayMatches() {
-	char date[DATELEN];
+void Division::displayMatches(char* date) {
 	Result* tempRes;
-
-	read("What date", date, DATELEN);
+	bool areMatches = false;
 
 	for (int x = 0; x < numberOfTeams; x++) { //Loops through the x-column in the matrix
 		for (int y = 0; y < numberOfTeams; y++) { //Loops through the y-column in the matrix
 			if (x != y) { //Team cannot play against itself. 
 			tempRes = results[x][y]; //Oppdaterer terminlista sånn at tempRes vet hvor i lista man er. 
 				if (tempRes->cmpDate(date)) { //Comparing dates.
+					cout << "\n"; 
 					team[x]->displayName(); cout << " - "; team[y]->displayName(); //Displaying team vs. team at given date.
 					cout << '\n';
+					areMatches = true;
                     if (results[x][y]->returnPlayed()) {
                         tempRes->displayResults();
                     }
@@ -160,13 +161,14 @@ void Division::displayMatches() {
 			}
 		}
 	}
+
+	if (areMatches == false) {
+		cout << "\nNo matches on given date for this division.\n";
+	}
 }
 
-void Division::writeMatches(char fileName[]) {
-	char date[DATELEN];
+void Division::writeMatches(char fileName[], char* date) {
 	Result* tempRes;
-
-	read("What date", date, DATELEN);
 
 	ofstream out(fileName);
 	if (out) {                                    //If the file exists.

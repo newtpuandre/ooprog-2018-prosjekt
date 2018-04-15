@@ -29,15 +29,16 @@ public:
     Division(char* divName);
 	~Division();    //Destructor
     void New();     //Reads parameters for division object.
+	void displayName(); //Display division name
 	void display(); //Displays data for division object.
 	void displayTeam(); //Display a team
     void readFromFile(ifstream &inn, bool startupRead); //Make and read from desired file.
 	void readScheduleStartup(ifstream &inn);
     void editPlayer();
 	void remove(); //Remove a desired division.
-	void matches(); //Display results or write results to file.
-	void displayMatches(); //Displays matches by given date.
-	void writeMatches(char fileName[]); //Write results to file. 
+	void matches(char* filename,char* date); //Display results or write results to file.
+	void displayMatches(char* date); //Displays matches by given date.
+	void writeMatches(char fileName[], char* date); //Write results to file. 
     void schedule(); //Display schedule or write schedule to file.
     void displaySchedule(); //Display schedule.
     void writeSchedule(char fileName[STRLEN]); //Write schedule to file.

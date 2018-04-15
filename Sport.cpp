@@ -144,29 +144,27 @@ void Sport::removeDiv() {
 	}
 }
 
-void Sport::matches() {
-	char divName[STRLEN];
+void Sport::matches(char* divi, char* filename, char* date) {
 	Division* tempDiv;
 
-	cout << "Division name: ";
-	cin.getline(divName, STRLEN);
 
-	if (divName[0] == '\0') { //Empty string, calculate for the whole sport.
-		for (int i = 0; i < divisionList->noOfElements(); i++) { //Loop through divisionlist and display all matches in given sport
+	if (divi[0] == '\0') { //Empty string, calculate for the whole sport.
+		for (int i = 1; i <= divisionList->noOfElements(); i++) { //Loop through divisionlist and display all matches in given sport
 			tempDiv = (Division*)divisionList->removeNo(i);
-			tempDiv->matches();
+			cout << "\nMatches for division: "; tempDiv->displayName(); cout << "\n";
+			tempDiv->matches(filename, date);
 			divisionList->add(tempDiv);
 		}
 
 	}
 	else { //Non-empty string, calculate for the given division.
-		if (divisionList->inList(divName)) {
-			tempDiv = (Division*)divisionList->remove(divName);
-			tempDiv->matches();
+		if (divisionList->inList(divi)) {
+			tempDiv = (Division*)divisionList->remove(divi);
+			tempDiv->matches(filename, date);
 			divisionList->add(tempDiv);
 		}
 		else {
-			cout << "The division " << divName << " does not exist!";
+			cout << "The division " << divi << " does not exist!";
 		}
 	}
 }

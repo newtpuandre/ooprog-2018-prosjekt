@@ -23,7 +23,7 @@ public:
 	void displayTeam(); //Displays team in a specific sport and division
     void editPlayer(); //Add or remove a player.
 	void removeDiv(); //Remove a desired division.
-	void matches(); //Display results or write results to file.
+	void matches(char* divi, char* fileName, char* date); //Display results or write results to file.
     void schedule(); //Display schedule or write the schedule to file.
 	void writeTable(); //Write the result table to file or screen.
 	bool checkInfo(char d[], char h[], char a[], char date[]); //Check if file has corrupt data. True = everything ok.

@@ -152,12 +152,19 @@ void Sports::removeDiv() {
 
 void Sports::matches() {
 	char sport[STRLEN];
+	char divi[STRLEN];
+	char fileName[STRLEN];
+	char date[STRLEN];
 	Sport* tempSport;
 	read("What is the name of the sport", sport, STRLEN);
+	read("What is the name of the division", divi);
+	read("Filename including extensions (blank = screen)", fileName);
+	read("What date", date, STRLEN);
+
 
 	if (sportList->inList(sport)) {
 		tempSport = (Sport*)sportList->remove(sport);
-		tempSport->matches();
+		tempSport->matches(divi, fileName,	date);
 		sportList->add(tempSport);
 	}
 	else {
