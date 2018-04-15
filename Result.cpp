@@ -77,22 +77,22 @@ int Result::returnScore() { //Returns 0 if home won, 1 if away won, 2 if tie, 3 
 	if (matchPlayed == false) {
 		return 3;
 	}
-	 if (homeGoals > awayGoals && overtime == false) {
+	 if (homeGoals > awayGoals && (overtime == false && matchPlayed == true)) {
 		return 0; //Home won
 	}
-	 if (awayGoals > homeGoals && overtime == false) {
+	 if (awayGoals > homeGoals && (overtime == false && matchPlayed == true)) {
 		return 1; //Away won
 	}
-	 if ( homeGoals == awayGoals && overtime == false ) {
+	 if ( homeGoals == awayGoals && (overtime == false && matchPlayed == true)) {
 		return 2; //Tie
 	}
-	 if ( homeGoals == awayGoals && overtime == true ){ 
+	 if ( homeGoals == awayGoals && (overtime == true && matchPlayed == true) ){
 		return 6; //overtime tie
 	}
-	 if (homeGoals > awayGoals && overtime == true) {
+	 if (homeGoals > awayGoals && (overtime == true && matchPlayed == true)) {
 		return 4; //Overtime Home won
 	}
-	 if (homeGoals < awayGoals && overtime == true) {
+	 if (homeGoals < awayGoals && (overtime == true && matchPlayed == true)) {
 		return 5; //Overtime away won
 	}
 	else {//Not played yet

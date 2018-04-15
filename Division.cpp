@@ -396,10 +396,10 @@ int Division::TabletypeCalc(tableType table, int wlt) { //Finds the table type a
 			return 0;
 		}
 		else if (wlt == 3) {
-			return 2;
+			return 1;
 		}
 		else { //wlt == 4
-			return 1;
+			return 2;
 		}
 		break;
 
