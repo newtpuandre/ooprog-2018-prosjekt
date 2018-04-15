@@ -69,7 +69,7 @@ void Players::display() {
         playerList->displayList();
     }
     
-    else if (!atoi(temp)) { //Else if string is number..
+    else if (!atoi(temp)) { //Else if string is not a number..
         int listLength = playerList->noOfElements(); //Save length of playerlist.
         
         for (int i = 1; i <= listLength; i++) { //For the entire listlength..
@@ -83,12 +83,17 @@ void Players::display() {
             playerList->add(tmpPlayer); //Add the player back to the playerlist.
         }
         if (found == false) { //If the player is not found, give feedback.
-            cout << "The name " << temp << " does not exist";
+            cout << "The name " << temp << " does not exist!";
         }
     }
     
     else { //If none of the two checks is correct, it must be a array with numbers
-        playerList->displayElement(atoi(temp)); //Display players data by given number.
+		if (playerList->inList(atoi(temp))) { //If number is inlist..
+			playerList->displayElement(atoi(temp)); //Display players data by given number.
+		}
+		else {
+			cout << "The player number " << atoi(temp) << " does not exist!";
+		}
     }
 }
 
