@@ -280,8 +280,6 @@ void Division::readSchedule(ifstream &inn) { //Read schedule from NY_DIV.DTA
 }
 
 void Division::writeTable(tableType table,bool file,ofstream &out) { //Writes a table with the current standings for this division
-	//Need to remember each teams points
-	//Print the table to screen.
 	teamTable* teamTableArr;
 	teamTableArr = new teamTable[numberOfTeams];
 
@@ -341,8 +339,6 @@ void Division::writeTable(tableType table,bool file,ofstream &out) { //Writes a 
 void Division::writeTable(teamTable teamtable, ofstream &out) { //Writes a table to file with the current standings for this division
 		out << teamtable.teamName << " " << teamtable.totalScore << endl;
 }
-
-
 
 int Division::TabletypeCalc(tableType table, int wlt) { 
 	switch (table) {	//Finds the table type and returns the correct scoring

@@ -4,7 +4,7 @@
 #include "Players.h"
 #include "Sports.h"
 
-extern Players players; //Is this even an valid solution?
+extern Players players;
 extern Sports sports;
 
 //Function declarations
