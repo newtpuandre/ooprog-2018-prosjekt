@@ -16,45 +16,37 @@ Player::Player() {
 	cout << "\nWHEN CREATING A NEW PLAYER IT REQUIRES A ID!!";
 };
 
-Player::Player(int id):NumElement(id) {
-
-	number = id;
-
+Player::Player(int id):NumElement(id) { //This function updates parameters..
+	number = id;						//.. of a new player.
 	char temp[STRLEN];
 
     read("What's the players name?", temp, STRLEN);
-	//name = new char[strlen(temp) + 1];
 	strcpy(name, temp);
 
     read("What's the players address?", temp, STRLEN);
-	//address = new char[strlen(temp) + 1];
 	strcpy(address, temp);
 };
 
 Player::Player(int id, char* name1, char* address1):NumElement(id) {
-	//Constructor used when reading from file
+	//Constructor - reading from file with parameters.
 	number = id;
-
-	//name = new char[strlen(name1) + 1];
 	strcpy(name, name1);
-
-	//address = new char[strlen(address1) + 1];
 	strcpy(address, address1);
 }
 
-Player::~Player() {
+Player::~Player() { //USELESS????
 	//Deconstructor
     //delete name;
     //delete address;
 }
 
-void Player::display() {
+void Player::display() { //Displays info about a player.
 	cout << "\nPlayers name    : " << name << '\n'
 		 << "Players address : " << address << '\n';
 }
 
-bool Player::operator == (char* objName) {
-    if (strcmp(name, objName) == 0) {
+bool Player::operator == (char* objName) { //Compares parameter with the ..
+    if (strcmp(name, objName) == 0) {	   //.. players name.
         return true;
     }
     else {
@@ -62,6 +54,6 @@ bool Player::operator == (char* objName) {
     }
 }
 
-void Player::writeToFile(ofstream &out) {
+void Player::writeToFile(ofstream &out) { //Write player data to file 'PLAYERS.DTA'
 	out << "\n" << number << "\n" << name << "\n" << address;
 }

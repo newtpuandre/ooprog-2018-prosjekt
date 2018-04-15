@@ -8,18 +8,18 @@ class Players {
 private:
 	int lastPlayerId = 0;
 	List* playerList;
-public:
-	Players(); //Paramless constructor
-	~Players(); //Destructor
 
-    void New(); //Reads parameters for player object.
+public:
+	Players(); //Paramless constructor, creates new playerlist.
+	~Players(); //Destructor
+    void New(); //Creates new player object.
 	void display(); //Displays players.
 	void remove(); //Remove a desired player.
-	void addToList(Element *Element);
-	void readFromFile();
-	void displayId(int playerId);
-	int returnLastId();
-	void writeToFile(); //Write players to PLAYERS.DTA File
+	void addToList(Element *Element); //Add player object to playerlist.
+	void readFromFile(); //Read player data from 'PLAYERS.DTA'
+	void displayId(int playerId); //Display info of player <ID>
+	int returnLastId(); //Return last ID(+1)
+	void writeToFile(); //Write player data to 'PLAYERS.DTA' File
 };
 
 #endif
