@@ -255,7 +255,7 @@ bool Sport::checkInfo(char d[], char h[], char a[], char date[]) {
     
 	if (divisionList->inList(d)) { //If divName exist, the following will be checked..
         tempDiv = (Division*)divisionList->remove(d);
-		cout << d << endl;
+		//cout << d << endl;
         allGood = tempDiv->checkInfo(h, a, date); //.. h = homeTeam, a = awayTeam.
         divisionList->add(tempDiv);
 		return allGood; // DENNE SKAL MULIGENS RETURNERE NOE ANNET

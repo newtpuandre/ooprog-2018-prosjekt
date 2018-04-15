@@ -14,14 +14,22 @@ Result::Result() {
 	//Paramless constructor
 };
 
-Result::Result(char d[DATELEN]) {
+Result::Result(char d[]) {
     //date = d;
     //date = new char [strlen(d) + 1]; //Saves parameter as the result date.
     strcpy(date, d);
 	
-    //TEST SECTION BELOW!
+    //TEST SECTION BELOW! Should reset all data in result.
     homeGoals = 0;
     awayGoals = 0;
+    overtime = false;
+    matchPlayed = false;
+    
+    for (int i = 0; i < MAXGOALS; i++) {
+        homeScorers[i] = 0;
+        awayScorers[i] = 0;
+    }
+    
 }
 
 Result::~Result() {
@@ -37,7 +45,7 @@ void Result::readFromFile() {
 }
 
 void Result::displayResults() {
-	cout << "\nthe results are"
+	cout << "\nThe results are"
 		<< "\n" << homeGoals << " - " << awayGoals;
 }
 
@@ -159,4 +167,25 @@ Result::Result(ifstream &inn) {
 
 	inn >> overtime; inn.ignore();
 
+}
+
+void Result::applyInfo(char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool ot) {
+    //This function updates all info within result except date. Date is already set, checked and is correct.
+    homeGoals = hGoals;
+    awayGoals = aGoals;
+    overtime = ot;
+ 
+    for (int i = 0; i < hGoals; i++) { //Read all goalscoreres for hometeam.
+        homeScorers[i] = hArr[i];
+    }
+    
+    for (int j = 0; j < aGoals; j++) { //Read all goalscoreres for awayteam.
+        awayScorers[j] = aArr[j];
+    }
+    
+    matchPlayed = true;
+ }
+
+bool Result::returnPlayed() { //Return bool matchPlayed.
+    return matchPlayed;
 }

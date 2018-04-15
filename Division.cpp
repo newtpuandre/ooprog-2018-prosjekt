@@ -413,30 +413,31 @@ bool Division::checkInfo(char h[], char a[], char date[]) {
 	homeOK = teamsExist(h);
 	awayOK = teamsExist(a);
 
-	played = matchPlayed(h, a);
+	played = matchPlayed(h, a, date); //Check if match is played (result is written already). (and if dates are correct)
     
 	if (homeOK && awayOK && played) {	//If both teams names exists and match is played, return true.
-		cout << "Everything is inorder";
+		//cout << "Everything is inorder";
 		return 1;
 	}
 	else {
-		cout << "Things are on fire..";
+		cout << "One or both teams does not exist or the results is already written";
 		return 0;
 	}
 	
     //return 0;
 }
 
-bool Division::matchPlayed(char h[], char a[]) {
+bool Division::matchPlayed(char h[], char a[], char date[]) {
     int hTeamNo = 0, aTeamNo = 0;
-    bool played = false;
+    bool played = false, onDate = false;
     
     hTeamNo = returnTeamNo(h);  //Find hometeams teamnumber. (Is used as x axis in vector.)
     aTeamNo = returnTeamNo(a);  //Find awayteams teamnumber. (Is used as y axis in vector.)
     
     played = results[hTeamNo][aTeamNo]->returnPlayed(); //Return if match between the teams is already written..
+    onDate = results[hTeamNo][aTeamNo]->cmpDate(date); //Check if the match is played on date read from RESULTS.DTA (will in practise compare dates with NY_DIV.DTA)
 
-    if (!played) { //If not written already. Return true (ok to write result)
+    if (!played && onDate) { //If not written already. Return true (ok to write result)
         return true;
     }
     return false; //If not, return false.
@@ -478,6 +479,7 @@ void Division::applyInfo(char h[], char a[], char date[], int hArr[], int aArr[]
     aTeamNo = returnTeamNo(a);  //Find awayteams teamnumber. (Is used as y axis in vector.)
     
     results[hTeamNo][aTeamNo]->applyInfo(date, hArr, aArr, hGoals, aGoals, overtime); //Update cell [hometeam][awayteam]'s results.
+    results[hTeamNo][aTeamNo]->displayResults(); //Display results too see if updated..
 }
 
 int Division::returnTeamNo(char teamName[]) { //Will search through all teamnames. Return index of team with given name.

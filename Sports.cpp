@@ -263,7 +263,7 @@ bool Sports::results(bool apply) {
                         }
                     } else {
                         sports.applyInfo(sportName, divName, teamH, teamA, date, homeScorers, awayScorers, homeGoals, awayGoals, overtime);
-                        cout << "\nApply == true. Her skal resultater oppdateres.";
+                        //cout << "\nApply == true. Her skal resultater oppdateres.";
                     }
 				}
 			}
@@ -282,7 +282,7 @@ bool Sports::checkInfo(char s[], char d[], char h[], char a[], char date[]) {
 	//bool sportExist = false;
     
 	if (sportList->inList(s)) { //Returns true if sport exists, will then check..
-		cout << s << endl;
+		//cout << s << endl;
         tempSport = (Sport*)sportList->remove(s);
         allGood = tempSport->checkInfo(d, h, a, date);	// .. d = divName, h = homeTeam, a = awayTeam
         sportList->add(tempSport);
