@@ -269,7 +269,7 @@ bool Sports::results(bool apply) { //Call from main is false first - will check 
 					}
 
 					if (apply == false) { //Used to check file format and contents.
-						alright = sports.checkInfo(sportName, divName, teamH, teamA, date); //return true = everything ok.
+						alright = checkInfo(sportName, divName, teamH, teamA, date); //return true = everything ok.
 
 						if (!alright) {     //If there is any formatting of content error..
 							cout << "\nERROR IN FILE!!"; //..the program will tell the user..
@@ -278,7 +278,7 @@ bool Sports::results(bool apply) { //Call from main is false first - will check 
 
 					}
 					else { //If the check above is successful, this will be run to update results.
-						sports.applyInfo(sportName, divName, teamH, teamA, date, homeScorers, awayScorers, homeGoals, awayGoals, overtime);
+						applyInfo(sportName, divName, teamH, teamA, date, homeScorers, awayScorers, homeGoals, awayGoals, overtime);
 						success += 1; //Function above updates all parameters given. This line counts number of results successfully updated.
 						if (success == noOfMatches) { //If all results are successfully updated, the program will tell the user..
 							cout << "\nResults updated!"; // <-
