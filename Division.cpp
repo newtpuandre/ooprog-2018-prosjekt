@@ -174,7 +174,7 @@ void Division::writeMatches(char fileName[], char* date) {
 		for (int x = 0; x < numberOfTeams; x++) { //Loops through the x-column in the matrix
 			for (int y = 0; y < numberOfTeams; y++) { //Loops through the y-column in the matrix
 				tempRes = results[x][y]; //Updates termlist.
-				if (tempRes != nullptr) { //Checks if tempRes points at anything.
+				if (x != y) { //Checks if tempRes points at anything.
 					if (tempRes->cmpDate(date)) { //If the dates are equal, ..
 						team[x]->displayName(out); out << " - "; team[y]->displayName(out);
 						out << '\n';			  //.. display 'hometeam' - 'awayteam'
