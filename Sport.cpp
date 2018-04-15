@@ -273,7 +273,6 @@ bool Sport::checkInfo(char d[], char h[], char a[], char date[]) { //Check if fi
 
 void Sport::readFromFile(ifstream &inn) { //Reads data from file.
 	char nameBuffer[STRLEN];
-	int tempTable;
 
 	Division* tempDiv; //Create temp division.
 
