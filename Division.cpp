@@ -153,8 +153,9 @@ void Division::displayMatches() {
 				if (tempRes->cmpDate(date)) { //Comparing dates.
 					team[x]->displayName(); cout << " - "; team[y]->displayName(); //Displaying team vs. team at given date.
 					cout << '\n';
-					//	if (Teams already got results) {
-					//tempRes->displayResults();
+                    if (results[x][y]->returnPlayed()) {
+                        tempRes->displayResults();
+                    }
 				}
 			}
 		}
@@ -175,10 +176,10 @@ void Division::writeMatches(char fileName[]) {
 				if (tempRes != nullptr) { //Checks if tempRes points at anything or not. 
 					if (tempRes->cmpDate(date)) { //Comparing dates.
 						team[x]->displayName(out); out << " - "; team[y]->displayName(out); //Displaying team vs. team at given date.
-						cout << '\n';
-						//	if (Teams already got results) {
-						//tempRes->displayResults();
-						//	}
+						out << '\n';
+						if (results[x][y]->returnPlayed()) {
+                            tempRes->displayResults(out);
+						}
 
 					}
 				}

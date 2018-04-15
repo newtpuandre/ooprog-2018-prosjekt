@@ -21,7 +21,8 @@ public:
 	Result(ifstream &inn);
 	~Result(); //Destructor
 	void display();	//Displays data for result object.
-	void displayResults(); //Not sure if this is needed yet. 
+	void displayResults(); //Display the result of a match
+    void displayResults(ofstream &out); //Write the result of a match
 	bool cmpDate(char ddmm[]); //Checks if the date sent as parameter is the same as its own. 
     void readFromFile(); //Reads schedule from list.
     void displayDate(); //Display the date of the result.

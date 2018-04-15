@@ -15,11 +15,9 @@ Result::Result() {
 };
 
 Result::Result(char d[]) {
-    //date = d;
-    //date = new char [strlen(d) + 1]; //Saves parameter as the result date.
     strcpy(date, d);
 	
-    //TEST SECTION BELOW! Should reset all data in result.
+    //Reset all data in result.
     homeGoals = 0;
     awayGoals = 0;
     overtime = false;
@@ -45,8 +43,11 @@ void Result::readFromFile() {
 }
 
 void Result::displayResults() {
-	cout << "\nThe results are"
-		<< "\n" << homeGoals << " - " << awayGoals;
+	cout << homeGoals << " - " << awayGoals;
+}
+
+void Result::displayResults(ofstream &out) {
+    out << homeGoals << " - " << awayGoals;
 }
 
 bool Result::cmpDate(char ddmm[]) {

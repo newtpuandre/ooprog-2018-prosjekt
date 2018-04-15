@@ -1,28 +1,31 @@
-ant idretter                1
-idrett navn                 Fotball
-ant div i idrett            1
-div navn                    1.div
-Antall kamper på fil        3
-dato                        20180101
-lag1                        AA
-lag2                        BB
-hjemmemål bortemål          2 0
-bool overtime               0
-hjemmescorere ID-er         1 3
-bortescorere ID-er          0
-                            20180130
-                            AA
-                            CC
-                            1 2
-                            0
-                            2
-                            5 12
-                            20170202
-                            BB
-                            AA
-                            0 0
-                            0
-                            0
-                            0
-
-
+10
+1
+Arne
+Adressevegen 100
+2
+Bent
+Adressevegen 101
+3
+Cato
+Adressevegen 102
+4
+Dago
+Adressevegen 103
+5
+Erik
+Adressevegen 104
+6
+Finn
+Adressevegen 105
+7
+Geir
+Adressevegen 106
+8
+Hans
+Adressevegen 107
+9
+Geir
+Adressevegen 108
+10
+Hans
+Adressevegen 109
