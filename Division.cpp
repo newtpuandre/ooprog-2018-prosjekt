@@ -339,8 +339,9 @@ void Division::writeTable(tableType table,bool file,ofstream &out) {
 	
 	if (file == false) { //Print to screen
 		cout << "\nCurrent table standings for " << text << ":";
+		cout << "\nTeam:\t" << "Score:";
 		for (int i = 0; i < numberOfTeams; i++) { //Print out to the screen
-			cout << "\n" << teamTableArr[i].teamName << " " << teamTableArr[i].totalScore;
+			cout << "\n" << teamTableArr[i].teamName << "\t" << teamTableArr[i].totalScore;
 		}
 	}
 	else { //Write to file
