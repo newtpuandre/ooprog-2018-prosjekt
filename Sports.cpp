@@ -19,7 +19,11 @@ Sports::Sports() {
 };
 
 Sports::~Sports() { //Destructor.
-	//Destructor
+	Sport* delSport;
+	for (int i = sportList->noOfElements(); i >= 1; i--) { //Start from the back
+	delSport = (Sport*)	sportList->removeNo(i); //Remove it from the list
+	delete delSport; //Delete the current object
+	}
 };
 
 void Sports::New() { //Reads parameters for new sport object.

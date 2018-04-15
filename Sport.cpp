@@ -72,8 +72,12 @@ void Sport::newDiv() { //Creates new division within the sport.
 	}
 }
  
-Sport::~Sport() { //FIX
-	//delete[] text;
+Sport::~Sport() { 
+	Division* delDiv;
+	for (int i = divisionList->noOfElements(); i >= 1; i--) { //Start from the back
+		delDiv = (Division*)divisionList->removeNo(i); //Remove it from the list
+		delete delDiv; //Delete the current object
+	}
 };
 
 void Sport::display() { //Display data for sport object.

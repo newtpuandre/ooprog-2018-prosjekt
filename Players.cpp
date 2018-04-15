@@ -13,9 +13,12 @@ Players::Players() {
 	playerList = new List(Sorted);
 };
 
-Players::~Players() {				//NOT NEEDED !?
-	//Go through the whole playerList and delete every object from the list;
-
+Players::~Players() {
+	Player* delPlayer;
+	for (int i = playerList->noOfElements(); i >= 1; i--) { //Start from the back
+		delPlayer = (Player*)playerList->removeNo(i); //Remove it from the list
+		delete delPlayer; //Delete the current object
+	}
 }
 
 void Players::New() {

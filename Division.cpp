@@ -25,8 +25,15 @@ Division::Division(char* divName) :TextElement(divName) {
     strcpy(text, divName);
 }
 
-Division::~Division() {
-    //Deconstructor
+Division::~Division() { //Delete the results from the result matrix
+
+	for (int i = 0; i < numberOfTeams; i++) { //Loop through the matrix
+		for (int j = 0; j < numberOfTeams; j++) {
+			if (i != j) { //Matches against themselves are not set. Dont do anything.
+				delete results[i][j]; //Delete selected object
+			}
+		}
+	}
 };
 
 void Division::displayName() { //Display divisions name.
@@ -409,6 +416,10 @@ bool Division::matchPlayed(char h[], char a[], char date[]) { //Check if the mat
     hTeamNo = returnTeamNo(h);  //Find hometeams teamnumber. (Is used as x axis in vector.)
     aTeamNo = returnTeamNo(a);  //Find awayteams teamnumber. (Is used as y axis in vector.)
     
+	if (hTeamNo == 0 && aTeamNo == 0) { //Something is horribly wrong, just return false and stop the check
+		return false;
+	}
+
     played = results[hTeamNo][aTeamNo]->returnPlayed(); //Return if match between the teams is already written.
     onDate = results[hTeamNo][aTeamNo]->cmpDate(date);  //Check if the match is played on date read from 'RESULTS.DTA'
 													    //..  (will in practise compare dates with NY_DIV.DTA)
