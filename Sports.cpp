@@ -18,62 +18,64 @@ Sports::Sports() {
 	sportList = new List(Sorted);
 };
 
-Sports::~Sports() {
-	//Deconstructor
+Sports::~Sports() { //Destructor.
+	//Destructor
 };
 
-void Sports::New() {
-
+void Sports::New() { //Reads parameters for new sport object.
 	char newName[STRLEN];
-	read("Name of the sport", newName, STRLEN);
-	if (!sportList->inList(newName)) {
+
+	read("Name of the sport", newName, STRLEN); //Read sportname.
+
+	if (!sportList->inList(newName)) { //If not already inList..
 		Sport* tempSport;
-		tempSport = new Sport(newName);
+		tempSport = new Sport(newName); //Create new sport with given name.
 
-		sportList->add(tempSport);
-
+		sportList->add(tempSport); //Add sport to sportsList.
 	}
 	else {
 		cout << "\nThe sport already exist!";
 	}
 };
 
-void Sports::newDiv() {
+void Sports::newDiv() { //Asks what sport the new div will be created under.
 	char sportName[STRLEN];
-	read("Sport name", sportName, STRLEN);
 
 	Sport* tempSport;
 
-	if (sportList->inList(sportName)) {
-		tempSport = (Sport*)sportList->remove(sportName);
-		tempSport->newDiv();
-		sportList->add(tempSport);
+	read("Sport name", sportName, STRLEN); //Read sportname.
+
+	if (sportList->inList(sportName)) { //If sport is inList..
+		tempSport = (Sport*)sportList->remove(sportName); //Remove it..
+		tempSport->newDiv(); //Call for sports new division func..
+		sportList->add(tempSport); //And add it back to the sportlist.
 	}
 	else {
 		cout << "\n" << sportName << " is not a valid sport.";
 	}
 }
 
-void Sports::modify(char ch) {
+void Sports::modify(char ch) { //Extension of main. Directs based on the next char.
 	switch (ch) {
 	case 'D': displayTeam();    break;
 	case 'E': editPlayer();     break;
 	}
 };
 
-void Sports::display() {
+void Sports::display() { //Display all or one given sport.
 	char temp[STRLEN];
-	cin.getline(temp, STRLEN);
+	cin.getline(temp, STRLEN); //Get string of what to display
 
-	if ((temp[0] == 'A' && strlen(temp) == 1) || (temp[0] == 'a' && strlen(temp) == 1)) {//Check if the first element in the array are an A and the strlen is 2 A + \0
+	//Check if the first element in the array are an A and the strlen is 2 A + \0
+	if ((temp[0] == 'A' && strlen(temp) == 1) || (temp[0] == 'a' && strlen(temp) == 1)) {
 		sportList->displayList(); //Display all the elements
 	}
-	else {
-		if (sportList->inList(temp)) {
+	else { //If not - must be a sportname.
+		if (sportList->inList(temp)) { //Check if sportname is in sportlist
 			Sport* tempSport;
-			tempSport = (Sport*)sportList->remove(temp);
-			tempSport->displayOne();
-			sportList->add(tempSport);
+			tempSport = (Sport*)sportList->remove(temp); //Remove sportname.
+			tempSport->displayOne(); //Call the given sports displayOne func.
+			sportList->add(tempSport); //Add back to the sportList.
 		}
 		else {
 			cout << "\nNo sport with name " << temp << " was found.";
@@ -82,47 +84,51 @@ void Sports::display() {
 	}
 };
 
-void Sports::displayTeam() {
+void Sports::displayTeam() { //Display a team.
 	char sport[STRLEN];
 
 	Sport* tempSport;
-	read("What is the name of the sport", sport, STRLEN);
-	if (sportList->inList(sport)) {
-		tempSport = (Sport*)sportList->remove(sport);
-		tempSport->displayTeam();
-		sportList->add(tempSport);
+
+	read("What is the name of the sport", sport, STRLEN); //Read sportname.
+
+	if (sportList->inList(sport)) { //If sport is inlist..
+		tempSport = (Sport*)sportList->remove(sport); //Remove sport.
+		tempSport->displayTeam(); //Call for sports displayTeam func.
+		sportList->add(tempSport); //Add back to the sportlist.
 	}
 	else {
 		cout << "\nThe sport with name " << sport << " does not exist!";
 	}
 }
 
-void Sports::editPlayer() {
+void Sports::editPlayer() { //Edit a player.
 	char sport[STRLEN];
 
 	Sport* tempSport;
-	read("What is the name of the sport", sport, STRLEN);
-	if (sportList->inList(sport)) {
-		tempSport = (Sport*)sportList->remove(sport);
-		tempSport->editPlayer();
-		sportList->add(tempSport);
+
+	read("What is the name of the sport", sport, STRLEN); //Read sportname.
+
+	if (sportList->inList(sport)) { //If inlist..
+		tempSport = (Sport*)sportList->remove(sport); //Remove.
+		tempSport->editPlayer(); //Call for the given sports editPlayer func.
+		sportList->add(tempSport); //Add back to the sportlist.
 	}
 	else {
 		cout << "\nThe sport with name " << sport << " does not exist!";
 	}
 }
 
-void Sports::remove() {
+void Sports::remove() { //Remove a desired sport.
 	char sport[STRLEN];
 	char answ;
 
-	read("what is the name of the sport", sport, STRLEN);
+	read("what is the name of the sport", sport, STRLEN); //Read sportname.
 
 	if (sportList->inList(sport)) { //If the sport is in the sportslist.
 		cout << "\nAre you sure you want to delete this sport? All data within will be permanently lost!! (y/N) ";
 		answ = read();
 
-		if (toupper(answ) == 'Y') {		//If the user confirms the deletion..
+		if (toupper(answ) == 'Y') {		//Ask for confirmation, if yes..
 			sportList->destroy(sport);	//.. the sport is destroyed.
 		}
 		else {
@@ -134,52 +140,56 @@ void Sports::remove() {
 	}
 }
 
-void Sports::removeDiv() {
+void Sports::removeDiv() { //Remove a desired division.
 	char sport[STRLEN];
 
 	Sport* tempSport;
-	read("What is the name of the sport", sport, STRLEN);
 
-	if (sportList->inList(sport)) {
-		tempSport = (Sport*)sportList->remove(sport);
-		tempSport->removeDiv();
-		sportList->add(tempSport);
+	read("What is the name of the sport", sport, STRLEN); //Read sportname.
+
+	if (sportList->inList(sport)) { //If inlist..
+		tempSport = (Sport*)sportList->remove(sport); //Remove sport.
+		tempSport->removeDiv(); //Call for given sports removediv func.
+		sportList->add(tempSport); //Add sport back to the sportlist.
 	}
 	else {
 		cout << "\nThe sport with name " << sport << " does not exist!";
 	}
 }
 
-void Sports::matches() {
+void Sports::matches() { //Display results or write results to file.
 	char sport[STRLEN];
 	char divi[STRLEN];
 	char fileName[STRLEN];
 	char date[STRLEN];
+
 	Sport* tempSport;
-	read("What is the name of the sport", sport, STRLEN);
-	read("What is the name of the division", divi);
+
+	read("What is the name of the sport", sport, STRLEN); //Read sport, div,
+	read("What is the name of the division", divi);		  //filename and date.
 	read("Filename including extensions (blank = screen)", fileName);
 	read("What date", date, STRLEN);
 
 
-	if (sportList->inList(sport)) {
-		tempSport = (Sport*)sportList->remove(sport);
-		tempSport->matches(divi, fileName, date);
-		sportList->add(tempSport);
+	if (sportList->inList(sport)) { //If sport is inlist..
+		tempSport = (Sport*)sportList->remove(sport); //Remove.
+		tempSport->matches(divi, fileName, date); //Call for the sports matches func..
+		sportList->add(tempSport); //.. with the read parameters. Then adds back to list.
 	}
 	else {
 		cout << "\nThe sport " << sport << " does not exist!";
 	}
 }
 
-void Sports::schedule() {
+void Sports::schedule() { //Display schedule or write schedule to file.
 	char sport[STRLEN];
 
 	Sport* tempSport;
-	read("Sport", sport, STRLEN);
 
-	if (sportList->inList(sport)) {
-		tempSport = (Sport*)sportList->remove(sport); //Remove given sport from list
+	read("Sport", sport, STRLEN); //Read sportname.
+
+	if (sportList->inList(sport)) { //If sport is inlist.
+		tempSport = (Sport*)sportList->remove(sport); //Remove given sport from list.
 		tempSport->schedule(); //Display schedule or write schedule to file.
 		sportList->add(tempSport); //Add the given sport back to the list.
 	}
@@ -188,31 +198,33 @@ void Sports::schedule() {
 	}
 }
 
-void Sports::writeTable() {
+void Sports::writeTable() { //Write the result table to file or screen.
 	char temp[STRLEN];
+
 	Sport* tempSport;
 
-	read("Name of the sport", temp, STRLEN);
-	if (sportList->inList(temp)) {
-		tempSport = (Sport*)sportList->remove(temp);
-		tempSport->writeTable();
-		sportList->add(tempSport);
+	read("Name of the sport", temp, STRLEN); //Read sportname.
+
+	if (sportList->inList(temp)) { //If sport is inlist.
+		tempSport = (Sport*)sportList->remove(temp); //Remove it from list.
+		tempSport->writeTable(); //Call for the sports writeTable func.
+		sportList->add(tempSport); //Add back to the list.
 	}
 	else {
 		cout << "\nNo sport with name " << temp << " found.";
 	}
 }
 
-bool Sports::results(bool apply) { //Call from main is false first - will check format. If alright - will run again and apply info.
-	char fileName[STRLEN] = "RESULTS.DTA";
+bool Sports::results(bool apply) { //Call from main is false first - will check format. 
+	char fileName[STRLEN] = "RESULTS.DTA"; //If alright - will run again and apply info.
 	char sportName[STRLEN], divName[STRLEN], date[DATELEN], teamH[STRLEN], teamA[STRLEN];
 	int noOfSports = 0, noOfDiv = 0, noOfMatches = 0, homeGoals = 0, awayGoals = 0, buffer = 0, success = 0;
-	int homeScorers[STRLEN], awayScorers[STRLEN];
+	int homeScorers[STRLEN], awayScorers[STRLEN]; //The function reads results from file.
 	bool overtime = false, alright = false;
 
 	ifstream inn(fileName);
 
-	if (inn) { //The file exists
+	if (inn) { //If the file exists..
 
 		inn >> noOfSports;  inn.ignore();	//Read number of sports on file, ignore /n
 
@@ -229,7 +241,7 @@ bool Sports::results(bool apply) { //Call from main is false first - will check 
 					inn.getline(teamH, STRLEN);		//RESULT - HOMETEAM
 					inn.getline(teamA, STRLEN);		//RESULT - AWAYTEAM
 					inn >> homeGoals; inn.ignore(); //RESULT - HOMEGOALS
-					inn >> awayGoals; inn.ignore();  //RESULT - AWAYGOALS
+					inn >> awayGoals; inn.ignore(); //RESULT - AWAYGOALS
 					inn >> overtime; inn.ignore();	//RESULT - BOOL OVERTIME
 
 					if (homeGoals != 0) {
@@ -282,8 +294,8 @@ bool Sports::results(bool apply) { //Call from main is false first - will check 
 }
 
 bool Sports::checkInfo(char s[], char d[], char h[], char a[], char date[]) {
-	Sport* tempSport;		//Create temp sport.
-	bool allGood = false;
+	Sport* tempSport;		//Function checks if file has corrupt data. True = everything ok.
+	bool allGood = false;	//Create temp sport.
 
 	if (sportList->inList(s)) { //Returns true if sport exists, will then check..
 		tempSport = (Sport*)sportList->remove(s); //Remove sportName from list to check info.
@@ -293,32 +305,34 @@ bool Sports::checkInfo(char s[], char d[], char h[], char a[], char date[]) {
 	}
 
 	else { //If sportName is not in list.
-		return allGood; //Return false as some of the data was not okey.
+		return allGood; //Return false as some of the data was not ok.
 	}
 
 }
 
 void Sports::applyInfo(char s[], char d[], char h[], char a[], char date[], int hArr[], int aArr[], int hGoals, int aGoals, bool ot) {
-	Sport* tempSport;   //Create temp sport.
-
+	Sport* tempSport;   //Update results, will only pass info further in the data structure.
+						//Create temp sport.
 	tempSport = (Sport*)sportList->remove(s); //Remove sportName from list to check info.
-	tempSport->applyInfo(d, h, a, date, hArr, aArr, hGoals, aGoals, ot); //Will apply divName, homeTeams & awayTeams names, date.
-	sportList->add(tempSport);                //Add sportName back to the list.
-
+	tempSport->applyInfo(d, h, a, date, hArr, aArr, hGoals, aGoals, ot); 
+	sportList->add(tempSport);                //Will apply divName, homeTeams & awayTeams names, date.
+											  //Add sportName back to the list.
 }
 
-void Sports::readFromFile() {
-	Sport* tempSport;
-	ifstream inn("SPORTS.DTA");
-	int numberOfSports;
+void Sports::readFromFile() { //Reads sports data from file.
 	char nameBuffer[STRLEN];
 
-	if (inn) {
-		inn >> numberOfSports;	inn.ignore();					//Number of sports are read from file.
+	Sport* tempSport;
 
-		for (int i = 1; i <= numberOfSports; i++) {				//Loops through all sports ..
-			inn.getline(nameBuffer, STRLEN);					//.. reads the name of the sport ..
-			tempSport = new Sport(nameBuffer, inn);				//.. and add the sport to the sport list. 
+	ifstream inn("SPORTS.DTA");
+	int numberOfSports; //Reads numberOfSports.
+
+	if (inn) {
+		inn >> numberOfSports;	inn.ignore();		//Number of sports are read from file.
+
+		for (int i = 1; i <= numberOfSports; i++) {	//Loops through all sports ..
+			inn.getline(nameBuffer, STRLEN);		//.. reads the name of the sport ..
+			tempSport = new Sport(nameBuffer, inn);	//.. and add the sport to the sport list. 
 			tempSport->readFromFile(inn);
 			sportList->add(tempSport);
 		}
@@ -328,20 +342,19 @@ void Sports::readFromFile() {
 		cout << "File not found";
 }
 
-void Sports::writeToFile() {
+void Sports::writeToFile() { //Write sports data to file.
 	Sport* tempSport;
+
 	ofstream out("SPORTS.DTA");
 
 	if (out) {
-
-		out << sportList->noOfElements(); //Number of elements in sportlist (number of sports) are written to file. 
-		out << '\n';
-		for (int i = 1; i <= sportList->noOfElements(); i++) {		//Loops through all sports.
-			tempSport = (Sport*)sportList->removeNo(i);			//Remove number i.
-			tempSport->writeToFile(out);						//Sport object calls its writeToFile function.
-			sportList->add(tempSport);							//Add number i.
+		out << sportList->noOfElements();  
+		out << '\n'; //Number of elements in sportlist (number of sports) are written to file.
+		for (int i = 1; i <= sportList->noOfElements(); i++) {	//Loops through all sports.
+			tempSport = (Sport*)sportList->removeNo(i);	//Remove number i.
+			tempSport->writeToFile(out);				//Sport object calls its writeToFile function.
+			sportList->add(tempSport);					//Add number i.
 		}
-
 	}
 	else
 		cout << "File not found";

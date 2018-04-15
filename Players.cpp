@@ -9,49 +9,47 @@
 using namespace std;
 
 Players::Players() {
-	//Paramless constructor
-	//Create the list containing Player objects.
-	//Set it to sorted.
+	//Create the list containing Player objects. Set type to sorted.
 	playerList = new List(Sorted);
 };
 
-Players::~Players() {
+Players::~Players() {				//NOT NEEDED !?
 	//Go through the whole playerList and delete every object from the list;
 
 }
 
 void Players::New() {
-	
     int playerId;
-	playerId = read("Player id", MINID, MAXID);
-	if (!(playerList->inList(playerId))) {
 
-		if (lastPlayerId < MAXID) {
-			lastPlayerId = playerId;
+	playerId = read("Player id", MINID, MAXID);	//Read player ID of new player.
 
-			Player* tempPlayer; 
-			tempPlayer = new Player(playerId);
+	if (!(playerList->inList(playerId))) {	//If ID is in playerlist..
 
-			playerList->add(tempPlayer);
+		if (lastPlayerId < MAXID) {		//..and there is space for more players:
+			lastPlayerId = playerId;	//Set ID to last player ID.
+
+			Player* tempPlayer;			//Create temp player.
+			tempPlayer = new Player(playerId); //Make it a new instance of a player.
+			playerList->add(tempPlayer); //Add the player to the playerlist.
 		}
-		else {
+		else { //Give feedback to the user.
 			cout << "\nThere is no room for more players.";
 		}
 	}
-	else {
+	else { //Give feedback to the user.
 		cout << "\nPlayer ID " << playerId << " already exist!";
 	}
 }
 
 void Players::remove() {
 	int playerId;
-	
-	playerId = read("\nRemove what player ID?", MINID, MAXID);
+										//Read player ID of desired player.
+	playerId = read("\nRemove what player ID?", MINID, MAXID); 
 
-	if (playerList->inList(playerId)) {	//Does the player exist in the list?
-		playerList->destroy(playerId);	//Destroys the desired player.
+	if (playerList->inList(playerId)) {	//If the player exist in the list..
+		playerList->destroy(playerId);	//.. destroy the desired player.
 	}
-	else { //Give feedback to the user
+	else { //Give feedback to the user.
 		cout << "\n" << playerId << " does not exist in the list.";
 	}
 
@@ -61,85 +59,85 @@ void Players::display() {
     char temp[STRLEN];
     bool found = false;
     
-    cin.getline(temp, STRLEN);
+    cin.getline(temp, STRLEN); //Read a string.
     
-    if ((temp[0] == 'A' && strlen(temp) == 1) || (temp[0] == 'a' && strlen(temp) == 1)) {    //Check if the first element in the array are an A
-        //   and the strlen is 2 A + \0
+    if ((temp[0] == 'A' && strlen(temp) == 1) || (temp[0] == 'a' && strlen(temp) == 1)) {    
+	//Check if the first element in the string are an A and the strlen is 2 A + \0
         playerList->displayList();
     }
     
-    else if (!atoi(temp)) {        //Must be a array with letters
-        int listLength = playerList->noOfElements();
+    else if (!atoi(temp)) { //Else if string is number..
+        int listLength = playerList->noOfElements(); //Save length of playerlist.
         
-        for (int i = 1; i <= listLength; i++) {
-            Player* tmpPlayer;
-            tmpPlayer = (Player*)playerList->removeNo(i);    //Remove name 'i' from list.
+        for (int i = 1; i <= listLength; i++) { //For the entire listlength..
+            Player* tmpPlayer;	//Remove name 'i' from the list.
+            tmpPlayer = (Player*)playerList->removeNo(i); 
             
-            if (*tmpPlayer == temp) {        //checks if temp name is equal to players name.
-                tmpPlayer->display();        //displays players data name by given name.
+            if (*tmpPlayer == temp) { //If temp name is equal to players name..
+                tmpPlayer->display(); //..displays players data.
                 found = true;
             }
-            playerList->add(tmpPlayer);        //Add player back to list.
+            playerList->add(tmpPlayer); //Add the player back to the playerlist.
         }
-        if (found == false) {
+        if (found == false) { //If the player is not found, give feedback.
             cout << "The name " << temp << " does not exist";
         }
     }
     
-    else { //Must be a array with numbers
-        playerList->displayElement(atoi(temp));        //Displays players data by given number.
+    else { //If none of the two checks is correct, it must be a array with numbers
+        playerList->displayElement(atoi(temp)); //Display players data by given number.
     }
 }
 
-void Players::readFromFile() {
-	Player* tempPlayer;
+void Players::readFromFile() {	//This function will read player data from
+	Player* tempPlayer;			//PLAYERS.DTA
 	ifstream inn("PLAYERS.DTA");
 
 	char nameBuffer[STRLEN],addressBuffer[STRLEN];
 	int tempNumb, tempId;
 
-	if (inn) {
-		inn >> tempNumb; inn.ignore();
+	if (inn) {	//If the program is able to read the file..
+		inn >> tempNumb; inn.ignore(); //Read number of players, ignore newline.
 
-		for (int i = 0; i < tempNumb; i++) {
-			inn >> tempId; inn.ignore();
+		for (int i = 0; i < tempNumb; i++) { //Read info for all players.
+			inn >> tempId; inn.ignore();	 //PLAYER - PlayerID
 
-			if (tempId > lastPlayerId) { //Remember to update the lastPlayerId
+			if (tempId > lastPlayerId) {	 //If ID > last ID, update last ID.
 				lastPlayerId = tempId;
 			}
 
-			inn.getline(nameBuffer, STRLEN); //ReaD Name
-			inn.getline(addressBuffer, STRLEN); //Read address
+			inn.getline(nameBuffer, STRLEN); //PLAYER - name
+			inn.getline(addressBuffer, STRLEN); //PLAYER - address
 
 			tempPlayer = new Player(tempId,nameBuffer,addressBuffer);
-			playerList->add(tempPlayer);
-		}
+			playerList->add(tempPlayer); //Create a new player with parameters
+		}								 //.. and add the player to the playerlist.
 	}
-	else {
+	else { //Feedback to user - file not found.
 		cout << "\nThe file PLAYERS.DTA does not exist..";
 	}
 }
 
-int Players::returnLastId() {
+int Players::returnLastId() { //Returns lastID+1
 	return ++lastPlayerId;
 }
 
-void Players::addToList(Element *Element) {
+void Players::addToList(Element *Element) { //Add player object to list.
 	playerList->add(Element);
 }
 
-void Players::displayId(int playerId) {
+void Players::displayId(int playerId) { //Display a given player ID in playerlist.
 	playerList->displayElement(playerId);
 }
 
-void Players::writeToFile() {
-	ofstream out("PLAYERS.DTA");
+void Players::writeToFile() { //Write player data to PLAYERS.DTA
+	ofstream out("PLAYERS.DTA"); //States filename (static)
 	Player* tempPlayer;
-	out << playerList->noOfElements();
+	out << playerList->noOfElements(); //PLAYERS - number of players
 
-	for (int i = 1; i <= playerList->noOfElements(); i++) {
-		tempPlayer = (Player*)playerList->removeNo(i);
-		tempPlayer->writeToFile(out);
-		playerList->add(tempPlayer);
+	for (int i = 1; i <= playerList->noOfElements(); i++) { //Write info for all players
+		tempPlayer = (Player*)playerList->removeNo(i); //Remove from list.
+		tempPlayer->writeToFile(out); //Call each players write to file function.
+		playerList->add(tempPlayer);  //Add player back into the playerlist.
 	}
 }

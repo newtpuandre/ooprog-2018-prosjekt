@@ -16,14 +16,14 @@ using namespace std;
 int main() {
     char ch;
     
-   players.readFromFile();
-   sports.readFromFile();
+   players.readFromFile();	//Read data about players from PLAYERS.DTA
+   sports.readFromFile();	//Read data about sports from SPORTS.DTA
 
-    writeMenu();
-    ch = read();        // Reads one character
+    writeMenu();			//Display menu with descriptions of each function.
+    ch = read();			//Reads one character - menu choice
     ch = toupper(ch);
     while (ch != 'Q') {
-        switch (toupper(ch)) {   // Should we rename the switch cases as we are coding in english? Maybe we should ask the student assistants..?
+        switch (toupper(ch)) {
             case 'S': players.display();            break;
             case 'I': sports.display();             break;
             case 'N': New();				        break;
@@ -33,7 +33,7 @@ int main() {
 			case 'C': /*Voluntary task*/            break;
             case 'T': sports.writeTable();          break;
 			case 'R': if (sports.results(false))
-					sports.results(true);     break;
+						  sports.results(true);		break;
             case 'D':
             case 'E': sports.modify(ch);            break;
             default: writeMenu();
@@ -41,9 +41,9 @@ int main() {
 		cout << "\nCommand:  ";
         ch = read();
     }
-    players.writeToFile();
-	sports.writeToFile();
-	
+    players.writeToFile();	//Write data about players to PLAYERS.DTA
+	sports.writeToFile();	//Write data about sports to SPORTS.DTA
     cout << "\n\n";
+
 	return 0;
 }
